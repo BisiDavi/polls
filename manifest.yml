@@ -1,0 +1,14 @@
+modules:
+  macro:
+    - key: polls-meetings-simplified
+      function: main
+      title: Polls
+      description: Make decisive decision on issues by voting from team-mates, so as to minimize time spent during meetings to crucial issues
+  function:
+    - key: main
+      handler: index.run
+app:
+  id: ari:cloud:ecosystem::app/be7a27cc-c659-4557-b248-5c0e4587b9ce
+permissions:
+  scopes:
+    - read:confluence-content.summary
