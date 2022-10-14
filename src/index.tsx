@@ -10,7 +10,6 @@ import api, { route } from "@forge/api";
 
 // import PollTitle from "@/components/PollTitle";
 import PollTitle from "./components/PollTitle";
-// import "./style/global.css";
 
 const fetchCommentsFromContent = async (contentId) => {
   const res = await api
