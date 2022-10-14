@@ -8,8 +8,7 @@ import ForgeUI, {
 } from "@forge/ui";
 import api, { route } from "@forge/api";
 
-// import PollTitle from "@/components/PollTitle";
-import PollTitle from "./components/PollTitle";
+import ModalView from "./components/ModalView";
 
 const fetchCommentsFromContent = async (contentId) => {
   const res = await api
@@ -34,9 +33,9 @@ const App = () => {
     <Fragment>
       <Text>Hello David!</Text>
       <Text> Comments: {comments.length}</Text>
-      <PollTitle />
+      <ModalView />
     </Fragment>
   );
 };
 
-export const run = render(<Macro app={<App />} />);
+export const run = render(<App />);
