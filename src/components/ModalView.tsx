@@ -17,8 +17,6 @@ import RegularPollView from "./RegularPollView";
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
-  //   const [showPollView, setPollView] = useState(false);
-  console.log("pollType", pollType);
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
@@ -26,7 +24,7 @@ export default function ModalView() {
       text="Cancel"
       icon="error"
       appearance="danger"
-      onClick={() => setPollType("")}
+      onClick={() => setOpen(false)}
     />,
   ];
 
