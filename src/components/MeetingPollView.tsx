@@ -1,4 +1,4 @@
-import ForgeUI, { Text, Fragment, Heading } from "@forge/ui";
+import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
 export default function MeetingView() {
   return (
@@ -10,6 +10,12 @@ export default function MeetingView() {
       <Text>2.Team mate can add/suggest new meeting agenda </Text>
       <Text>3. Allocate time for each agenda</Text>
       <Text>4. Make a summary of your meeting, for easy reference</Text>
+      <Button
+        text="Get Started With Meeting Polls"
+        icon="arrow-right"
+        iconPosition="after"
+        onClick={() => null}
+      />
     </Fragment>
   );
 }
