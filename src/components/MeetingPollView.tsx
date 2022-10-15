@@ -1,9 +1,9 @@
-import ForgeUI, { Text, Fragment } from "@forge/ui";
+import ForgeUI, { Text, Fragment, Heading } from "@forge/ui";
 
 export default function MeetingView() {
   return (
     <Fragment>
-      <Text>Make Meeting Agenda Polls.</Text>
+      <Heading size="medium">Make Meeting Agenda Polls.</Heading>
       <Text>
         1. Let your team-mate vote on meeting agenda based on priority{" "}
       </Text>

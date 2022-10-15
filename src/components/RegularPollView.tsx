@@ -1,9 +1,9 @@
-import ForgeUI, { Text, Fragment } from "@forge/ui";
+import ForgeUI, { Text, Fragment, Heading } from "@forge/ui";
 
 export default function RegularPollView() {
   return (
     <Fragment>
-      <Text>Make Regular Polls</Text>
+      <Heading size="medium">Make Regular Polls</Heading>
     </Fragment>
   );
 }
