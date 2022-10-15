@@ -1,6 +1,6 @@
 import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
-export default function MeetingView() {
+export default function MeetingView({ setPollType }) {
   return (
     <Fragment>
       <Heading size="medium">Make Meeting Agenda Polls.</Heading>
@@ -17,8 +17,9 @@ export default function MeetingView() {
         icon="arrow-right"
         iconPosition="after"
         appearance="primary"
-        onClick={() => null}
+        onClick={() => setPollType("Meeting")}
       />
     </Fragment>
   );
 }
+ 

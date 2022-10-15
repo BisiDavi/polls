@@ -1,6 +1,6 @@
 import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
-export default function RegularPollView() {
+export default function RegularPollView({ setPollType }) {
   return (
     <Fragment>
       <Heading size="medium">Make Regular Polls</Heading>
@@ -10,10 +10,9 @@ export default function RegularPollView() {
       <Button
         text="Get Started with Regular Polls"
         icon="arrow-right"
-        onClick={() => null}
+        onClick={() => setPollType("Regular")}
         iconPosition="after"
       />
     </Fragment>
   );
 }
- 

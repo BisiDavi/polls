@@ -7,11 +7,13 @@ import ForgeUI, {
   Tab,
   Heading,
 } from "@forge/ui";
+import MeetingForm from "./MeetingForm";
 import MeetingView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
 
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
+  const [pollType, setPollType] = useState("");
   //   const [showPollView, setPollView] = useState(false);
 
   return (
@@ -19,14 +21,18 @@ export default function ModalView() {
       {isOpen && (
         <ModalDialog header="Workspace Polls" onClose={() => setOpen(false)}>
           <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
-          <Tabs>
-            <Tab label="Meeting Poll">
-              <MeetingView />
-            </Tab>
-            <Tab label="Regular Poll">
-              <RegularPollView />
-            </Tab>
-          </Tabs>
+          {pollType === "" ? (
+            <Tabs>
+              <Tab label="Meeting Poll">
+                <MeetingView setPollType={setPollType} />
+              </Tab>
+              <Tab label="Regular Poll">
+                <RegularPollView setPollType={setPollType} />
+              </Tab>
+            </Tabs>
+          ) : (
+            <MeetingForm />
+          )}
           {/* <Tooltip text="Create New Poll">
             <Button icon="add" text="" onClick={() => setPollView(true)} />
           </Tooltip> */}
