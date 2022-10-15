@@ -1,4 +1,4 @@
-import ForgeUI, { Text, Form, useState, TextField } from "@forge/ui";
+import ForgeUI, { Form, useState, TextField, Heading } from "@forge/ui";
 
 export default function RegularPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
@@ -11,8 +11,12 @@ export default function RegularPollForm({ actionButton }: any) {
     setFormState(formData);
   };
   return (
-    <Form onSubmit={onSubmit} actionButtons={actionButton}>
-      <Text>Regular Poll Form</Text>
+    <Form
+      submitButtonAppearance="primary"
+      actionButtons={actionButton}
+      onSubmit={onSubmit}
+    >
+      <Heading>Regular Poll Form</Heading>
       <TextField name="title" label="Meeting Title" />
       <TextField
         name="link"

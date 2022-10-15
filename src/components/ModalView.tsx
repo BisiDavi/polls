@@ -21,9 +21,10 @@ export default function ModalView() {
   console.log("pollType", pollType);
 
   const actionButtons = [
+    <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
     <Button
-      text="back"
-      icon="arrow-left"
+      text="Cancel"
+      icon="error"
       appearance="danger"
       onClick={() => setPollType("")}
     />,
