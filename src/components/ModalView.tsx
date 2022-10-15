@@ -19,10 +19,10 @@ export default function ModalView() {
         <ModalDialog header="Insert Polls Macro" onClose={() => setOpen(false)}>
           <Text>Welcome to Polls, plan your meeting succintly.</Text>
           <Tabs>
-            <Tab label="Meeting Polls">
+            <Tab label="Meeting Poll">
               <MeetingView />
             </Tab>
-            <Tab label="Regular Polls">
+            <Tab label="Regular Poll">
               <RegularPollView />
             </Tab>
           </Tabs>

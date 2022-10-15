@@ -10,7 +10,7 @@ export default function MeetingView() {
       <Text>2.Team mate can add/suggest new meeting agenda </Text>
       <Text>3. Allocate time for each agenda</Text>
       <Text>4. Make a summary of your meeting, for easy reference</Text>
-      <Text>5. Publish Polls</Text>
+      <Text>5. Publish Poll</Text>
 
       <Button
         text="Get Started With Meeting Polls"
