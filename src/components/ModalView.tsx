@@ -22,7 +22,7 @@ export default function ModalView() {
             <Button icon="add" text="" onClick={() => setPollView(true)} />
           </Tooltip>
           {showPollView && (
-            <PollsView pollView={showPollView} setPollView={setPollView} />
+            <PollsView />
           )}
         </ModalDialog>
       )}

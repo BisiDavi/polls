@@ -20,7 +20,7 @@ export default function PollTitle() {
     setEdit(false);
   };
 
-  return (
+  return ( 
     <Fragment>
       {!edit ? (
         formState && <Text>{formState.title}</Text>
