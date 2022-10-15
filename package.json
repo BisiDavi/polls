@@ -20,6 +20,7 @@
   "dependencies": {
     "@atlaskit/icon": "^21.11.0",
     "@forge/api": "^2.7.0",
+    "@forge/bridge": "^2.4.0",
     "@forge/ui": "1.4.0"
   }
 }

@@ -1,6 +1,15 @@
-import ForgeUI, { ModalDialog } from "@forge/ui";
-import PollTitle from "./PollTitle";
+import ForgeUI, { Fragment } from "@forge/ui";
+import RegularPollView from "./RegularPollView";
+import MeetingView from "./RegularPollView";
 
-export default function PollsView() {
-  return <PollTitle />;
+interface Props {
+  label: string;
+}
+
+export default function PollsView({ label }: Props) {
+  return (
+    <Fragment>
+      {label === "Meeting Polls" ? <MeetingView /> : <RegularPollView />}
+    </Fragment>
+  );
 }

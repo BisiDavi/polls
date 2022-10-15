@@ -2,28 +2,33 @@ import ForgeUI, {
   Text,
   Fragment,
   useState,
-  Button,
-  TextField,
-  Form,
-  Tooltip,
   ModalDialog,
+  Tabs,
+  Tab,
 } from "@forge/ui";
 import PollsView from "./PollsView";
 
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
-  const [showPollView, setPollView] = useState(false);
+  //   const [showPollView, setPollView] = useState(false);
+
+  const pollsArray = ["Meeting Polls", "Regular Polls"];
 
   return (
     <Fragment>
       {isOpen && (
         <ModalDialog header="Insert Polls Macro" onClose={() => setOpen(false)}>
-          <Tooltip text="Create New Poll">
+          <Text>Welcome to Polls, plan your meeting succintly.</Text>
+          <Tabs>
+            {pollsArray.map((item) => (
+              <Tab label={item}>
+                <PollsView label={item} />
+              </Tab>
+            ))}
+          </Tabs>
+          {/* <Tooltip text="Create New Poll">
             <Button icon="add" text="" onClick={() => setPollView(true)} />
-          </Tooltip>
-          {showPollView && (
-            <PollsView />
-          )}
+          </Tooltip> */}
         </ModalDialog>
       )}
     </Fragment>
