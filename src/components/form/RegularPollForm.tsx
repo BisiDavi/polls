@@ -1,6 +1,6 @@
 import ForgeUI, { Text, Form, useState, TextField } from "@forge/ui";
 
-export default function MeetingForm() {
+export default function RegularPollForm() {
   const [formState, setFormState] = useState(undefined);
 
   const onSubmit = async (formData) => {
@@ -12,9 +12,7 @@ export default function MeetingForm() {
   };
   return (
     <Form onSubmit={onSubmit}>
-      <Text>
-        1. Let your team-mate vote on meeting agenda based on priority
-      </Text>
+      <Text>Regular Poll Form</Text>
       <TextField name="title" label="Meeting Title" />
       <TextField
         name="link"
