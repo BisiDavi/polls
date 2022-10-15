@@ -20,6 +20,15 @@ export default function ModalView() {
   //   const [showPollView, setPollView] = useState(false);
   console.log("pollType", pollType);
 
+  const actionButtons = [
+    <Button
+      text="back"
+      icon="arrow-left"
+      appearance="danger"
+      onClick={() => setPollType("")}
+    />,
+  ];
+
   return (
     <Fragment>
       {isOpen && (
@@ -27,12 +36,6 @@ export default function ModalView() {
           <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
           {pollType === "" ? (
             <Tabs>
-              <Button
-                text="back"
-                icon="arrow-left"
-                appearance="danger"
-                onClick={() => setPollType("")}
-              />
               <Tab label="Meeting Poll">
                 <MeetingView setPollType={setPollType} />
               </Tab>
@@ -41,9 +44,9 @@ export default function ModalView() {
               </Tab>
             </Tabs>
           ) : pollType === "Meeting" ? (
-            <MeetingPollForm />
+            <MeetingPollForm actionButton={actionButtons} />
           ) : (
-            <RegularPollForm />
+            <RegularPollForm actionButton={actionButtons} />
           )}
           {/* <Tooltip text="Create New Poll">
             <Button icon="add" text="" onClick={() => setPollView(true)} />

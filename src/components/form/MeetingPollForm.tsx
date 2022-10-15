@@ -1,6 +1,6 @@
 import ForgeUI, { Text, Form, useState, TextField } from "@forge/ui";
 
-export default function MeetingPollForm() {
+export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
 
   const onSubmit = async (formData) => {
@@ -11,7 +11,7 @@ export default function MeetingPollForm() {
     setFormState(formData);
   };
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} actionButtons={actionButton}>
       <Text>Meeting Poll Form</Text>
       <TextField name="title" label="Meeting Title" />
       <TextField

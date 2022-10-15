@@ -7,6 +7,7 @@ export default function RegularPollView({ setPollType }) {
       <Text>1. List Vote Options</Text>
       <Text>2. Customize Vote Option</Text>
       <Text>3. Publish Poll</Text>
+
       <Button
         text="Get Started with Regular Polls"
         icon="arrow-right"
