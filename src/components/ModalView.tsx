@@ -5,6 +5,7 @@ import ForgeUI, {
   ModalDialog,
   Tabs,
   Tab,
+  Heading,
 } from "@forge/ui";
 import MeetingView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
@@ -16,8 +17,8 @@ export default function ModalView() {
   return (
     <Fragment>
       {isOpen && (
-        <ModalDialog header="Insert Polls Macro" onClose={() => setOpen(false)}>
-          <Text>Welcome to Polls, plan your meeting succintly.</Text>
+        <ModalDialog header="Workspace Polls" onClose={() => setOpen(false)}>
+          <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
           <Tabs>
             <Tab label="Meeting Poll">
               <MeetingView />
