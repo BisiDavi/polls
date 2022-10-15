@@ -1,4 +1,4 @@
-import ForgeUI, { render, Text, Fragment } from "@forge/ui";
+import ForgeUI, { render, Fragment } from "@forge/ui";
 
 import ModalView from "./components/ModalView";
 

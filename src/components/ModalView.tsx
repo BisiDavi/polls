@@ -6,7 +6,9 @@ import ForgeUI, {
   Tabs,
   Tab,
   Heading,
+  Button,
 } from "@forge/ui";
+
 import MeetingPollForm from "./form/MeetingPollForm";
 import RegularPollForm from "./form/RegularPollForm";
 import MeetingView from "./MeetingPollView";
@@ -24,6 +26,12 @@ export default function ModalView() {
           <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
           {pollType === "" ? (
             <Tabs>
+              <Button
+                text="back"
+                onClick={() => setPollType("")}
+                icon="arrow-left"
+                appearance="danger"
+              />
               <Tab label="Meeting Poll">
                 <MeetingView setPollType={setPollType} />
               </Tab>
