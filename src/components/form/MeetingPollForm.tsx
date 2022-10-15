@@ -3,32 +3,41 @@ import ForgeUI, {
   Form,
   useState,
   TextField,
-  Text,
-  Fragment,
-  Tooltip,
   Button,
   ButtonSet,
+  DatePicker,
 } from "@forge/ui";
+import PollsFieldSet from "./PollsFieldSet";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [agenda, setAgenda] = useState(["Agenda 1"]);
 
-  console.log("agenda", agenda);
+  console.log("formState", formState);
+
+  function getAgendaName(item: string, index: number) {
+    const agendaCount = index + 1;
+    const itemSplit = item.split(" ")[0].toLowerCase();
+    const name = `${itemSplit}-${agendaCount}`;
+    return { agendaCount, name };
+  }
 
   const onSubmit = async (formData) => {
+    const agendaObj = {};
+    agenda.map((item, index) => {
+      const { name } = getAgendaName(item, index);
+      agendaObj[name] = "";
+    });
     formData: {
       title: "";
       link: "";
+      meetingDate: "";
     }
-    setFormState(formData);
+    console.log("agendaObj", agendaObj);
+    setFormState({ ...agendaObj, ...formData });
   };
 
-  function removeAgendaHandler() {
-    const agendaTemp = agenda;
-    agendaTemp.splice(agendaTemp.length - 1, 1);
-    setAgenda([...agendaTemp]);
-  }
+
 
   return (
     <Form
@@ -37,40 +46,20 @@ export default function MeetingPollForm({ actionButton }: any) {
       onSubmit={onSubmit}
     >
       <Heading>Meeting Poll Form</Heading>
-      <TextField name="title" label="Meeting Title" />
+      <TextField name="title" label="Meeting Title" isRequired />
       <TextField
         name="link"
         label="Meeting Link"
         placeholder="zoom/google meet/any link"
+        isRequired
       />
-      <ButtonSet>
-        <Button
-          icon="add"
-          text="Add Meeting Agenda"
-          appearance="primary"
-          iconPosition="before"
-          onClick={() => setAgenda([...agenda, `Agenda ${agenda.length + 1}`])}
-        />
-        <Button
-          icon="trash"
-          text="Remove Meeting Agenda"
-          appearance="danger"
-          iconPosition="before"
-          onClick={removeAgendaHandler}
-        />
-      </ButtonSet>
-      {agenda.map((item, index) => {
-        const agendaCount = index + 1;
-        const itemSplit = item.split(" ")[0].toLowerCase();
-        const name = `${itemSplit}-${agendaCount}`;
-        return (
-          <TextField
-            name={name}
-            label={item}
-            placeholder={`what's the meeting agenda ${agendaCount}`}
-          />
-        );
-      })}
+      <DatePicker
+        name="meetingDate"
+        placeholder="Pick Meeting Date"
+        label="Pick Meeeting Date"
+        isRequired
+      />
+      <PollsFieldSet type="meeting" />
     </Form>
   );
 }

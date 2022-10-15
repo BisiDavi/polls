@@ -1,4 +1,5 @@
 import ForgeUI, { Form, useState, TextField, Heading } from "@forge/ui";
+import PollsFieldSet from "./PollsFieldSet";
 
 export default function RegularPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
@@ -23,6 +24,7 @@ export default function RegularPollForm({ actionButton }: any) {
         label="Meeting Link"
         placeholder="zoom/google meet/any link"
       />
+      <PollsFieldSet type="regular" />
     </Form>
   );
 }
