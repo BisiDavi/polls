@@ -10,8 +10,8 @@ export default function RegularPollView({ setPollType }) {
       <Button
         text="Get Started with Regular Polls"
         icon="arrow-right"
-        onClick={() => setPollType("Regular")}
         iconPosition="after"
+        onClick={() => setPollType("Regular")}
       />
     </Fragment>
   );

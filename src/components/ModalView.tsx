@@ -18,6 +18,7 @@ export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
   //   const [showPollView, setPollView] = useState(false);
+  console.log("pollType", pollType);
 
   return (
     <Fragment>
@@ -28,9 +29,9 @@ export default function ModalView() {
             <Tabs>
               <Button
                 text="back"
-                onClick={() => setPollType("")}
                 icon="arrow-left"
                 appearance="danger"
+                onClick={() => setPollType("")}
               />
               <Tab label="Meeting Poll">
                 <MeetingView setPollType={setPollType} />
