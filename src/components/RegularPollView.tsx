@@ -5,7 +5,8 @@ export default function RegularPollView() {
     <Fragment>
       <Heading size="medium">Make Regular Polls</Heading>
       <Text>1. List Vote Options</Text>
-      <Text>2. Customize Vote</Text>
+      <Text>2. Customize Vote Option</Text>
+      <Text>3. Publish Polls</Text>
       <Button
         text="Get Started with Regular Polls"
         icon="arrow-right"
@@ -15,3 +16,4 @@ export default function RegularPollView() {
     </Fragment>
   );
 }
+ 
