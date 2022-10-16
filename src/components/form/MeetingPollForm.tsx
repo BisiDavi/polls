@@ -7,8 +7,9 @@ import ForgeUI, {
   ButtonSet,
   DatePicker,
 } from "@forge/ui";
-import { formatFormPoll } from "@/lib/getAgendaName";
+
 import PollsFieldSet from "./PollsFieldSet";
+import { formatFormPoll } from "../../lib/getAgendaName";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
@@ -37,7 +38,7 @@ export default function MeetingPollForm({ actionButton }: any) {
       <TextField
         name="link"
         label="Meeting Link"
-        placeholder="zoom/google meet/any link"
+        placeholder="zoom/google meet/any video call link"
         isRequired
       />
       <DatePicker

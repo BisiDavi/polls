@@ -24,12 +24,7 @@ export default function RegularPollForm({ actionButton }: any) {
       onSubmit={onSubmit}
     >
       <Heading>Regular Poll Form</Heading>
-      <TextField name="title" label="Meeting Title" />
-      <TextField
-        name="link"
-        label="Meeting Link"
-        placeholder="zoom/google meet/any link"
-      />
+      <TextField name="title" label="Poll Title" isRequired />
       <PollsFieldSet
         type="regular"
         poll={regularPolls}

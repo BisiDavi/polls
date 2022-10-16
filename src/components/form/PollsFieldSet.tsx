@@ -32,13 +32,15 @@ export default function PollsFieldSet({ type, poll, setPoll }: Props) {
           iconPosition="before"
           onClick={() => setPoll([...poll, `${pollText} ${poll.length + 1}`])}
         />
-        <Button
-          icon="trash"
-          text={`Remove ${buttonText}`}
-          appearance="danger"
-          iconPosition="before"
-          onClick={removeAgendaHandler}
-        />
+        {poll.length > 1 && (
+          <Button
+            icon="trash"
+            text={`Remove ${buttonText}`}
+            appearance="danger"
+            iconPosition="before"
+            onClick={removeAgendaHandler}
+          />
+        )}
       </ButtonSet>
       {poll.map((item, index) => {
         const { name, agendaCount } = getAgendaName(item, index);
