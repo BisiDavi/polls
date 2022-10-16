@@ -1,45 +1,29 @@
 import ForgeUI, {
-  useState,
   TextField,
   Button,
   ButtonSet,
   Fragment,
 } from "@forge/ui";
 
+import { formatFormPoll } from "../../lib/getAgendaName";
+
 interface Props {
   type: "meeting" | "regular";
+  setPoll: any;
+  poll: string[];
 }
 
-function formatFormPoll(pollState) {
-  const agendaObj = {};
-  pollState.map((item, index) => {
-    const { name } = getAgendaName(item, index);
-    agendaObj[name] = "";
-  });
-}
-
-export default function PollsFieldSet({ type }: Props) {
-  const pollType = type === "meeting" ? "Agenda 1" : "Poll Option 1";
+export default function PollsFieldSet({ type, poll, setPoll }: Props) {
   const pollText = type === "meeting" ? "Agenda" : "Poll Option";
   const buttonText = type === "meeting" ? "Meeting Agenda" : "Poll Option";
   const inputText =
     type === "meeting" ? "what's the meeting agenda" : "what's the poll option";
-  const [agenda, setAgenda] = useState([pollType]);
-
-  console.log("agenda", agenda);
-
-  function getAgendaName(item: string, index: number) {
-    const agendaCount = index + 1;
-    const itemSplit = item.split(" ")[0].toLowerCase();
-    const name = `${itemSplit}-${agendaCount}`;
-    return { agendaCount, name };
-  }
 
   function removeAgendaHandler() {
-    if (agenda.length > 1) {
-      const agendaTemp = agenda;
-      agendaTemp.splice(agendaTemp.length - 1, 1);
-      setAgenda([...agendaTemp]);
+    if (poll.length > 1) {
+      const pollTemp = poll;
+      pollTemp.splice(pollTemp.length - 1, 1);
+      setPoll([...pollTemp]);
     }
   }
 
@@ -51,9 +35,7 @@ export default function PollsFieldSet({ type }: Props) {
           text={`Add ${buttonText}`}
           appearance="primary"
           iconPosition="before"
-          onClick={() =>
-            setAgenda([...agenda, `${pollText} ${agenda.length + 1}`])
-          }
+          onClick={() => setPoll([...poll, `${pollText} ${poll.length + 1}`])}
         />
         <Button
           icon="trash"
@@ -63,7 +45,7 @@ export default function PollsFieldSet({ type }: Props) {
           onClick={removeAgendaHandler}
         />
       </ButtonSet>
-      {agenda.map((item, index) => {
+      {poll.map((item, index) => {
         const { name, agendaCount } = getAgendaName(item, index);
         return (
           <TextField

@@ -1,15 +1,21 @@
 import ForgeUI, { Form, useState, TextField, Heading } from "@forge/ui";
+
 import PollsFieldSet from "./PollsFieldSet";
+import { formatFormPoll } from "../../lib/getAgendaName";
 
 export default function RegularPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
+  const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
+
+  console.log("formState", formState);
 
   const onSubmit = async (formData) => {
+    const pollObj = formatFormPoll(regularPolls);
     formData: {
       title: "";
       link: "";
     }
-    setFormState(formData);
+    setFormState({ ...pollObj, ...formData });
   };
   return (
     <Form
@@ -24,7 +30,11 @@ export default function RegularPollForm({ actionButton }: any) {
         label="Meeting Link"
         placeholder="zoom/google meet/any link"
       />
-      <PollsFieldSet type="regular" />
+      <PollsFieldSet
+        type="regular"
+        poll={regularPolls}
+        setPoll={setRegularPolls}
+      />
     </Form>
   );
 }

@@ -7,6 +7,7 @@ import ForgeUI, {
   ButtonSet,
   DatePicker,
 } from "@forge/ui";
+import { formatFormPoll } from "@/lib/getAgendaName";
 import PollsFieldSet from "./PollsFieldSet";
 
 export default function MeetingPollForm({ actionButton }: any) {
@@ -15,29 +16,15 @@ export default function MeetingPollForm({ actionButton }: any) {
 
   console.log("formState", formState);
 
-  function getAgendaName(item: string, index: number) {
-    const agendaCount = index + 1;
-    const itemSplit = item.split(" ")[0].toLowerCase();
-    const name = `${itemSplit}-${agendaCount}`;
-    return { agendaCount, name };
-  }
-
   const onSubmit = async (formData) => {
-    const agendaObj = {};
-    agenda.map((item, index) => {
-      const { name } = getAgendaName(item, index);
-      agendaObj[name] = "";
-    });
+    const agendaObj = formatFormPoll(agenda);
     formData: {
       title: "";
       link: "";
       meetingDate: "";
     }
-    console.log("agendaObj", agendaObj);
     setFormState({ ...agendaObj, ...formData });
   };
-
-
 
   return (
     <Form
@@ -59,7 +46,7 @@ export default function MeetingPollForm({ actionButton }: any) {
         label="Pick Meeeting Date"
         isRequired
       />
-      <PollsFieldSet type="meeting" />
+      <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
     </Form>
   );
 }
