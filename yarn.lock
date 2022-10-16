@@ -285,7 +285,7 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@forge/api@^2.7.0":
+"@forge/api@2.7.0", "@forge/api@^2.7.0":
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@forge/api/-/api-2.7.0.tgz#2022a7fe859fac0cba451c5f7cb4ab287107c368"
   integrity sha512-5divMMwC4PVCUy3r84/CUUUTMWFNyeibtg7gpZGS1xK4OuOILRf+DjIRGWWFwxHHJNP+12YsPqSpdSgldEgU0w==
@@ -313,6 +313,13 @@
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@forge/storage/-/storage-1.3.0.tgz#3e572c0aa780581acc1c8f51206fca639c245242"
   integrity sha512-Tje/X+KY8i/u624YoxiOY+zP5sQc6rqo+vXA//nmIFGx0yWlPhUNf6ft7fFJrFe2JGpqgtNgfo3AjspveyMkzg==
+
+"@forge/ui-confluence@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@forge/ui-confluence/-/ui-confluence-6.0.0.tgz#1d1a8dfca8897a1ebe046fafd801ea2f0943440e"
+  integrity sha512-8gBREpBWH11NGXczwXsGSXoHlznQpnvB0mx+NGzvGiuVgQlu+1cceyGUgD4+XG76xTa3/Xt0XSm8HRyy4snQKg==
+  dependencies:
+    "@forge/api" "2.7.0"
 
 "@forge/ui@1.4.0":
   version "1.4.0"
