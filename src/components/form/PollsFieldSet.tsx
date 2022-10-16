@@ -1,11 +1,6 @@
-import ForgeUI, {
-  TextField,
-  Button,
-  ButtonSet,
-  Fragment,
-} from "@forge/ui";
+import ForgeUI, { TextField, Button, ButtonSet, Fragment } from "@forge/ui";
 
-import { formatFormPoll } from "../../lib/getAgendaName";
+import { getAgendaName } from "../../lib/getAgendaName";
 
 interface Props {
   type: "meeting" | "regular";
