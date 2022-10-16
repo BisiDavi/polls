@@ -1,0 +1,14 @@
+{
+  "meeting": [
+    "1. Let your team-mate vote on meeting agenda based on priority.",
+    "2. Team mate can add/suggest new meeting agenda.",
+    "3. Allocate time for each agenda.",
+    "4. Make a summary of your meeting, for easy reference.",
+    "5. Publish Poll."
+  ],
+  "regular": [
+    "1. List Vote Options.",
+    "2. Customize Vote Option",
+    "3. Publish Poll"
+  ]
+}

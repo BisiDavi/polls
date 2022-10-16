@@ -15,8 +15,6 @@ export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [agenda, setAgenda] = useState(["Agenda 1"]);
 
-  console.log("formState", formState);
-
   const onSubmit = async (formData) => {
     const agendaObj = formatFormPoll(agenda);
     formData: {

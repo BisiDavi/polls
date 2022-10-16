@@ -5,6 +5,7 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "lib": ["dom", "es2017"],
     "types": ["node", "react"],
     "baseUrl": "./",
