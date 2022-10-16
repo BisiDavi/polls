@@ -1,8 +1,8 @@
 import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
-import pollContent from "../json/pollview.json";
+import pollContent from "../../json/pollview.json";
 
-export default function RegularPollView({ setPollType }) {
+export default function PollResult({ setPollType }) {
   return (
     <Fragment>
       <Heading size="medium">Make Regular Polls</Heading>

@@ -9,10 +9,10 @@ import ForgeUI, {
   Button,
 } from "@forge/ui";
 
-import MeetingPollForm from "./form/MeetingPollForm";
-import RegularPollForm from "./form/RegularPollForm";
 import MeetingView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
+import MeetingPollForm from "./../form/MeetingPollForm";
+import RegularPollForm from "./../form/RegularPollForm";
 
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);

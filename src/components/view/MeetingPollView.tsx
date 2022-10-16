@@ -1,6 +1,6 @@
 import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
-import pollContent from "../json/pollview.json";
+import pollContent from "../../json/pollview.json";
 
 export default function MeetingView({ setPollType }) {
   return (

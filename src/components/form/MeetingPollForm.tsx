@@ -3,8 +3,6 @@ import ForgeUI, {
   Form,
   useState,
   TextField,
-  Button,
-  ButtonSet,
   DatePicker,
 } from "@forge/ui";
 
@@ -25,6 +23,8 @@ export default function MeetingPollForm({ actionButton }: any) {
     setFormState({ ...agendaObj, ...formData });
   };
 
+  console.log("formState", formState);
+
   return (
     <Form
       submitButtonAppearance="primary"
@@ -32,16 +32,20 @@ export default function MeetingPollForm({ actionButton }: any) {
       onSubmit={onSubmit}
     >
       <Heading>Meeting Poll Form</Heading>
-      <TextField name="title" label="Meeting Title" isRequired />
+      <TextField
+        name="title"
+        label="Meeting Title"
+        placeholder="Enter your Meeting Title"
+        isRequired
+      />
       <TextField
         name="link"
         label="Meeting Link"
         placeholder="zoom/google meet/any video call link"
-        isRequired
       />
       <DatePicker
         name="meetingDate"
-        placeholder="Pick Meeting Date"
+        placeholder="Select Date"
         label="Pick Meeeting Date"
         isRequired
       />
