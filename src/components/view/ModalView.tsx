@@ -1,5 +1,4 @@
 import ForgeUI, {
-  Text,
   Fragment,
   useState,
   ModalDialog,
@@ -47,9 +46,6 @@ export default function ModalView() {
           ) : (
             <RegularPollForm actionButton={actionButtons} />
           )}
-          {/* <Tooltip text="Create New Poll">
-            <Button icon="add" text="" onClick={() => setPollView(true)} />
-          </Tooltip> */}
         </ModalDialog>
       )}
     </Fragment>

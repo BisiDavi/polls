@@ -1,6 +1,6 @@
 import ForgeUI, { render, Fragment } from "@forge/ui";
 
-import ModalView from "./components/ModalView";
+import ModalView from "./components/view/ModalView";
 
 const App = () => {
   return (
