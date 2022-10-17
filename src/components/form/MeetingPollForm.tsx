@@ -5,10 +5,10 @@ import ForgeUI, {
   TextField,
   DatePicker,
 } from "@forge/ui";
+import { useContentProperty } from "@forge/ui-confluence";
 
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
-import { useContentProperty } from "@forge/ui-confluence";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
