@@ -14,7 +14,7 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
-  const [agenda, setAgenda] = useState(["Agenda 1"]);
+  const [agenda, setAgenda] = useState(["Topic 1"]);
   // const [submitForm, setSubmitForm] = useState(false);
   const [meetingId, setMeetingId] = useContentProperty("meetingId", 0);
   const [meetingContent, setMeetingContent] = useContentProperty(
