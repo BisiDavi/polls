@@ -3,6 +3,8 @@ import ForgeUI, {
   Form,
   useState,
   TextField,
+  TextArea,
+  useEffect,
   DatePicker,
 } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
@@ -13,11 +15,20 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [agenda, setAgenda] = useState(["Agenda 1"]);
-  const [meetingId, setMeetingId] = useContentProperty('meetingId', 0)
+  const [submitForm, setSubmitForm] = useState(false);
+  const [meetingId, setMeetingId] = useContentProperty("meetingId", 0);
   const [meetingContent, setMeetingContent] = useContentProperty(
     "meeting-poll",
-    undefined
+    ""
   );
+
+  async function updateMeetingId() {
+    await setMeetingId(meetingId + 1);
+  }
+
+  async function updateMeetingContent(meetingData) {
+    await setMeetingContent(meetingData);
+  }
 
   const onSubmit = async (formData) => {
     const agendaObj = formatFormPoll(agenda);
@@ -26,11 +37,24 @@ export default function MeetingPollForm({ actionButton }: any) {
       link: "";
       meetingDate: "";
       type: "meetingPoll";
+      description: "";
     }
     setFormState({ ...agendaObj, ...formData });
+    updateMeetingId();
+    setSubmitForm(true);
   };
 
+  useEffect(() => {
+    if (submitForm) {
+      updateMeetingContent(formState).then(() => {
+        setSubmitForm(false);
+      });
+    }
+  }, [meetingId, submitForm]);
+
   console.log("formState", formState);
+  console.log("meetingId", meetingId);
+  console.log("meetingContent", meetingContent);
 
   return (
     <Form
@@ -56,6 +80,7 @@ export default function MeetingPollForm({ actionButton }: any) {
         label="Pick Meeeting Date"
         isRequired
       />
+      <TextArea label="Meeting Description" spellCheck name="description" />
       <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
     </Form>
   );
