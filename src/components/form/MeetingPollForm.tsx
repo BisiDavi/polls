@@ -15,10 +15,10 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [agenda, setAgenda] = useState(["Agenda 1"]);
-  const [submitForm, setSubmitForm] = useState(false);
+  // const [submitForm, setSubmitForm] = useState(false);
   const [meetingId, setMeetingId] = useContentProperty("meetingId", 0);
   const [meetingContent, setMeetingContent] = useContentProperty(
-    "meeting-poll",
+    `meeting-poll-${meetingId}`,
     ""
   );
 
@@ -29,6 +29,7 @@ export default function MeetingPollForm({ actionButton }: any) {
   async function updateMeetingContent(meetingData) {
     await setMeetingContent(meetingData);
   }
+  const date = new Date();
 
   const onSubmit = async (formData) => {
     const agendaObj = formatFormPoll(agenda);
@@ -38,19 +39,22 @@ export default function MeetingPollForm({ actionButton }: any) {
       meetingDate: "";
       description: "";
       type: "meetingPoll";
+      date: date.toISOString();
     }
     setFormState({ ...agendaObj, ...formData });
     updateMeetingId();
-    setSubmitForm(true);
+    updateMeetingContent(formState);
+    // setSubmitForm(true);
   };
 
-  useEffect(() => {
-    if (submitForm) {
-      updateMeetingContent(formState).then(() => {
-        setSubmitForm(false);
-      });
-    }
-  }, [meetingId, submitForm]);
+  // useEffect(() => {
+  //   if (submitForm) {
+  //     console.log("done");
+  //     updateMeetingContent(formState).then(() => {
+  //       setSubmitForm(false);
+  //     });
+  //   }
+  // }, [meetingId, submitForm]);
 
   console.log("formState", formState);
   console.log("meetingId", meetingId);
