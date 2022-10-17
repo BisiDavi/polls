@@ -6,7 +6,9 @@ import ForgeUI, {
   Tab,
   Heading,
   Button,
+  useProductContext,
 } from "@forge/ui";
+import api, { route } from "@forge/api";
 
 import MeetingView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
@@ -16,6 +18,20 @@ import RegularPollForm from "./../form/RegularPollForm";
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
+  const context = useProductContext();
+
+  console.log("context", context);
+
+  async function getUserDetails() {
+    const response = await api
+      .asApp()
+      .requestConfluence(route`/wiki/rest/api/user/current`);
+
+    const result = response.json();
+    console.log("result ", result);
+  }
+
+  getUserDetails();
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
