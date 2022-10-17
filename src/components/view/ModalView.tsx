@@ -28,10 +28,11 @@ export default function ModalView() {
       .requestConfluence(route`/wiki/rest/api/user/current`);
 
     const result = response.json();
-    console.log("result ", result);
+    console.log("user-result ", result);
+    return result;
   }
 
-  getUserDetails();
+  const userDetails = getUserDetails();
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,

@@ -13,4 +13,5 @@ permissions:
   scopes:
     - read:confluence-content.summary
     - read:confluence-props
+    - read:confluence-user
     - write:confluence-props

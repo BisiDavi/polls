@@ -4,5 +4,13 @@ import { useProductContext } from "@forge/ui";
 export default function useUser() {
   const context = useProductContext();
 
-  return null;
+  async function getUserDetails() {
+    const response = await api
+      .asApp()
+      .requestConfluence(route`/wiki/rest/api/user/current`);
+
+    const result = response.json();
+    console.log("user-result ", result);
+  }
+  return { getUserDetails };
 }
