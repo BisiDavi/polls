@@ -1,11 +1,12 @@
 {
   "meeting": [
-    "1. Let your team-mate vote on meeting agenda based on priority.",
-    "2. Team mate can add/suggest new meeting goal.",
-    "3. Make a summary of your meeting, for easy reference.",
-    "4. Meeting duration estimate.",
-    "5. Save Meeting decision.",
-    "6. Publish Poll."
+    "1. Alert team members about upcoming meeting",
+    "2. Prioritize meeting topics based on your team member opinion.",
+    "3. Team member can add/suggest new meeting topic.",
+    "4. Estimate meeting duration.",
+    "5. Team members to indicate if available for meeting.",
+    "6. Publish Meeting Poll.",
+    "7. Save meeting decision."
   ],
   "regular": [
     "1. List Vote Options.",
