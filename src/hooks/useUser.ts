@@ -12,7 +12,7 @@ export default function useUser() {
     const result = await response.json();
     console.log("user-result ", result);
 
-    return result;
+    return await response.json();
   }
   return { getUserDetails, context };
 }

@@ -3,7 +3,7 @@ modules:
     - key: polls-meetings-simplified
       function: main
       title: Polls
-      description: Make decisive decision on issues by voting from team-mates, so as to minimize time spent during meetings to crucial issues
+      description: Team Meeting Management - Allow team-mates to upvote/downvote topics to be discussed in a meetings
   function:
     - key: main
       handler: index.run

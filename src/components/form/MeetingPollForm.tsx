@@ -4,7 +4,6 @@ import ForgeUI, {
   useState,
   TextField,
   TextArea,
-  useEffect,
   DatePicker,
 } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
