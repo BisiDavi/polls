@@ -36,8 +36,8 @@ export default function MeetingPollForm({ actionButton }: any) {
       title: "";
       link: "";
       meetingDate: "";
-      type: "meetingPoll";
       description: "";
+      type: "meetingPoll";
     }
     setFormState({ ...agendaObj, ...formData });
     updateMeetingId();
