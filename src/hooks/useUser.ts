@@ -9,8 +9,10 @@ export default function useUser() {
       .asApp()
       .requestConfluence(route`/wiki/rest/api/user/current`);
 
-    const result = response.json();
+    const result = await response.json();
     console.log("user-result ", result);
+
+    return result;
   }
-  return { getUserDetails };
+  return { getUserDetails, context };
 }

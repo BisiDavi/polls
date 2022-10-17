@@ -9,10 +9,10 @@ interface Props {
 }
 
 export default function PollsFieldSet({ type, poll, setPoll }: Props) {
-  const pollText = type === "meeting" ? "Agenda" : "Poll Option";
-  const buttonText = type === "meeting" ? "Meeting Agenda" : "Poll Option";
+  const pollText = type === "meeting" ? "Goal" : "Poll Option";
+  const buttonText = type === "meeting" ? "Meeting Goal" : "Poll Option";
   const inputText =
-    type === "meeting" ? "what's the meeting agenda" : "what's the poll option";
+    type === "meeting" ? "what's the meeting goal" : "what's the poll option";
 
   function removeAgendaHandler() {
     if (poll.length > 1) {
