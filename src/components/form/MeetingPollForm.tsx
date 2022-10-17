@@ -8,10 +8,16 @@ import ForgeUI, {
 
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
+import { useContentProperty } from "@forge/ui-confluence";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [agenda, setAgenda] = useState(["Agenda 1"]);
+  const [meetingId, setMeetingId] = useContentProperty('meetingId', 0)
+  const [meetingContent, setMeetingContent] = useContentProperty(
+    "meeting-poll",
+    undefined
+  );
 
   const onSubmit = async (formData) => {
     const agendaObj = formatFormPoll(agenda);
@@ -19,6 +25,7 @@ export default function MeetingPollForm({ actionButton }: any) {
       title: "";
       link: "";
       meetingDate: "";
+      type: "meetingPoll";
     }
     setFormState({ ...agendaObj, ...formData });
   };

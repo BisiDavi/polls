@@ -1,20 +1,18 @@
 import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
-import pollContent from "../../json/pollview.json";
-
-export default function PollResult({ setPollType }) {
+export default function PollResult() {
   return (
     <Fragment>
-      <Heading size="medium">Make Regular Polls</Heading>
-      {pollContent.regular.map((item) => (
-        <Text key={item}>{item}</Text>
-      ))}
+      <Heading size="medium">Polls Details </Heading>
+      <Text>
+
+      </Text>
 
       <Button
-        text="Get Started with Regular Polls"
+        text="Publish"
         icon="arrow-right"
         iconPosition="after"
-        onClick={() => setPollType("Regular")}
+        onClick={() => null}
       />
     </Fragment>
   );

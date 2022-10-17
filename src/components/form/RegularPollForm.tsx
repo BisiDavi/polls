@@ -14,6 +14,7 @@ export default function RegularPollForm({ actionButton }: any) {
     formData: {
       title: "";
       link: "";
+      type: "regularMeetingPoll";
     }
     setFormState({ ...pollObj, ...formData });
   };
