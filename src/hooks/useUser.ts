@@ -10,7 +10,7 @@ export default function useUser() {
       .requestConfluence(route`/wiki/rest/api/user/current`);
 
     const result = await response.json();
-    console.log("user-result ", result);
+    // console.log("user-result ", result);
 
     return await response.json();
   }

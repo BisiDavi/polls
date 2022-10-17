@@ -23,7 +23,7 @@ export default function ModalView() {
 
   const userDetails = getUserDetails();
 
-  console.log("userDetails", userDetails);
+  userDetails.then((response) => console.log("userDetails-response", response));
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
