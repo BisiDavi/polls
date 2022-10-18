@@ -8,10 +8,10 @@ export default function ModalView() {
   const [pollType, setPollType] = useState("");
   const [pollResult, setPollResult] = useState("");
 
-  console.log("pollType", pollType);
-
   const backState =
     pollType !== "" && pollResult === pollType ? pollResult : "";
+
+  console.log("backState", backState);
 
   return (
     <Layout

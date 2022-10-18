@@ -21,6 +21,8 @@ export default function PollResultView({ data }) {
   const { getUserDetails } = useUser();
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
+  const optionText =
+    data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
@@ -41,7 +43,10 @@ export default function PollResultView({ data }) {
   return (
     <Fragment>
       <Heading size="medium">Polls Details ({pollType})</Heading>
-      <Heading size="small">Title: {data.title}</Heading>
+      <Text>
+        <Strong>Title: </Strong>
+        {data.title}
+      </Text>
       <Text>
         <Strong>Description: </Strong>
         {data.description}
@@ -54,18 +59,24 @@ export default function PollResultView({ data }) {
       )}
       {data?.meetingDate && (
         <Text>
-          <Strong>Meeting Date:</Strong>
+          <Strong>Meeting Date: </Strong>
           <DateLozenge value={new Date(meetingDate).getTime()} />
         </Text>
       )}
       <Text>
-        <Strong>Topics to be discussed</Strong>
+        <Strong>{optionText}</Strong>
       </Text>
-      {topics.map((item) => (
+      {topics.map((item, index) => (
         <Text key={item}>
-          <Em>{item}</Em>
+          {index + 1}.<Em>{item}</Em>
         </Text>
       ))}
+      {userDetails !== null && (
+        <Text>
+          <Strong>Author: </Strong>
+          <User accountId={userDetails.accountId} />
+        </Text>
+      )}
       <Button
         text="Publish"
         icon="book"
