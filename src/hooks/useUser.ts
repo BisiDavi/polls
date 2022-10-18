@@ -8,11 +8,15 @@ export default function useUser() {
     const response = await api
       .asApp()
       .requestConfluence(route`/wiki/rest/api/user/current`);
-
-    const result = await response.json();
-    // console.log("user-result ", result);
-
     return await response.json();
   }
-  return { getUserDetails, context };
+
+  async function readContentProperties() {
+    const response = await api
+      .asApp()
+      .requestConfluence(route`/wiki/rest/api/content/{id}/property`);
+    return await response.json();
+  }
+  
+  return { getUserDetails, readContentProperties, context };
 }

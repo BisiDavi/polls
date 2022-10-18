@@ -17,12 +17,16 @@ import useUser from "../../hooks/useUser";
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
-  const { context, getUserDetails } = useUser();
+  const { context, getUserDetails, readContentProperties } = useUser();
 
   console.log("context", context);
 
   const userDetails = getUserDetails();
 
+  readContentProperties().then((response) =>
+    console.log("readContentProperties-response", response)
+  );
+ 
   userDetails.then((response) => console.log("userDetails-response", response));
 
   const actionButtons = [

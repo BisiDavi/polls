@@ -5,11 +5,13 @@ import ForgeUI, {
   TextField,
   TextArea,
   DatePicker,
+  Button,
 } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
 
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
+import isDateValid from "../../lib/isDateValid";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
@@ -46,6 +48,10 @@ export default function MeetingPollForm({ actionButton }: any) {
     // setSubmitForm(true);
   };
 
+  const isMeetingDateValid = formState
+    ? isDateValid(formState.meetingDate)
+    : false;
+
   // useEffect(() => {
   //   if (submitForm) {
   //     console.log("done");
@@ -66,6 +72,15 @@ export default function MeetingPollForm({ actionButton }: any) {
       onSubmit={onSubmit}
     >
       <Heading>Meeting Poll Form</Heading>
+      {isMeetingDateValid && (
+        <Button
+          text="Invalid date, meeting date must be in the future or today"
+          onClick={() => null}
+          appearance="danger"
+          icon="error"
+          iconPosition="before"
+        />
+      )}
       <TextField
         name="title"
         label="Meeting Title"
