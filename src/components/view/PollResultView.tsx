@@ -1,13 +1,7 @@
 import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
-export default function PollResultView() {
-  const [pollFormData, setpollFormData] = useContentProperty(
-    "pollFormData",
-    ""
-  );
-
-  console.log("meetingFormData-polls", pollFormData);
+export default function PollResultView({ data }) {
+  console.log("meetingFormData-polls", data);
 
   return (
     <Fragment>

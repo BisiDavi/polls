@@ -20,8 +20,8 @@ export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [validDate, setValidDate] = useState(null);
   const [agenda, setAgenda] = useState(["Topic 1"]);
-  const [pollFormData, setPollFormData] = useContentProperty(
-    "pollFormData",
+  const [meetingPollData, setMeetingPollData] = useContentProperty(
+    "meetingPollData",
     ""
   );
 
@@ -34,10 +34,13 @@ export default function MeetingPollForm({ actionButton }: any) {
       link: "";
       meetingDate: "";
       description: "";
-      type: "meetingPoll";
-      date: date.toISOString();
     }
-    setFormState({ ...agendaObj, ...formData });
+    setFormState({
+      ...agendaObj,
+      ...formData,
+      type: "meetingPoll",
+      date: date.toISOString(),
+    });
   };
 
   useEffect(() => {
@@ -48,18 +51,18 @@ export default function MeetingPollForm({ actionButton }: any) {
   }, [formState]);
 
   useEffect(async () => {
-    if (formState !== undefined && pollFormData.length === 0 && validDate) {
-      await setPollFormData(formState);
+    if (formState !== undefined && meetingPollData.length === 0 && validDate) {
+      await setMeetingPollData(formState);
     }
-  }, [formState, pollFormData, validDate]);
+  }, [formState, meetingPollData, validDate]);
 
   console.log("formState", formState);
-  console.log("pollFormData", pollFormData);
+  console.log("meetingPollData", meetingPollData);
 
   return (
     <Fragment>
-      {pollFormData ? (
-        <PollResultView />
+      {meetingPollData ? (
+        <PollResultView data={meetingPollData} />
       ) : (
         <Form
           submitButtonAppearance="primary"
