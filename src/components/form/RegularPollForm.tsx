@@ -21,8 +21,6 @@ export default function RegularPollForm() {
     "regularFormData",
     ""
   );
-  console.log("formState", formState);
-
   console.log("regularFormData-RegularPollForm", regularFormData);
 
   const pollObj = formatFormPoll(regularPolls);

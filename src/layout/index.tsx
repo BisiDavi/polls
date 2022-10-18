@@ -1,13 +1,6 @@
-import ForgeUI, {
-  Fragment,
-  Heading,
-  useState,
-  ModalDialog,
-  Button,
-  ButtonSet,
-} from "@forge/ui";
+import ForgeUI, { Fragment, Heading, useState, ModalDialog } from "@forge/ui";
 
-export default function Layout({ children, goBack }) {
+export default function Layout({ children, goBack, type }) {
   const [isOpen, setOpen] = useState(true);
 
   return (
@@ -16,15 +9,7 @@ export default function Layout({ children, goBack }) {
         <ModalDialog header="Workspace Polls" onClose={() => setOpen(false)}>
           <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
           {children}
-          <ButtonSet>
-            {goBack}
-            <Button
-              text="Cancel"
-              icon="error"
-              appearance="danger"
-              onClick={() => setOpen(false)}
-            />
-          </ButtonSet>
+          {type !== "" && goBack}
         </ModalDialog>
       )}
     </Fragment>

@@ -7,8 +7,11 @@ import TabView from "./TabView";
 export default function ModalView() {
   const [pollType, setPollType] = useState("");
 
+  console.log("pollType", pollType);
+
   return (
     <Layout
+      type={pollType}
       goBack={
         <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />
       }

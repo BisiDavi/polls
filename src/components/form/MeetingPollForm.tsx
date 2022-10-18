@@ -18,7 +18,6 @@ export default function MeetingPollForm() {
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
     useMeetingPollForm(formState, setFormState);
 
-  console.log("formState", formState);
   console.log("meetingPollData", meetingPollData);
 
   return (
@@ -26,11 +25,7 @@ export default function MeetingPollForm() {
       {meetingPollData ? (
         <PollResultView data={meetingPollData} />
       ) : (
-        <Form
-          submitButtonAppearance="primary"
-          // actionButtons={actionButton}
-          onSubmit={onSubmit}
-        >
+        <Form submitButtonAppearance="primary" onSubmit={onSubmit}>
           <Heading>Meeting Poll Form</Heading>
           {validDate !== null && !validDate && (
             <Button

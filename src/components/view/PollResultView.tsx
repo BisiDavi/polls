@@ -9,12 +9,12 @@ import ForgeUI, {
   DateLozenge,
   useState,
   useEffect,
-  ButtonSet,
+  Em,
 } from "@forge/ui";
 
 import { formatPollTopic } from "../../lib/getAgendaName";
 import useUser from "../../hooks/useUser";
-import { formatDate } from "@/lib/isDateValid";
+import { formatDate } from "../../lib/isDateValid";
 
 export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
@@ -23,9 +23,9 @@ export default function PollResultView({ data }) {
 
   const topics = data ? formatPollTopic(data) : null;
 
-  useEffect(() => {
+  useEffect(async () => {
     if (userDetails === null) {
-      getUserDetails().then((response) => {
+      await getUserDetails().then((response) => {
         console.log("response", response);
         setUserDetails(response);
       });
@@ -34,9 +34,8 @@ export default function PollResultView({ data }) {
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
 
-  console.log("topics", topics);
   console.log("userDetails", userDetails);
-  console.log("meetingFormData-pols", data);
+  console.log("meetingFormData-polls", data);
 
   return (
     <Fragment>
@@ -62,24 +61,17 @@ export default function PollResultView({ data }) {
         <Strong>Topics to be discussed</Strong>
       </Text>
       {topics.map((item) => (
-        <Text key={item}>{item}</Text>
+        <Text key={item}>
+          <Em>{item}</Em>
+        </Text>
       ))}
-      <ButtonSet>
-        <Button
-          text="Publish"
-          icon="book"
-          iconPosition="before"
-          appearance="primary"
-          onClick={() => null}
-        />
-        <Button
-          text="Publish"
-          icon="book"
-          iconPosition="before"
-          appearance="primary"
-          onClick={() => null}
-        />
-      </ButtonSet>
+      <Button
+        text="Publish"
+        icon="book"
+        iconPosition="before"
+        appearance="primary"
+        onClick={() => null}
+      />
     </Fragment>
   );
 }
