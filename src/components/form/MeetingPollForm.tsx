@@ -20,11 +20,10 @@ export default function MeetingPollForm({
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
     useMeetingPollForm(formState, setFormState);
 
-  console.log("formState", formState);
   console.log("meetingPollData", meetingPollData);
 
   return (
-    <Fragment>
+    <Fragment> 
       {meetingPollData ? (
         <PollResultView data={meetingPollData} />
       ) : (
