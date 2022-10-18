@@ -1,4 +1,3 @@
-import useUser from "@/hooks/useUser";
 import ForgeUI, {
   Text,
   Fragment,
@@ -13,10 +12,11 @@ import ForgeUI, {
 } from "@forge/ui";
 
 import { formatPollTopic } from "../../lib/getAgendaName";
+import useUser from "../../hooks/useUser";
+import { formatDate } from "@/lib/isDateValid";
 
 export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
-  console.log("meetingFormData-polls", data);
   const { getUserDetails } = useUser();
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
 
@@ -25,13 +25,17 @@ export default function PollResultView({ data }) {
   useEffect(() => {
     if (userDetails === null) {
       getUserDetails().then((response) => {
+        console.log("response", response);
         setUserDetails(response);
       });
     }
   }, [userDetails]);
 
+  const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
+
   console.log("topics", topics);
   console.log("userDetails", userDetails);
+  console.log("meetingFormData-pols", data);
 
   return (
     <Fragment>
@@ -50,7 +54,7 @@ export default function PollResultView({ data }) {
       {data?.meetingDate && (
         <Text>
           <Strong>Meeting Date:</Strong>
-          <DateLozenge value={new Date(`${data?.meetingDate}`).getTime()} />
+          <DateLozenge value={new Date(meetingDate).getTime()} />
         </Text>
       )}
       <Text>
