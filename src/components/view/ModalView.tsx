@@ -11,7 +11,7 @@ export default function ModalView() {
   console.log("pollType", pollType);
 
   const backState =
-    pollType !== "" && pollResult === "Meeting" ? pollResult : "";
+    pollType !== "" && pollResult === pollType ? pollResult : "";
 
   return (
     <Layout
@@ -25,7 +25,7 @@ export default function ModalView() {
       }
     >
       {pollType === "" ? (
-        <TabView setPollType={setPollType} />
+        <TabView setPollType={setPollType} setPollResult={setPollResult} />
       ) : (
         <PollForm type={pollType} setPollResult={setPollResult} />
       )}

@@ -2,7 +2,12 @@ import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
 import pollContent from "../../json/pollview.json";
 
-export default function MeetingPollView({ setPollType }) {
+export default function MeetingPollView({ setPollType, setPollResult }) {
+  function buttonHandler() {
+    setPollType("Meeting");
+    setPollResult("");
+  }
+
   return (
     <Fragment>
       <Heading size="small">
@@ -18,8 +23,8 @@ export default function MeetingPollView({ setPollType }) {
         icon="arrow-right"
         iconPosition="after"
         appearance="primary"
-        onClick={() => setPollType("Meeting")}
+        onClick={buttonHandler}
       />
     </Fragment>
   );
-} 
+}
