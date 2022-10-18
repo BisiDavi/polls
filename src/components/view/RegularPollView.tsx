@@ -9,7 +9,6 @@ export default function RegularPollView({ setPollType }) {
       {pollContent.regular.map((item) => (
         <Text key={item}>{item}</Text>
       ))}
-
       <Button
         text="Get Started with Regular Polls"
         icon="arrow-right"

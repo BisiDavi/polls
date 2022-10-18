@@ -1,9 +1,8 @@
-import ForgeUI, { useState, Tabs, Tab, Button } from "@forge/ui";
+import ForgeUI, { useState, Button } from "@forge/ui";
 
 import Layout from "../../layout";
 import PollForm from "../form/PollForm";
-import MeetingView from "./MeetingPollView";
-import RegularPollView from "./RegularPollView";
+import TabView from "./TabView";
 
 export default function ModalView() {
   const [pollType, setPollType] = useState("");
@@ -15,14 +14,7 @@ export default function ModalView() {
       }
     >
       {pollType === "" ? (
-        <Tabs>
-          <Tab label="Meeting Poll">
-            <MeetingView setPollType={setPollType} />
-          </Tab>
-          <Tab label="Regular Poll">
-            <RegularPollView setPollType={setPollType} />
-          </Tab>
-        </Tabs>
+        <TabView setPollType={setPollType} />
       ) : (
         <PollForm type={pollType} />
       )}

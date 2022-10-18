@@ -11,35 +11,22 @@ import { useContentProperty } from "@forge/ui-confluence";
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 import PollResultView from "../view/PollResultView";
+import useRegularPollForm from "../../hooks/useRegularPollForm";
 
-export default function RegularPollForm({
-  formState,
-  setFormState,
-  actionButton,
-}: any) {
+export default function RegularPollForm() {
+  const [formState, setFormState] = useState(undefined);
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
+  const { onSubmit } = useRegularPollForm(setFormState);
   const [regularFormData, setRegularFormData] = useContentProperty(
     "regularFormData",
     ""
   );
   console.log("formState", formState);
-  const date = new Date();
 
   console.log("regularFormData-RegularPollForm", regularFormData);
 
-  const onSubmit = async (formData) => {
-    const pollObj = formatFormPoll(regularPolls);
-    formData: {
-      title: "";
-      description: "";
-    }
-    setFormState({
-      ...pollObj,
-      ...formData,
-      type: "regularMeetingPoll",
-      date: date.toISOString(),
-    });
-  };
+  const pollObj = formatFormPoll(regularPolls);
+
   return (
     <Fragment>
       {regularFormData ? (
@@ -47,8 +34,7 @@ export default function RegularPollForm({
       ) : (
         <Form
           submitButtonAppearance="primary"
-          actionButtons={actionButton}
-          onSubmit={onSubmit}
+          onSubmit={(data) => onSubmit(data, pollObj)}
         >
           <Heading>Regular Poll Form</Heading>
           <TextField name="title" label="Poll Title" isRequired />

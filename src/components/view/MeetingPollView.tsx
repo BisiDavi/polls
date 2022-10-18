@@ -2,7 +2,7 @@ import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
 import pollContent from "../../json/pollview.json";
 
-export default function MeetingView({ setPollType }) {
+export default function MeetingPollView({ setPollType }) {
   return (
     <Fragment>
       <Heading size="small">
