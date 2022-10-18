@@ -23,6 +23,8 @@ export default function ModalView() {
     ""
   );
 
+  console.log("pollFormData-ModalView", pollFormData);
+
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
     <Button

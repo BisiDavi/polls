@@ -5,6 +5,7 @@ import ForgeUI, {
   TextField,
   TextArea,
   DatePicker,
+  Fragment,
   Button,
   useEffect,
 } from "@forge/ui";
@@ -13,7 +14,7 @@ import { useContentProperty } from "@forge/ui-confluence";
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 import isDateValid from "../../lib/isDateValid";
-import { Fragment } from "react";
+import PollResultView from "../view/PollResultView";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
@@ -57,41 +58,45 @@ export default function MeetingPollForm({ actionButton }: any) {
 
   return (
     <Fragment>
-   {   <Form
-        submitButtonAppearance="primary"
-        actionButtons={actionButton}
-        onSubmit={onSubmit}
-      >
-        <Heading>Meeting Poll Form</Heading>
-        {validDate !== null && !validDate && (
-          <Button
-            text="Invalid date, meeting date must be in the future or today"
-            onClick={() => null}
-            appearance="danger"
-            icon="error"
-            iconPosition="before"
+      {pollFormData ? (
+        <PollResultView />
+      ) : (
+        <Form
+          submitButtonAppearance="primary"
+          actionButtons={actionButton}
+          onSubmit={onSubmit}
+        >
+          <Heading>Meeting Poll Form</Heading>
+          {validDate !== null && !validDate && (
+            <Button
+              text="Invalid date, meeting date must be in the future or today"
+              onClick={() => null}
+              appearance="danger"
+              icon="error"
+              iconPosition="before"
+            />
+          )}
+          <TextField
+            name="title"
+            label="Meeting Title"
+            placeholder="Enter your Meeting Title"
+            isRequired
           />
-        )}
-        <TextField
-          name="title"
-          label="Meeting Title"
-          placeholder="Enter your Meeting Title"
-          isRequired
-        />
-        <TextField
-          name="link"
-          label="Meeting Link"
-          placeholder="zoom/google meet/any video call link"
-        />
-        <DatePicker
-          name="meetingDate"
-          placeholder="Select Date"
-          label="Pick Meeeting Date"
-          isRequired
-        />
-        <TextArea label="Meeting Description" spellCheck name="description" />
-        <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
-      </Form>}
+          <TextField
+            name="link"
+            label="Meeting Link"
+            placeholder="zoom/google meet/any video call link"
+          />
+          <DatePicker
+            name="meetingDate"
+            placeholder="Select Date"
+            label="Pick Meeeting Date"
+            isRequired
+          />
+          <TextArea label="Meeting Description" spellCheck name="description" />
+          <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
+        </Form>
+      )}
     </Fragment>
   );
 }

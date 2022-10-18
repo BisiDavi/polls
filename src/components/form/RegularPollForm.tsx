@@ -20,6 +20,9 @@ export default function RegularPollForm({ actionButton }: any) {
   console.log("formState", formState);
   const date = new Date();
 
+  console.log("pollFormData-RegularPollForm", pollFormData);
+
+
   const onSubmit = async (formData) => {
     const pollObj = formatFormPoll(regularPolls);
     formData: {
