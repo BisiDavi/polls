@@ -13,14 +13,14 @@ import { useContentProperty } from "@forge/ui-confluence";
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 import isDateValid from "../../lib/isDateValid";
+import { Fragment } from "react";
 
 export default function MeetingPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [validDate, setValidDate] = useState(null);
   const [agenda, setAgenda] = useState(["Topic 1"]);
-  const [meetingId, setMeetingId] = useContentProperty("meetingId", 0);
-  const [meetingContent, setMeetingContent] = useContentProperty(
-    "meetingFormData",
+  const [pollFormData, setPollFormData] = useContentProperty(
+    "pollFormData",
     ""
   );
 
@@ -37,69 +37,61 @@ export default function MeetingPollForm({ actionButton }: any) {
       date: date.toISOString();
     }
     setFormState({ ...agendaObj, ...formData });
-    // await setMeetingId(meetingId + 1);
   };
-
-  // useEffect(async () => {
-  //   if (formState !== undefined && meetingContent.length === 0) {
-  //     await setMeetingContent(formState);
-  //   }
-  // }, [formState, meetingContent]);
 
   useEffect(() => {
     if (formState !== undefined) {
       const dateStatus = isDateValid(formState.meetingDate);
-      console.log(
-        "dateStatus",
-        dateStatus,
-        "formState.meetingDate",
-        formState.meetingDate
-      );
       setValidDate(dateStatus);
     }
   }, [formState]);
 
-  console.log("validDate", validDate);
+  useEffect(async () => {
+    if (formState !== undefined && pollFormData.length === 0 && validDate) {
+      await setPollFormData(formState);
+    }
+  }, [formState, pollFormData, validDate]);
 
   console.log("formState", formState);
-  console.log("meetingId", meetingId);
-  console.log("meetingFormData", meetingContent);
+  console.log("pollFormData", pollFormData);
 
   return (
-    <Form
-      submitButtonAppearance="primary"
-      actionButtons={actionButton}
-      onSubmit={onSubmit}
-    >
-      <Heading>Meeting Poll Form</Heading>
-      {validDate !== null && !validDate && (
-        <Button
-          text="Invalid date, meeting date must be in the future or today"
-          onClick={() => null}
-          appearance="danger"
-          icon="error"
-          iconPosition="before"
+    <Fragment>
+   {   <Form
+        submitButtonAppearance="primary"
+        actionButtons={actionButton}
+        onSubmit={onSubmit}
+      >
+        <Heading>Meeting Poll Form</Heading>
+        {validDate !== null && !validDate && (
+          <Button
+            text="Invalid date, meeting date must be in the future or today"
+            onClick={() => null}
+            appearance="danger"
+            icon="error"
+            iconPosition="before"
+          />
+        )}
+        <TextField
+          name="title"
+          label="Meeting Title"
+          placeholder="Enter your Meeting Title"
+          isRequired
         />
-      )}
-      <TextField
-        name="title"
-        label="Meeting Title"
-        placeholder="Enter your Meeting Title"
-        isRequired
-      />
-      <TextField
-        name="link"
-        label="Meeting Link"
-        placeholder="zoom/google meet/any video call link"
-      />
-      <DatePicker
-        name="meetingDate"
-        placeholder="Select Date"
-        label="Pick Meeeting Date"
-        isRequired
-      />
-      <TextArea label="Meeting Description" spellCheck name="description" />
-      <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
-    </Form>
+        <TextField
+          name="link"
+          label="Meeting Link"
+          placeholder="zoom/google meet/any video call link"
+        />
+        <DatePicker
+          name="meetingDate"
+          placeholder="Select Date"
+          label="Pick Meeeting Date"
+          isRequired
+        />
+        <TextArea label="Meeting Description" spellCheck name="description" />
+        <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
+      </Form>}
+    </Fragment>
   );
 }

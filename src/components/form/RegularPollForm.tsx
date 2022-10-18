@@ -13,9 +13,10 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 export default function RegularPollForm({ actionButton }: any) {
   const [formState, setFormState] = useState(undefined);
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
-  const [meetingId] = useContentProperty("meetingId", 0);
-  console.log("meetingId", meetingId);
-
+  const [pollFormData, setPollFormData] = useContentProperty(
+    "pollFormData",
+    ""
+  );
   console.log("formState", formState);
   const date = new Date();
 
