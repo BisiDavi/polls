@@ -28,7 +28,6 @@ export default function RegularPollForm({ actionButton }: any) {
     const pollObj = formatFormPoll(regularPolls);
     formData: {
       title: "";
-      link: "";
       description: "";
     }
     setFormState({

@@ -2,11 +2,17 @@ import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
 export default function PollResultView({ data }) {
   console.log("meetingFormData-polls", data);
+  const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
+
+  const topics = data.topic ? [] : null
 
   return (
     <Fragment>
-      <Heading size="medium">Polls Details </Heading>
-      <Text>View Polls</Text>
+      <Heading size="medium">Polls Details ({pollType})</Heading>
+      <Text>Title : {data.title}</Text>
+      {data?.link && <Text>Link : {data?.link}</Text>}
+      <Text>Description : {data.description}</Text>
+      {data?.meetingDate && <Text>Meeting Date : {data?.meetingDate}</Text>}
 
       <Button
         text="Publish"
