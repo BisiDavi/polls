@@ -7,22 +7,17 @@ import ForgeUI, {
   ButtonSet,
 } from "@forge/ui";
 
-export default function Layout({ children, form }) {
+export default function Layout({ children, goBack }) {
   const [isOpen, setOpen] = useState(true);
-  const [pollType, setPollType] = useState("");
 
   return (
     <Fragment>
       {isOpen && (
         <ModalDialog header="Workspace Polls" onClose={() => setOpen(false)}>
           <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
-          {pollType === "" ? children : form}
+          {children}
           <ButtonSet>
-            <Button
-              text="Back"
-              icon="arrow-left"
-              onClick={() => setPollType("")}
-            />
+            {goBack}
             <Button
               text="Cancel"
               icon="error"
