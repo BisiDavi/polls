@@ -8,9 +8,5 @@
     "6. Publish Meeting Poll.",
     "7. Save meeting decision."
   ],
-  "regular": [
-    "1. List Vote Options.",
-    "2. Customize Vote Option",
-    "3. Publish Poll"
-  ]
+  "regular": ["1. List Vote Options.", "2. Publish Poll"]
 }

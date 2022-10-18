@@ -38,6 +38,7 @@ export default function useMeetingPollForm(
       link: "";
       description: "";
       meetingDate: "";
+      duration: "";
     }
     setFormState({
       ...agendaObj,

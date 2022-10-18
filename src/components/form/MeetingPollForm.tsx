@@ -51,6 +51,11 @@ export default function MeetingPollForm({ viewType, setPollType }) {
             label="Pick Meeeting Date"
             isRequired
           />
+          <TextField
+            name="duration"
+            label="Meeting Duration Estimate"
+            placeholder="Allotted time for the meeting in (hr(s)/mins)?"
+          />
           <TextArea label="Meeting Description" spellCheck name="description" />
           <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
         </Form>
