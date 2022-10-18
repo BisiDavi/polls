@@ -7,15 +7,21 @@ import ForgeUI, {
   Heading,
   Button,
 } from "@forge/ui";
+import { useContentProperty } from "@forge/ui-confluence";
 
 import MeetingView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
 import MeetingPollForm from "./../form/MeetingPollForm";
 import RegularPollForm from "./../form/RegularPollForm";
+import PollResultView from "./PollResultView";
 
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
+  const [pollFormData, setPollFormData] = useContentProperty(
+    "pollFormData",
+    ""
+  );
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
@@ -32,19 +38,25 @@ export default function ModalView() {
       {isOpen && (
         <ModalDialog header="Workspace Polls" onClose={() => setOpen(false)}>
           <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
-          {pollType === "" ? (
-            <Tabs>
-              <Tab label="Meeting Poll">
-                <MeetingView setPollType={setPollType} />
-              </Tab>
-              <Tab label="Regular Poll">
-                <RegularPollView setPollType={setPollType} />
-              </Tab>
-            </Tabs>
-          ) : pollType === "Meeting" ? (
-            <MeetingPollForm actionButton={actionButtons} />
+          {pollFormData ? (
+            <PollResultView />
           ) : (
-            <RegularPollForm actionButton={actionButtons} />
+            <Fragment>
+              {pollType === "" ? (
+                <Tabs>
+                  <Tab label="Meeting Poll">
+                    <MeetingView setPollType={setPollType} />
+                  </Tab>
+                  <Tab label="Regular Poll">
+                    <RegularPollView setPollType={setPollType} />
+                  </Tab>
+                </Tabs>
+              ) : pollType === "Meeting" ? (
+                <MeetingPollForm actionButton={actionButtons} />
+              ) : (
+                <RegularPollForm actionButton={actionButtons} />
+              )}
+            </Fragment>
           )}
         </ModalDialog>
       )}
