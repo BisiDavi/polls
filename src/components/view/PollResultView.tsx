@@ -53,7 +53,7 @@ export default function PollResultView({ data }) {
       {data?.link && (
         <Text>
           <Strong>Link: </Strong>
-          <Link href={data?.link}>{data?.link}</Link>{" "}
+          <Link href={data?.link}>{data?.link}</Link>
         </Text>
       )}
       {data?.meetingDate && (

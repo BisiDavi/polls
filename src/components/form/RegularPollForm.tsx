@@ -22,8 +22,6 @@ export default function RegularPollForm({ viewType, setPollType }) {
   );
 
   const pollObj = formatFormPoll(regularPolls);
-  console.log("regularFormData-RegularPollForm", regularFormData);
-  console.log("pollObj", pollObj);
 
   return (
     <Fragment>

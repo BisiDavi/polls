@@ -6,12 +6,17 @@ import TabView from "./TabView";
 
 export default function ModalView() {
   const [pollType, setPollType] = useState("");
- 
-  const backState = pollType.includes("Meeting")
-    ? "Meeting"
-    : pollType.includes("Regular") && "Regular";
 
-  console.log("backState", backState);
+  const backState =
+    pollType === "Meeting-View"
+      ? "Meeting"
+      : pollType === "Meeting"
+      ? ""
+      : pollType === "Regular-View"
+      ? "Regular"
+      : pollType === "Regular"
+      ? ""
+      : "";
 
   return (
     <Layout
