@@ -12,22 +12,10 @@ import MeetingView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
 import MeetingPollForm from "./../form/MeetingPollForm";
 import RegularPollForm from "./../form/RegularPollForm";
-import useUser from "../../hooks/useUser";
 
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
-  const { context, getUserDetails, readContentProperties } = useUser();
-
-  console.log("context", context);
-
-  const userDetails = getUserDetails();
-
-  readContentProperties().then((response) =>
-    console.log("readContentProperties-response", response)
-  );
- 
-  userDetails.then((response) => console.log("userDetails-response", response));
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,

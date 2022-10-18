@@ -11,12 +11,17 @@ export default function useUser() {
     return await response.json();
   }
 
-  async function readContentProperties() {
+  async function readContentProperties(id: string) {
     const response = await api
       .asApp()
-      .requestConfluence(route`/wiki/rest/api/content/{id}/property`);
+      .requestConfluence(route`/wiki/rest/api/content/${id}/property`, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      console.log("readContentProperties-response", await response.json());
     return await response.json();
   }
-  
+
   return { getUserDetails, readContentProperties, context };
 }
