@@ -1,4 +1,4 @@
-import { useState, useEffect } from "@forge/ui";
+import { useEffect } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
 
 export default function useRegularPollForm(
