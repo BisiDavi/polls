@@ -14,3 +14,14 @@ export function formatFormPoll(pollState) {
 
   return agendaObj;
 }
+
+export function formatPollTopic(data: any) {
+  const dataEntries = Object.entries(data);
+  const topicsArray = [];
+  dataEntries.map((item) => {
+    if (item[0].includes("topic")) {
+      topicsArray.push(item[1]);
+    }
+  });
+  return topicsArray;
+}

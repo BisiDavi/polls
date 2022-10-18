@@ -46,6 +46,7 @@ export default function PollsFieldSet({ type, poll, setPoll }: Props) {
         const { name, agendaCount } = getAgendaName(item, index);
         return (
           <TextField
+            key={index}
             name={name}
             label={item}
             placeholder={`${inputText} ${agendaCount}`}
