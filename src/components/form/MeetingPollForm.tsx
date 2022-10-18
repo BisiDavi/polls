@@ -13,14 +13,14 @@ import useMeetingPollForm from "../../hooks/useMeetingPollForm";
 import PollResultView from "../view/PollResultView";
 import PollsFieldSet from "./PollsFieldSet";
 
-export default function MeetingPollForm({ setPollResult }) {
+export default function MeetingPollForm({ viewType, setPollResult }) {
   const [formState, setFormState] = useState(undefined);
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
     useMeetingPollForm(formState, setFormState, setPollResult);
 
   return (
     <Fragment>
-      {meetingPollData ? (
+      {viewType === "Meeting-View" ? (
         <PollResultView data={meetingPollData} />
       ) : (
         <Form submitButtonAppearance="primary" onSubmit={onSubmit}>

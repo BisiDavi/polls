@@ -37,7 +37,6 @@ export default function PollResultView({ data }) {
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
 
-  console.log("userDetails", userDetails);
   console.log("meetingFormData-polls", data);
 
   return (
@@ -68,7 +67,7 @@ export default function PollResultView({ data }) {
       </Text>
       {topics.map((item, index) => (
         <Text key={item}>
-          {index + 1}.<Em>{item}</Em>
+          {index + 1}. <Em>{item}</Em>
         </Text>
       ))}
       {userDetails !== null && (

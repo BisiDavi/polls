@@ -10,7 +10,15 @@ export default function ModalView() {
 
   const backState =
     pollType !== "" && pollResult === pollType ? pollResult : "";
-
+  const vr =
+    pollType === ""
+      ? ""
+      : pollResult.includes("Meeting")
+      ? "Meeting"
+      : pollResult.includes("Regular")
+      ? "Regular"
+      : "";
+      
   console.log("backState", backState);
 
   return (

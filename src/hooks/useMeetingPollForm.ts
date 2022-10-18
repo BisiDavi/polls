@@ -25,7 +25,7 @@ export default function useMeetingPollForm(
   useEffect(async () => {
     if (formState !== undefined && meetingPollData.length === 0 && validDate) {
       await setMeetingPollData(formState).then(() => {
-        setPollResult("Meeting");
+        setPollResult("Meeting-View");
       });
     }
   }, [formState, meetingPollData, validDate]);

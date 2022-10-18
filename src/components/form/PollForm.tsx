@@ -7,9 +7,9 @@ export default function PollForm({ type, setPollResult }) {
   return (
     <Fragment>
       {type === "Meeting" ? (
-        <MeetingPollForm setPollResult={setPollResult} />
+        <MeetingPollForm viewType={type} setPollResult={setPollResult} />
       ) : (
-        <RegularPollForm setPollResult={setPollResult} />
+        <RegularPollForm viewType={type} setPollResult={setPollResult} />
       )}
     </Fragment>
   );

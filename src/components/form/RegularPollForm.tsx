@@ -7,12 +7,12 @@ import ForgeUI, {
   Fragment,
 } from "@forge/ui";
 
-import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
-import PollResultView from "../view/PollResultView";
 import useRegularPollForm from "../../hooks/useRegularPollForm";
+import PollResultView from "../view/PollResultView";
+import PollsFieldSet from "./PollsFieldSet";
 
-export default function RegularPollForm({ setPollResult }) {
+export default function RegularPollForm({ viewType, setPollResult }) {
   const [formState, setFormState] = useState(undefined);
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
   const { onSubmit, regularFormData } = useRegularPollForm(
@@ -27,7 +27,7 @@ export default function RegularPollForm({ setPollResult }) {
 
   return (
     <Fragment>
-      {regularFormData ? (
+      {viewType === "Regular-View" ? (
         <PollResultView data={regularFormData} />
       ) : (
         <Form
