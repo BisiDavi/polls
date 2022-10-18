@@ -2,10 +2,9 @@ import ForgeUI, { Text, Fragment, Heading, Button } from "@forge/ui";
 
 import pollContent from "../../json/pollview.json";
 
-export default function MeetingPollView({ setPollType, setPollResult }) {
+export default function MeetingPollView({ setPollType }) {
   function buttonHandler() {
     setPollType("Meeting");
-    setPollResult("");
   }
 
   return (
