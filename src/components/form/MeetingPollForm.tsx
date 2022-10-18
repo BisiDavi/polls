@@ -1,60 +1,24 @@
 import ForgeUI, {
   Heading,
   Form,
-  useState,
   TextField,
   TextArea,
   DatePicker,
   Fragment,
   Button,
-  useEffect,
 } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
-import PollsFieldSet from "./PollsFieldSet";
-import { formatFormPoll } from "../../lib/getAgendaName";
-import isDateValid from "../../lib/isDateValid";
+import useMeetingPollForm from "../../hooks/useMeetingPollForm";
 import PollResultView from "../view/PollResultView";
+import PollsFieldSet from "./PollsFieldSet";
 
-export default function MeetingPollForm({ actionButton }: any) {
-  const [formState, setFormState] = useState(undefined);
-  const [validDate, setValidDate] = useState(null);
-  const [agenda, setAgenda] = useState(["Topic 1"]);
-  const [meetingPollData, setMeetingPollData] = useContentProperty(
-    "meetingPollData",
-    ""
-  );
-
-  const date = new Date();
-
-  const onSubmit = async (formData) => {
-    const agendaObj = formatFormPoll(agenda);
-    formData: {
-      title: "";
-      link: "";
-      description: "";
-      meetingDate: "";
-    }
-    setFormState({
-      ...agendaObj,
-      ...formData,
-      type: "meetingPoll",
-      date: date.toISOString(),
-    });
-  };
-
-  useEffect(() => {
-    if (formState !== undefined) {
-      const dateStatus = isDateValid(formState.meetingDate);
-      setValidDate(dateStatus);
-    }
-  }, [formState]);
-
-  useEffect(async () => {
-    if (formState !== undefined && meetingPollData.length === 0 && validDate) {
-      await setMeetingPollData(formState);
-    }
-  }, [formState, meetingPollData, validDate]);
+export default function MeetingPollForm({
+  formState,
+  setFormState,
+  actionButton,
+}: any) {
+  const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
+    useMeetingPollForm(formState, setFormState);
 
   console.log("formState", formState);
   console.log("meetingPollData", meetingPollData);

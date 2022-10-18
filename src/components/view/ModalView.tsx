@@ -16,6 +16,7 @@ import RegularPollForm from "./../form/RegularPollForm";
 export default function ModalView() {
   const [isOpen, setOpen] = useState(true);
   const [pollType, setPollType] = useState("");
+  const [formState, setFormState] = useState(undefined);
 
   const actionButtons = [
     <Button text="Back" icon="arrow-left" onClick={() => setPollType("")} />,
@@ -42,9 +43,17 @@ export default function ModalView() {
               </Tab>
             </Tabs>
           ) : pollType === "Meeting" ? (
-            <MeetingPollForm actionButton={actionButtons} />
+            <MeetingPollForm
+              formState={formState}
+              setFormState={setFormState}
+              actionButton={actionButtons}
+            />
           ) : (
-            <RegularPollForm actionButton={actionButtons} />
+            <RegularPollForm
+              formState={formState}
+              setFormState={setFormState}
+              actionButton={actionButtons}
+            />
           )}
         </ModalDialog>
       )}

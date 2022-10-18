@@ -12,8 +12,11 @@ import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 import PollResultView from "../view/PollResultView";
 
-export default function RegularPollForm({ actionButton }: any) {
-  const [formState, setFormState] = useState(undefined);
+export default function RegularPollForm({
+  formState,
+  setFormState,
+  actionButton,
+}: any) {
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
   const [regularFormData, setRegularFormData] = useContentProperty(
     "regularFormData",

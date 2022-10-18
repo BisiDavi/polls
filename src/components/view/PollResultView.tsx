@@ -9,6 +9,7 @@ import ForgeUI, {
   DateLozenge,
   useState,
   useEffect,
+  ButtonSet,
 } from "@forge/ui";
 
 import { formatPollTopic } from "../../lib/getAgendaName";
@@ -63,14 +64,22 @@ export default function PollResultView({ data }) {
       {topics.map((item) => (
         <Text key={item}>{item}</Text>
       ))}
-
-      <Button
-        text="Publish"
-        icon="book"
-        iconPosition="before"
-        appearance="primary"
-        onClick={() => null}
-      />
+      <ButtonSet>
+        <Button
+          text="Publish"
+          icon="book"
+          iconPosition="before"
+          appearance="primary"
+          onClick={() => null}
+        />
+        <Button
+          text="Publish"
+          icon="book"
+          iconPosition="before"
+          appearance="primary"
+          onClick={() => null}
+        />
+      </ButtonSet>
     </Fragment>
   );
 }
