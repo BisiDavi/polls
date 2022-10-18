@@ -9,16 +9,14 @@ import ForgeUI, {
   Button,
 } from "@forge/ui";
 
-import PollsFieldSet from "./PollsFieldSet";
-import PollResultView from "../view/PollResultView";
 import useMeetingPollForm from "../../hooks/useMeetingPollForm";
+import PollResultView from "../view/PollResultView";
+import PollsFieldSet from "./PollsFieldSet";
 
-export default function MeetingPollForm() {
+export default function MeetingPollForm({ setPollResult }) {
   const [formState, setFormState] = useState(undefined);
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
-    useMeetingPollForm(formState, setFormState);
-
-  console.log("meetingPollData", meetingPollData);
+    useMeetingPollForm(formState, setFormState, setPollResult);
 
   return (
     <Fragment>

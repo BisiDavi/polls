@@ -20,8 +20,9 @@ export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
   const { getUserDetails } = useUser();
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
+  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
 
-  const topics = data ? formatPollTopic(data) : null;
+  const topics = data ? formatPollTopic(data, formatPollType) : null;
 
   useEffect(async () => {
     if (userDetails === null) {

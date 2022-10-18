@@ -15,11 +15,11 @@ export function formatFormPoll(pollState) {
   return agendaObj;
 }
 
-export function formatPollTopic(data: any) {
+export function formatPollTopic(data: any, type: "topic" | "poll") {
   const dataEntries = Object.entries(data);
   const topicsArray = [];
   dataEntries.map((item) => {
-    if (item[0].includes("topic")) {
+    if (item[0].includes(type)) {
       topicsArray.push(item[1]);
     }
   });

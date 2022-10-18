@@ -1,15 +1,28 @@
+import { useState, useEffect } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
 
-export default function useRegularPollForm(setFormState) {
+export default function useRegularPollForm(
+  formState,
+  setFormState,
+  setPollResult
+) {
   const [regularFormData, setRegularFormData] = useContentProperty(
     "regularFormData",
     ""
   );
-  const date = new Date();
+
+  useEffect(async () => {
+    if (formState !== undefined && regularFormData.length === 0) {
+      await setRegularFormData(formState).then(() => {
+        setPollResult("Regular");
+      });
+    }
+  }, [formState, regularFormData]);
 
   console.log("regularFormData-RegularPollForm", regularFormData);
 
   const onSubmit = async (formData, pollObj) => {
+    const date = new Date();
     formData: {
       title: "";
       description: "";
@@ -24,5 +37,6 @@ export default function useRegularPollForm(setFormState) {
 
   return {
     onSubmit,
+    regularFormData,
   };
 }

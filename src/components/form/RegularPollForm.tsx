@@ -6,24 +6,24 @@ import ForgeUI, {
   TextArea,
   Fragment,
 } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
 import PollsFieldSet from "./PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 import PollResultView from "../view/PollResultView";
 import useRegularPollForm from "../../hooks/useRegularPollForm";
 
-export default function RegularPollForm() {
+export default function RegularPollForm({ setPollResult }) {
   const [formState, setFormState] = useState(undefined);
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
-  const { onSubmit } = useRegularPollForm(setFormState);
-  const [regularFormData, setRegularFormData] = useContentProperty(
-    "regularFormData",
-    ""
+  const { onSubmit, regularFormData } = useRegularPollForm(
+    formState,
+    setFormState,
+    setPollResult
   );
-  console.log("regularFormData-RegularPollForm", regularFormData);
 
   const pollObj = formatFormPoll(regularPolls);
+  console.log("regularFormData-RegularPollForm", regularFormData);
+  console.log("pollObj", pollObj);
 
   return (
     <Fragment>
