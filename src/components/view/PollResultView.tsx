@@ -4,7 +4,7 @@ export default function PollResultView({ data }) {
   console.log("meetingFormData-polls", data);
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
 
-  const topics = data.topic ? [] : null
+  const topics = data?.topic ? [] : null
 
   return (
     <Fragment>
