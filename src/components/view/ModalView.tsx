@@ -1,4 +1,4 @@
-import ForgeUI, { useState, Button } from "@forge/ui";
+import ForgeUI, { useState, useEffect, Button } from "@forge/ui";
 
 import Layout from "../../layout";
 import PollForm from "../form/PollForm";
@@ -6,17 +6,23 @@ import TabView from "./TabView";
 
 export default function ModalView() {
   const [pollType, setPollType] = useState("");
+  const [backState, setBackState] = useState("");
 
-  const backState =
-    pollType === "Meeting-View"
+  const backStateType = (pollStateType: string) =>
+    pollStateType === "Meeting-View"
       ? "Meeting"
-      : pollType === "Meeting"
+      : pollStateType === "Meeting"
       ? ""
-      : pollType === "Regular-View"
+      : pollStateType === "Regular-View"
       ? "Regular"
-      : pollType === "Regular"
+      : pollStateType === "Regular"
       ? ""
       : "";
+
+  useEffect(() => {
+    const backStateValue = backStateType(pollType);
+    setBackState(backStateValue);
+  }, [pollType]);
 
   console.log("backState", backState);
   console.log("pollType", pollType);
