@@ -1,4 +1,4 @@
-import ForgeUI, { render, Fragment } from "@forge/ui";
+import ForgeUI, { render, Fragment, Macro } from "@forge/ui";
 
 import ModalView from "./components/view/ModalView";
 
@@ -10,4 +10,4 @@ const App = () => {
   );
 };
 
-export const run = render(<App />);
+export const run = render(<Macro app={<App />} />);

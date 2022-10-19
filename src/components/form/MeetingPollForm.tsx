@@ -18,6 +18,8 @@ export default function MeetingPollForm({ viewType, setPollType }) {
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
     useMeetingPollForm(formState, setFormState, setPollType);
 
+  console.log("viewType", viewType);
+
   return (
     <Fragment>
       {viewType === "Meeting-View" ? (

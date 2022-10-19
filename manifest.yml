@@ -9,7 +9,6 @@ modules:
       handler: index.run
 app:
   id: ari:cloud:ecosystem::app/be7a27cc-c659-4557-b248-5c0e4587b9ce
-  name: Workspace Polls
 permissions:
   scopes:
     - read:confluence-content.summary
