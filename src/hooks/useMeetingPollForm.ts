@@ -7,7 +7,7 @@ import { formatFormPoll } from "../lib/getAgendaName";
 export default function useMeetingPollForm(
   formState,
   setFormState,
-  setPollResult
+  setPollType
 ) {
   const [validDate, setValidDate] = useState(null);
   const [agenda, setAgenda] = useState(["Topic 1"]);
@@ -24,9 +24,8 @@ export default function useMeetingPollForm(
 
   useEffect(async () => {
     if (formState !== undefined && meetingPollData.length === 0 && validDate) {
-      await setMeetingPollData(formState).then(() => {
-        setPollResult("Meeting-View");
-      });
+      await setMeetingPollData(formState);
+      setPollType("Meeting-View");
     }
   }, [formState, meetingPollData, validDate]);
 

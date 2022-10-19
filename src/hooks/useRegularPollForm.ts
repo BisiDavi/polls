@@ -13,9 +13,8 @@ export default function useRegularPollForm(
 
   useEffect(async () => {
     if (formState !== undefined && regularFormData.length === 0) {
-      await setRegularFormData(formState).then(() => {
-        setPollResult("Regular-View");
-      });
+      await setRegularFormData(formState);
+      setPollResult("Regular-View");
     }
   }, [formState, regularFormData]);
 
