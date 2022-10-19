@@ -6,10 +6,10 @@ import RegularPollForm from "./RegularPollForm";
 export default function PollForm({ type, formType, setPollType }) {
   return (
     <Fragment>
-      {type === "Meeting" ? (
+      {type.includes("Meeting") ? (
         <MeetingPollForm viewType={formType} setPollType={setPollType} />
       ) : (
-        type === "Regular" && (
+        type.includes("Regular") && (
           <RegularPollForm viewType={formType} setPollType={setPollType} />
         )
       )}

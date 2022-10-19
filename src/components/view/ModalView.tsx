@@ -36,9 +36,6 @@ export default function ModalView() {
     setResultView(resultState);
   }, [pollType]);
 
-  console.log("backState", backState);
-  console.log("pollType", pollType);
-
   return (
     <Layout
       type={pollType}

@@ -24,8 +24,9 @@ export default function useMeetingPollForm(
 
   useEffect(async () => {
     if (formState !== undefined && meetingPollData.length === 0 && validDate) {
-      await setMeetingPollData(formState);
-      setPollType("Meeting-View");
+      await setMeetingPollData(formState).then(() => {
+        setPollType("Meeting-View");
+      });
     }
   }, [formState, meetingPollData, validDate]);
 
@@ -38,6 +39,7 @@ export default function useMeetingPollForm(
       description: "";
       meetingDate: "";
       duration: "";
+      time: "";
     }
     setFormState({
       ...agendaObj,

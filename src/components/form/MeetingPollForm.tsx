@@ -18,8 +18,6 @@ export default function MeetingPollForm({ viewType, setPollType }) {
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
     useMeetingPollForm(formState, setFormState, setPollType);
 
-  console.log("viewType", viewType);
-
   return (
     <Fragment>
       {viewType === "Meeting-View" ? (
@@ -57,6 +55,11 @@ export default function MeetingPollForm({ viewType, setPollType }) {
             name="duration"
             label="Meeting Duration Estimate"
             placeholder="Allotted time for the meeting in (hr(s)/mins)?"
+          />
+          <TextField
+            name="time"
+            label="Meeting Starts At"
+            placeholder="Time for the meeting"
           />
           <TextArea label="Meeting Description" spellCheck name="description" />
           <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />

@@ -50,6 +50,12 @@ export default function PollResultView({ data }) {
         <Strong>Description: </Strong>
         {data.description}
       </Text>
+      {data?.duration && (
+        <Text>
+          <Strong>Duration: </Strong>
+          {data.duration}
+        </Text>
+      )}
       {data?.link && (
         <Text>
           <Strong>Link: </Strong>
