@@ -12,19 +12,29 @@ import ForgeUI, {
   Em,
 } from "@forge/ui";
 
-import { formatPollTopic } from "../../lib/getAgendaName";
 import useUser from "../../hooks/useUser";
+import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
+import { formatPollTopic } from "../../lib/getAgendaName";
+import toSlug from "../../lib/toSlug";
 
 export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
   const { getUserDetails } = useUser();
+  const { savePollData } = usePublish();
+
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
+
+  function publishDataHandler() {
+    const titleSlug = toSlug(data.title);
+    const pollData = { ...data, userDetails };
+    savePollData(titleSlug, pollData);
+  }
 
   useEffect(async () => {
     if (userDetails === null) {
