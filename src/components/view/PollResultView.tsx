@@ -17,7 +17,6 @@ import useUser from "../../hooks/useUser";
 import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
-import toSlug from "../../lib/toSlug";
 
 export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
@@ -26,11 +25,11 @@ export default function PollResultView({ data }) {
   const { savePollData, getSavedPolls } = usePublish();
   const [, setModal] = useContentProperty("modal", true);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (savedPolls === null) {
-      getSavedPolls().then((response) => {
+      await getSavedPolls().then((response) => {
         console.log("savedpolls-response", response);
-        setSavedPolls(response);
+        setSavedPolls(response.results);
       });
     }
   }, []);
@@ -45,9 +44,9 @@ export default function PollResultView({ data }) {
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
   function publishDataHandler() {
-    const titleSlug = toSlug(data.title);
     const pollData = { ...data, userDetails };
-    savePollData(`Polls-${titleSlug}`, pollData).then(async () => {
+    const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
+    savePollData(`Polls-${pollKey}`, pollData).then(async () => {
       await setModal(false);
     });
   }
@@ -55,7 +54,6 @@ export default function PollResultView({ data }) {
   useEffect(async () => {
     if (userDetails === null) {
       await getUserDetails().then((response) => {
-        console.log("response", response);
         setUserDetails(response);
       });
     }
