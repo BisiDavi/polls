@@ -4,8 +4,6 @@ import { useContentProperty } from "@forge/ui-confluence";
 export default function Layout({ children, goBack, type }) {
   const [modal, setModal] = useContentProperty("modal", true);
 
-  console.log("modal", modal);
-
   async function modalHandler() {
     await setModal(false);
   }

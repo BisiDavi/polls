@@ -2,7 +2,7 @@ modules:
   macro:
     - key: polls-meetings-simplified
       function: main
-      title: Polls
+      title: Workspace Polls
       description: Team Meeting Management - Allow team-mates to upvote/downvote topics to be discussed in a meetings
   function:
     - key: main
