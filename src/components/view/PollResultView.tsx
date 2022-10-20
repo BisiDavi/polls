@@ -11,6 +11,7 @@ import ForgeUI, {
   useEffect,
   Em,
 } from "@forge/ui";
+import { useContentProperty } from "@forge/ui-confluence";
 
 import useUser from "../../hooks/useUser";
 import usePublish from "../../hooks/usePublish";
@@ -22,9 +23,11 @@ export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
   const { getUserDetails } = useUser();
   const { savePollData } = usePublish();
+  const [, setModal] = useContentProperty("modal", true);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
+  const pollResultType = data.type === "meetingPoll" ? "meeting" : "poll";
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
 
@@ -33,7 +36,9 @@ export default function PollResultView({ data }) {
   function publishDataHandler() {
     const titleSlug = toSlug(data.title);
     const pollData = { ...data, userDetails };
-    savePollData(titleSlug, pollData);
+    savePollData(`${pollResultType}-${titleSlug}`, pollData).then(async () => {
+      await setModal(false);
+    });
   }
 
   useEffect(async () => {
@@ -97,7 +102,7 @@ export default function PollResultView({ data }) {
         icon="book"
         iconPosition="before"
         appearance="primary"
-        onClick={() => null}
+        onClick={publishDataHandler}
       />
     </Fragment>
   );

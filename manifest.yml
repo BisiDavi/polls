@@ -2,8 +2,8 @@ modules:
   macro:
     - key: polls-meetings-simplified
       function: main
-      title: Workspace Polls
-      description: Team Meeting Management - Allow team-mates to upvote/downvote topics to be discussed in a meetings
+      title: Workspace Polls for Confluence
+      description: Team Meeting Management - Allow team-mates to vote topics to be discussed in meetings/regular poll
   function:
     - key: main
       handler: index.run
