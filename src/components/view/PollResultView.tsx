@@ -44,9 +44,13 @@ export default function PollResultView({ data }) {
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
   function publishDataHandler() {
-    const pollData = { ...data, userDetails };
+    const pollData = {
+      ...data,
+      userDetails,
+    };
+    const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
-    savePollData(`Polls-${pollKey}`, pollData).then(async () => {
+    savePollData(`Polls-${pollKey}`, stringifyPollData).then(async () => {
       await setModal(false);
     });
   }
@@ -60,8 +64,6 @@ export default function PollResultView({ data }) {
   }, [userDetails]);
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
-
-  console.log("meetingFormData-polls", data);
 
   return (
     <Fragment>

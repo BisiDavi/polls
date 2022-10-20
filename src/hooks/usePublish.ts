@@ -1,4 +1,4 @@
-import api, { startsWith, storage } from "@forge/api";
+import { startsWith, storage } from "@forge/api";
 
 export default function usePublish() {
   function savePollData(key: string, data) {
