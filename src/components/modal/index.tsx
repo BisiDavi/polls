@@ -1,7 +1,7 @@
 import ForgeUI, { Fragment, ModalDialog, useState, useEffect } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
 
-export default function Layout({ children, goBack, type }) {
+export default function Modal({ children, goBack, type }) {
   const [modal, setModal] = useContentProperty("modal", true);
   const [modalState, setModalState] = useState(true);
 

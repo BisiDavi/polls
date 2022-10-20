@@ -23,8 +23,8 @@ export default function PollResultView({ data }) {
   const [savedPolls, setSavedPolls] = useState(null);
   const { getUserDetails } = useUser();
   const { savePollData, getSavedPolls } = usePublish();
-  const [ modal, setModal] = useContentProperty("modal", true);
-  const [appPoll, setAppPolls] = useContentProperty("appPoll", "");
+  const [modal, setModal] = useContentProperty("modal", true);
+  const [appPoll, setAppPoll] = useContentProperty("appPoll", "");
 
   useEffect(async () => {
     if (savedPolls === null) {
@@ -36,7 +36,7 @@ export default function PollResultView({ data }) {
   }, []);
 
   console.log("PollResultView-appPoll", appPoll);
-console.log("modal-PollResultView", modal);
+  console.log("modal-PollResultView", modal);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
@@ -52,7 +52,7 @@ console.log("modal-PollResultView", modal);
     };
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
-    setAppPolls(stringifyPollData);
+    await setAppPoll(stringifyPollData);
     savePollData(`Polls-${pollKey}`, stringifyPollData);
     await setModal(false);
   }

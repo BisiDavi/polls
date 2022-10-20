@@ -1,7 +1,7 @@
 import ForgeUI, { useState, useEffect, Button } from "@forge/ui";
 
-import Layout from "../../layout";
 import PollForm from "../form/PollForm";
+import Modal from "../modal";
 import TabView from "./TabView";
 
 export default function ModalView() {
@@ -37,7 +37,7 @@ export default function ModalView() {
   }, [pollType]);
 
   return (
-    <Layout
+    <Modal
       type={pollType}
       goBack={
         <Button
@@ -56,6 +56,6 @@ export default function ModalView() {
           setPollType={setPollType}
         />
       )}
-    </Layout>
+    </Modal>
   );
 }
