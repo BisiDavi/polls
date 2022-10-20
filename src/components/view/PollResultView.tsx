@@ -35,7 +35,6 @@ export default function PollResultView({ data }) {
     }
   }, []);
 
-  console.log("savedPolls", savedPolls);
   console.log("PollResultView-appPoll", appPoll);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";

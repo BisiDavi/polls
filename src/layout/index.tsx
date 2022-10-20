@@ -1,4 +1,4 @@
-import ForgeUI, { Fragment, Heading, ModalDialog } from "@forge/ui";
+import ForgeUI, { Fragment, ModalDialog } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
 
 export default function Layout({ children, goBack, type }) {
@@ -7,6 +7,8 @@ export default function Layout({ children, goBack, type }) {
   async function modalHandler() {
     await setModal(false);
   }
+
+  console.log("modal", modal);
 
   return (
     <Fragment>
