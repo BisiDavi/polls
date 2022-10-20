@@ -1,9 +1,8 @@
 import ForgeUI, { Text, Fragment, useState, useEffect } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
 import usePublish from "../../hooks/usePublish";
 
-export default function AppPollView() {
+export default function AppPollView({ appPoll }) {
   const [savedPolls, setSavedPolls] = useState(null);
   const { getSavedPolls } = usePublish();
 
@@ -15,7 +14,8 @@ export default function AppPollView() {
       });
     }
   }, []);
-  const [appPoll, setAppPolls] = useContentProperty("appPoll", "");
+
+  console.log("savedPolls", savedPolls);
 
   return (
     <Fragment>

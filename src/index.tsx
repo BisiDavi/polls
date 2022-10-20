@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Fragment>
       <ModalView />
-      {appPoll && <AppPollView />}
+      {appPoll && <AppPollView appPoll={appPoll} />}
     </Fragment>
   );
 };
