@@ -23,7 +23,7 @@ export default function PollResultView({ data }) {
   const [savedPolls, setSavedPolls] = useState(null);
   const { getUserDetails } = useUser();
   const { savePollData, getSavedPolls } = usePublish();
-  const [, setModal] = useContentProperty("modal", true);
+  const [ modal, setModal] = useContentProperty("modal", true);
   const [appPoll, setAppPolls] = useContentProperty("appPoll", "");
 
   useEffect(async () => {
@@ -36,6 +36,7 @@ export default function PollResultView({ data }) {
   }, []);
 
   console.log("PollResultView-appPoll", appPoll);
+console.log("modal-PollResultView", modal);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
