@@ -21,13 +21,24 @@ import toSlug from "../../lib/toSlug";
 
 export default function PollResultView({ data }) {
   const [userDetails, setUserDetails] = useState(null);
+  const [savedPolls, setSavedPolls] = useState(null);
   const { getUserDetails } = useUser();
-  const { savePollData } = usePublish();
+  const { savePollData, getSavedPolls } = usePublish();
   const [, setModal] = useContentProperty("modal", true);
+
+  useEffect(() => {
+    if (savedPolls === null) {
+      getSavedPolls().then((response) => {
+        console.log("savedpolls-response", response);
+        setSavedPolls(response);
+      });
+    }
+  }, []);
+
+  console.log("savedPolls", savedPolls);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
-  const pollResultType = data.type === "meetingPoll" ? "meeting" : "poll";
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
 
@@ -36,7 +47,7 @@ export default function PollResultView({ data }) {
   function publishDataHandler() {
     const titleSlug = toSlug(data.title);
     const pollData = { ...data, userDetails };
-    savePollData(`${pollResultType}-${titleSlug}`, pollData).then(async () => {
+    savePollData(`Polls-${titleSlug}`, pollData).then(async () => {
       await setModal(false);
     });
   }

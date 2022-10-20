@@ -1,8 +1,13 @@
-import api, { storage } from "@forge/api";
+import api, { startsWith, storage } from "@forge/api";
 
 export default function usePublish() {
   function savePollData(key: string, data) {
     return storage.set(key, data);
   }
-  return { savePollData };
+
+  async function getSavedPolls() {
+    return await storage.query().where("key", startsWith("Polls")).getMany();
+  }
+
+  return { savePollData, getSavedPolls };
 }
