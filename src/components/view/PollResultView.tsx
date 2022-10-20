@@ -36,6 +36,7 @@ export default function PollResultView({ data }) {
   }, []);
 
   console.log("savedPolls", savedPolls);
+  console.log("PollResultView-appPoll", appPoll);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
@@ -44,7 +45,7 @@ export default function PollResultView({ data }) {
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
-  function publishDataHandler() {
+  async function publishDataHandler() {
     const pollData = {
       ...data,
       userDetails,
@@ -52,9 +53,8 @@ export default function PollResultView({ data }) {
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
     setAppPolls(stringifyPollData);
-    savePollData(`Polls-${pollKey}`, stringifyPollData).then(async () => {
-      return await setModal(false);
-    });
+    savePollData(`Polls-${pollKey}`, stringifyPollData);
+    await setModal(false);
   }
 
   useEffect(async () => {

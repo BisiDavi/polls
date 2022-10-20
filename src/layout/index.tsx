@@ -11,8 +11,10 @@ export default function Layout({ children, goBack, type }) {
   return (
     <Fragment>
       {modal && (
-        <ModalDialog header="Workspace Polls" onClose={modalHandler}>
-          <Heading>Welcome to Polls, plan your meeting succintly.</Heading>
+        <ModalDialog
+          header="Welcome to Polls, plan your meeting succintly."
+          onClose={modalHandler}
+        >
           {children}
           {type !== "" && goBack}
         </ModalDialog>

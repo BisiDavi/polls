@@ -28,7 +28,7 @@ export default function AppPollView({ appPoll }) {
 
   return (
     <Fragment>
-      <Text>AppPollView</Text>
+      <Text>Workspace Polls</Text>
     </Fragment>
   );
 }
