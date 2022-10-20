@@ -15,7 +15,7 @@ import ForgeUI, {
 export default function AppRegularPollView({ polls }) {
   return (
     <Fragment>
-      <Text>AppMeetingPollView</Text>
+      <Text>AppRegularPollView</Text>
     </Fragment>
   );
 }

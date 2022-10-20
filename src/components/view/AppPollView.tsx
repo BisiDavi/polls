@@ -5,12 +5,25 @@ import usePublish from "../../hooks/usePublish";
 export default function AppPollView({ appPoll }) {
   const [savedPolls, setSavedPolls] = useState(null);
   const { getSavedPolls } = usePublish();
+  const polls = [];
+
+  if (savedPolls !== null) {
+    savedPolls.map((item) => {});
+  }
 
   useEffect(async () => {
     if (savedPolls === null) {
       await getSavedPolls().then((response) => {
         console.log("savedpolls-response", response);
-        setSavedPolls(response.results);
+        let pollData = {};
+        response.results.map((item: any) => {
+          pollData = {
+            value: JSON.parse(item.value),
+            key: JSON.parse(item.key),
+          };
+          polls.push(pollData);
+        });
+        setSavedPolls(polls);
       });
     }
   }, []);

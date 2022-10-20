@@ -3,20 +3,56 @@ import ForgeUI, {
   Fragment,
   Heading,
   Link,
-  Button,
   Strong,
   User,
   DateLozenge,
-  useState,
-  useEffect,
   Em,
 } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
 export default function AppMeetingPollView({ polls }) {
   return (
     <Fragment>
-      <Text>AppMeetingPollView</Text>
+      <Heading size="medium">Polls Details ({polls})</Heading>
+      <Text>
+        <Strong>Title: </Strong>
+        {polls.title}
+      </Text>
+      <Text>
+        <Strong>Description: </Strong>
+        {polls.description}
+      </Text>
+      {polls?.duration && (
+        <Text>
+          <Strong>Duration: </Strong>
+          {polls.duration}
+        </Text>
+      )}
+      {polls?.link && (
+        <Text>
+          <Strong>Link: </Strong>
+          <Link href={polls?.link}>{polls?.link}</Link>
+        </Text>
+      )}
+      {polls?.meetingDate && (
+        <Text>
+          <Strong>Meeting Date: </Strong>
+          <DateLozenge value={new Date(polls).getTime()} />
+        </Text>
+      )}
+      <Text>
+        <Strong>{polls}</Strong>
+      </Text>
+      {polls.map((item, index) => (
+        <Text key={item}>
+          {index + 1}. <Em>{item}</Em>
+        </Text>
+      ))}
+      {polls !== null && (
+        <Text>
+          <Strong>Author: </Strong>
+          <User accountId={polls.accountId} />
+        </Text>
+      )}
     </Fragment>
   );
 }

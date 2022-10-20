@@ -7,6 +7,7 @@ import ModalView from "./components/view/ModalView";
 const App = () => {
   const [appPoll] = useContentProperty("appPoll", "");
   console.log("appPoll", appPoll);
+
   return (
     <Fragment>
       <ModalView />
