@@ -7,19 +7,14 @@ export default function AppPollView({ appPoll }) {
   const { getSavedPolls } = usePublish();
   const polls = [];
 
-  if (savedPolls !== null) {
-    savedPolls.map((item) => {});
-  }
-
   useEffect(async () => {
     if (savedPolls === null) {
       await getSavedPolls().then((response) => {
-        console.log("savedpolls-response", response);
         let pollData = {};
         response.results.map((item: any) => {
           pollData = {
-            value: JSON.parse(item.value),
-            key: JSON.parse(item.key),
+            value: JSON.parse(item?.value),
+            key: item.key,
           };
           polls.push(pollData);
         });
@@ -29,6 +24,7 @@ export default function AppPollView({ appPoll }) {
   }, []);
 
   console.log("savedPolls", savedPolls);
+  console.log("appPoll-AppPollView", appPoll);
 
   return (
     <Fragment>

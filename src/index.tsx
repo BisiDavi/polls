@@ -12,6 +12,7 @@ const App = () => {
     <Fragment>
       <ModalView />
       {appPoll && <AppPollView appPoll={appPoll} />}
+      <AppPollView appPoll={appPoll} />
     </Fragment>
   );
 };
