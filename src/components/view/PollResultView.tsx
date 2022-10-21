@@ -11,6 +11,7 @@ import ForgeUI, {
   useEffect,
   Em,
 } from "@forge/ui";
+import { v4 as uuidv4 } from "uuid";
 
 import useUser from "../../hooks/useUser";
 import usePublish from "../../hooks/usePublish";
@@ -46,7 +47,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
     };
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
-    savePollData(`Polls-${pollKey}-`, stringifyPollData);
+    savePollData(`Polls-${pollKey}-${uuidv4()}`, stringifyPollData);
     setAppPoll(stringifyPollData);
     setModal(false);
   }
