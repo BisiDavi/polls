@@ -1,10 +1,12 @@
 import ForgeUI, {
-    Text,
-    useState,
-    useEffect,
-    Table,
-    Head,
-    Cell,
+  Text,
+  useState,
+  useEffect,
+  Table,
+  Head,
+  Cell,
+  Fragment,
+  Button,
 } from "@forge/ui";
 
 import usePublish from "../../hooks/usePublish";
@@ -34,21 +36,29 @@ export default function PollTable() {
 
   const head = [
     { key: "id", text: "S/N" },
-    { key: "Title", text: "Title" },
-    { key: "Author", text: "Author" },
-    { key: "Date", text: "Date Created" },
-    { key: "PollType", text: "Poll Type" },
-    { key: "PollStatus", text: "Poll Status" },
+    { key: "title", text: "Title" },
+    { key: "author", text: "Author" },
+    { key: "date", text: "Date Created" },
+    { key: "type", text: "Poll Type" },
+    { key: "pollStatus", text: "Poll Status" },
   ];
   return (
-    <Table>
-      <Head>
-        {head.map((item) => (
-          <Cell key={item.key}>
-            <Text>{item.text}</Text>
-          </Cell>
-        ))}
-      </Head>
-    </Table>
+    <Fragment>
+      <Button
+        text="Create New Poll"
+        icon="add-circle"
+        iconPosition="before"
+        onClick={() => null}
+      />
+      <Table>
+        <Head>
+          {head.map((item) => (
+            <Cell key={item.key}>
+              <Text>{item.text}</Text>
+            </Cell>
+          ))}
+        </Head>
+      </Table>
+    </Fragment>
   );
 }
