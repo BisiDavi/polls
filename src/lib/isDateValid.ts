@@ -15,3 +15,9 @@ export function formatDate(date: string) {
   const formattedDate = [month, day, year].join("-");
   return formattedDate;
 }
+
+export function formatPollDate(dateString: string) {
+  const dateInstance = new Date(dateString);
+  const date = dateInstance.toDateString();
+  return date;
+}
