@@ -11,7 +11,6 @@ import ForgeUI, {
   ButtonSet,
   Tag,
 } from "@forge/ui";
-import Spinner from '@atlaskit/spinner'
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
 
@@ -67,46 +66,43 @@ export default function PollTable({ setModal }) {
             <Text>Action</Text>
           </Cell>
         </Head>
-        {pollsData.map((item, index) => {
-          console.log("item", item);
-          return (
-            <Row key={index}>
-              {head.map((headItem, idx) => {
-                return (
-                  <Cell key={idx}>
-                    {headItem.key !== "type" ? (
-                      <Text>{item[headItem.key]}</Text>
-                    ) : item[headItem.key] === "Meeting Poll" ? (
-                      <Tag text={item[headItem.key]} color="teal" />
-                    ) : (
-                      item[headItem.key] === "Regular Poll" && (
-                        <Tag text={item[headItem.key]} color="blue" />
-                      )
-                    )}
-                  </Cell>
-                );
-              })}
-              <Cell>
-                <ButtonSet>
-                  <Button
-                    text=""
-                    icon="watch-filled"
-                    iconPosition="after"
-                    appearance="primary"
-                    onClick={() => null}
-                  />
-                  <Button
-                    text=""
-                    icon="trash"
-                    iconPosition="after"
-                    appearance="danger"
-                    onClick={() => deletePoll(item["key"])}
-                  />
-                </ButtonSet>
-              </Cell>
-            </Row>
-          );
-        })}
+        {pollsData.map((item, index) => (
+          <Row key={index}>
+            {head.map((headItem, idx) => {
+              return (
+                <Cell key={idx}>
+                  {headItem.key !== "type" ? (
+                    <Text>{item[headItem.key]}</Text>
+                  ) : item[headItem.key] === "Meeting Poll" ? (
+                    <Tag text={item[headItem.key]} color="teal" />
+                  ) : (
+                    item[headItem.key] === "Regular Poll" && (
+                      <Tag text={item[headItem.key]} color="blue" />
+                    )
+                  )}
+                </Cell>
+              );
+            })}
+            <Cell>
+              <ButtonSet>
+                <Button
+                  text=""
+                  icon="watch-filled"
+                  iconPosition="after"
+                  appearance="primary"
+                  onClick={() => null}
+                />
+                <Button
+                  text=""
+                  icon="trash"
+                  iconPosition="after"
+                  appearance="danger"
+                  onClick={() => deletePoll(item["key"])}
+                />
+              </ButtonSet>
+            </Cell>
+          </Row>
+        ))}
       </Table>
     </Fragment>
   );
