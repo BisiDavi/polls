@@ -4,7 +4,7 @@ import PollForm from "../form/PollForm";
 import Modal from "../modal";
 import TabView from "./TabView";
 
-export default function ModalView() {
+export default function ModalView({ appPoll }) {
   const [pollType, setPollType] = useState("");
   const [backState, setBackState] = useState("");
   const [resultView, setResultView] = useState("");

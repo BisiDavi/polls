@@ -1,16 +1,14 @@
-import ForgeUI, { render, Fragment, Macro } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
+import ForgeUI, { render, Fragment, Macro, useState } from "@forge/ui";
 
 import AppPollView from "./components/view/AppPollView";
 import ModalView from "./components/view/ModalView";
 
 const App = () => {
-  const [appPoll] = useContentProperty("appPoll", "");
-  console.log("appPoll", appPoll);
+  const [appPoll, setAppPoll] = useState(null);
 
   return (
     <Fragment>
-      {!appPoll && <ModalView />}
+      {!appPoll && <ModalView appPoll={appPoll} />}
       {appPoll && <AppPollView appPoll={appPoll} />}
       <AppPollView appPoll={appPoll} />
     </Fragment>
