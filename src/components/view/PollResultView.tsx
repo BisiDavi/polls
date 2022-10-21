@@ -26,7 +26,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
   useEffect(async () => {
     if (savedPolls === null) {
       await getSavedPolls().then((response) => {
-        console.log("savedpolls-response", response);
+        console.log("savedpolls-response,", response);
         setSavedPolls(response.results);
       });
     }
@@ -39,7 +39,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
-  console.log("data", data);
+  console.log("data,", data);
 
   function publishDataHandler() {
     const pollData = {

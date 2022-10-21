@@ -7,7 +7,7 @@ const App = () => {
   const [appPoll, setAppPoll] = useState(null);
   const [modal, setModal] = useState(false);
 
-  console.log("appPoll", appPoll);
+  console.log("appPoll,", appPoll);
  
   return (
     <Fragment>

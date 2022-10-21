@@ -15,7 +15,7 @@ export default function PollView({ type, setAppPoll, setPollType, setModal }) {
     setAgenda,
   } = usePollView(setPollType, type);
 
-  console.log("type", type);
+  console.log("type,", type);
 
   return (
     <Fragment>

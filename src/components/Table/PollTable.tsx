@@ -19,13 +19,11 @@ import formatPollTable from "../../lib/formatPollTable";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
-  const [deletePollStatus, setDeletePollStatus] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
   const polls = [];
 
   async function deletePollHandler(pollKey: string) {
     await deletePoll(pollKey).then(() => {
-      setDeletePollStatus(true);
       setSavedPolls(null);
     });
   }
