@@ -1,11 +1,11 @@
 import usePollForm from "@/hooks/usePollForm";
 import ForgeUI, { Fragment } from "@forge/ui";
 
-import PollResultView from "../view/PollResultView";
-import MeetingPollForm from "./MeetingPollForm";
-import RegularPollForm from "./RegularPollForm";
+import PollResultView from "./PollResultView";
+import MeetingPollForm from "../form/MeetingPollForm";
+import RegularPollForm from "../form/RegularPollForm";
 
-export default function PollForm({ type, appPoll, formType, setPollType }) {
+export default function PollView({ type, appPoll, formType, setPollType }) {
   const {
     data,
     onSubmitRegular,

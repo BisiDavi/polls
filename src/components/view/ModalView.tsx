@@ -1,6 +1,6 @@
 import ForgeUI, { useState, useEffect, Button } from "@forge/ui";
 
-import PollForm from "../form/PollForm";
+import PollForm from "./PollView";
 import Modal from "../modal";
 import TabView from "./TabView";
 
