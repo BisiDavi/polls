@@ -11,6 +11,7 @@ import ForgeUI, {
   ButtonSet,
   Tag,
   Image,
+  SectionMessage,
 } from "@forge/ui";
 
 import usePublish from "../../hooks/usePublish";
@@ -28,9 +29,6 @@ export default function PollTable({ setModal }) {
       setSavedPolls(null);
     });
   }
-
-  console.log("savedPolls", savedPolls);
-  console.log("deletePollStatus", deletePollStatus);
 
   useEffect(async () => {
     if (savedPolls === null) {
@@ -65,7 +63,7 @@ export default function PollTable({ setModal }) {
           src="https://res.cloudinary.com/verrb-inc/image/upload/v1666363950/loader-gif_i7owby.gif"
           alt="loader"
         />
-      ) : (
+      ) : pollsData.length > 0 ? (
         <Fragment>
           <Button
             text="Create New Poll"
@@ -124,6 +122,12 @@ export default function PollTable({ setModal }) {
             ))}
           </Table>
         </Fragment>
+      ) : (
+        <SectionMessage title="Polls" appearance="error">
+          <Text>
+            No poll yet, click on the "Create New Poll" to create Poll
+          </Text>
+        </SectionMessage>
       )}
     </Fragment>
   );
