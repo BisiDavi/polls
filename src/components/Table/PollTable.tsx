@@ -10,6 +10,7 @@ import ForgeUI, {
   Row,
   ButtonSet,
   Tag,
+  Image,
 } from "@forge/ui";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
@@ -48,6 +49,10 @@ export default function PollTable({ setModal }) {
 
   return (
     <Fragment>
+      <Image
+        src="https://res.cloudinary.com/verrb-inc/image/upload/v1666363950/loader-gif_i7owby.gif"
+        alt="loader"
+      />
       <Button
         text="Create New Poll"
         icon="add"
