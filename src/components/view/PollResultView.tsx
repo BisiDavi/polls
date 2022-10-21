@@ -18,7 +18,7 @@ import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
-export default function PollResultView({ data, appPoll }) {
+export default function PollResultView({ data, setAppPoll }) {
   const [userDetails, setUserDetails] = useState(null);
   const [savedPolls, setSavedPolls] = useState(null);
   const { getUserDetails } = useUser();
@@ -51,6 +51,7 @@ export default function PollResultView({ data, appPoll }) {
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
     savePollData(`Polls-${pollKey}`, stringifyPollData);
+    setAppPoll(stringifyPollData);
     await setModal(false);
   }
 

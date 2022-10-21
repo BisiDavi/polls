@@ -29,6 +29,8 @@ export default function PollTable() {
     }
   }, []);
 
+  console.log("savedPolls", savedPolls);
+
   const head = [
     { key: "id", text: "S/N" },
     { key: "Title", text: "Title" },

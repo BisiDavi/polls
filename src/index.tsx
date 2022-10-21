@@ -11,7 +11,7 @@ const App = () => {
       {appPoll ? (
         <AppPollView appPoll={appPoll} />
       ) : (
-        <ModalView appPoll={appPoll} />
+        <ModalView setAppPoll={setAppPoll} />
       )}
     </Fragment>
   );
