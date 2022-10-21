@@ -12,6 +12,7 @@ import ForgeUI, {
   Tag,
   Image,
 } from "@forge/ui";
+
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
 
@@ -20,6 +21,16 @@ export default function PollTable({ setModal }) {
   const [deletePollStatus, setDeletePollStatus] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
   const polls = [];
+
+  async function deletePollHandler(pollKey: string) {
+    await deletePoll(pollKey).then(() => {
+      setDeletePollStatus(true);
+      setSavedPolls(null);
+    });
+  }
+
+  console.log("savedPolls", savedPolls);
+  console.log("deletePollStatus", deletePollStatus);
 
   useEffect(async () => {
     if (savedPolls === null) {
@@ -35,7 +46,7 @@ export default function PollTable({ setModal }) {
         setSavedPolls(polls);
       });
     }
-  }, []);
+  }, [savedPolls]);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
@@ -49,66 +60,71 @@ export default function PollTable({ setModal }) {
 
   return (
     <Fragment>
-      <Image
-        src="https://res.cloudinary.com/verrb-inc/image/upload/v1666363950/loader-gif_i7owby.gif"
-        alt="loader"
-      />
-      <Button
-        text="Create New Poll"
-        icon="add"
-        iconPosition="before"
-        appearance="primary"
-        onClick={() => setModal(true)}
-      />
-      <Table>
-        <Head>
-          {head.map((item) => (
-            <Cell key={item.key}>
-              <Text>{item.text}</Text>
-            </Cell>
-          ))}
-          <Cell>
-            <Text>Action</Text>
-          </Cell>
-        </Head>
-        {pollsData.map((item, index) => (
-          <Row key={index}>
-            {head.map((headItem, idx) => {
-              return (
-                <Cell key={idx}>
-                  {headItem.key !== "type" ? (
-                    <Text>{item[headItem.key]}</Text>
-                  ) : item[headItem.key] === "Meeting Poll" ? (
-                    <Tag text={item[headItem.key]} color="teal" />
-                  ) : (
-                    item[headItem.key] === "Regular Poll" && (
-                      <Tag text={item[headItem.key]} color="blue" />
-                    )
-                  )}
+      {savedPolls === null ? (
+        <Image
+          src="https://res.cloudinary.com/verrb-inc/image/upload/v1666363950/loader-gif_i7owby.gif"
+          alt="loader"
+        />
+      ) : (
+        <Fragment>
+          <Button
+            text="Create New Poll"
+            icon="add"
+            iconPosition="before"
+            appearance="primary"
+            onClick={() => setModal(true)}
+          />
+          <Table>
+            <Head>
+              {head.map((item) => (
+                <Cell key={item.key}>
+                  <Text>{item.text}</Text>
                 </Cell>
-              );
-            })}
-            <Cell>
-              <ButtonSet>
-                <Button
-                  text=""
-                  icon="watch-filled"
-                  iconPosition="after"
-                  appearance="primary"
-                  onClick={() => null}
-                />
-                <Button
-                  text=""
-                  icon="trash"
-                  iconPosition="after"
-                  appearance="danger"
-                  onClick={() => deletePoll(item["key"])}
-                />
-              </ButtonSet>
-            </Cell>
-          </Row>
-        ))}
-      </Table>
+              ))}
+              <Cell>
+                <Text>Action</Text>
+              </Cell>
+            </Head>
+            {pollsData.map((item, index) => (
+              <Row key={index}>
+                {head.map((headItem, idx) => {
+                  return (
+                    <Cell key={idx}>
+                      {headItem.key !== "type" ? (
+                        <Text>{item[headItem.key]}</Text>
+                      ) : item[headItem.key] === "Meeting Poll" ? (
+                        <Tag text={item[headItem.key]} color="teal" />
+                      ) : (
+                        item[headItem.key] === "Regular Poll" && (
+                          <Tag text={item[headItem.key]} color="blue" />
+                        )
+                      )}
+                    </Cell>
+                  );
+                })}
+                <Cell>
+                  <ButtonSet>
+                    <Button
+                      text=""
+                      icon="watch-filled"
+                      iconPosition="after"
+                      appearance="primary"
+                      onClick={() => null}
+                    />
+                    <Button
+                      text=""
+                      icon="trash"
+                      iconPosition="after"
+                      appearance="danger"
+                      onClick={() => deletePollHandler(item["key"])}
+                    />
+                  </ButtonSet>
+                </Cell>
+              </Row>
+            ))}
+          </Table>
+        </Fragment>
+      )}
     </Fragment>
   );
 }
