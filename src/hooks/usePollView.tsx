@@ -22,11 +22,6 @@ export default function usePollView(setPollType, viewType: string) {
 
   const data = viewType === "Regular" ? regularFormData : meetingPollData;
 
-  console.log("viewType,", viewType);
-  console.log("regularFormData,", regularFormData);
-  console.log("meetingPollData,", meetingPollData);
-  console.log("data-usePollView,", data);
-
   return {
     data,
     onSubmitRegular,

@@ -23,10 +23,6 @@ export default function Modal({ setAppPoll, setModal }) {
     setBackState(backStateValue);
   }, [pollType]);
 
- 
-
-  console.log("polltype", pollType);
-  console.log("backState", backState);
 
   function modalHandler() {
     setModal(false);

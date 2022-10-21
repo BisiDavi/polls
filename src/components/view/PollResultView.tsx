@@ -46,7 +46,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
     };
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
-    savePollData(`Polls-${pollKey}`, stringifyPollData);
+    savePollData(`Polls-${pollKey}-`, stringifyPollData);
     setAppPoll(stringifyPollData);
     setModal(false);
   }
