@@ -11,7 +11,7 @@ import ForgeUI, {
 
 import usePublish from "../../hooks/usePublish";
 
-export default function PollTable({ setModalState }) {
+export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
   const { getSavedPolls } = usePublish();
   const polls = [];
@@ -48,7 +48,7 @@ export default function PollTable({ setModalState }) {
         text="Create New Poll"
         icon="add-circle"
         iconPosition="before"
-        onClick={() => setModalState(true)}
+        onClick={() => setModal(true)}
       />
       <Table>
         <Head>

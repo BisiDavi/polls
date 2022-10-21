@@ -1,20 +1,16 @@
 import ForgeUI, { render, Fragment, Macro, useState } from "@forge/ui";
 
 import AppPollView from "./components/view/AppPollView";
-import ModalView from "./components/view/ModalView";
+import Modal from "./components/modal";
 
 const App = () => {
   const [appPoll, setAppPoll] = useState(null);
-  const [modalState, setModalState] = useState(false);
+  const [modal, setModal] = useState(false);
 
   return (
     <Fragment>
-      {appPoll ? (
-        <AppPollView appPoll={appPoll} setModalState={setModalState} />
-      ) : (
-        <ModalView setAppPoll={setAppPoll} />
-      )}
-      <AppPollView appPoll={appPoll} setModalState={setModalState} />
+      {modal && <Modal setAppPoll={setAppPoll} setModal={setModal} />}
+      <AppPollView appPoll={appPoll} setModal={setModal} />
     </Fragment>
   );
 };

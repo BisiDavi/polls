@@ -2,10 +2,10 @@ import ForgeUI, { Fragment } from "@forge/ui";
 
 import PollTable from "../Table/PollTable";
 
-export default function AppPollView({ appPoll, setModalState }) {
+export default function AppPollView({ appPoll, setModal }) {
   return (
     <Fragment>
-      <PollTable setModalState={setModalState} />
+      <PollTable setModal={setModal} />
     </Fragment>
   );
 }

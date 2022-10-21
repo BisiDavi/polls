@@ -1,25 +1,66 @@
-import ForgeUI, { Fragment, ModalDialog, useState } from "@forge/ui";
+import ForgeUI, { useState, useEffect, Button, ModalDialog } from "@forge/ui";
 
-export default function Modal({ children, goBack, type }) {
-  const [modalState, setModalState] = useState(false);
+import PollView from "../view/PollView";
+import TabView from "../view/TabView";
+
+export default function Modal({ setAppPoll, setModal }) {
+  const [pollType, setPollType] = useState("");
+  const [backState, setBackState] = useState("");
+  const [resultView, setResultView] = useState("");
+
+  const backStateType = (pollStateType: string) =>
+    pollStateType === "Meeting-View"
+      ? "Meeting"
+      : pollStateType === "Meeting"
+      ? ""
+      : pollStateType === "Regular-View"
+      ? "Regular"
+      : pollStateType === "Regular"
+      ? ""
+      : "";
+
+  useEffect(() => {
+    const backStateValue = backStateType(pollType);
+    setBackState(backStateValue);
+  }, [pollType]);
+
+  useEffect(() => {
+    const resultState =
+      pollType === "Meeting-View"
+        ? "Meeting-View"
+        : pollType === "Regular-View"
+        ? "Regular-View"
+        : "";
+
+    setResultView(resultState);
+  }, [pollType]);
 
   function modalHandler() {
-    setModalState(false);
+    setModal(false);
   }
 
-  console.log("modalState", modalState);
-
   return (
-    <Fragment>
-      {modalState && (
-        <ModalDialog
-          header="Welcome to Polls, plan your meeting succintly."
-          onClose={modalHandler}
-        >
-          {children}
-          {type !== "" && goBack}
-        </ModalDialog>
+    <ModalDialog
+      header="Welcome to Polls, plan your meeting succintly."
+      onClose={modalHandler}
+    >
+      {pollType === "" ? (
+        <TabView setPollType={setPollType} setPollResult={setPollType} />
+      ) : (
+        <PollView
+          type={pollType}
+          formType={resultView}
+          setPollType={setPollType}
+          setAppPoll={setAppPoll}
+        />
       )}
-    </Fragment>
+      {pollType !== "" && (
+        <Button
+          text="Back"
+          icon="arrow-left"
+          onClick={() => setPollType(backState)}
+        />
+      )}
+    </ModalDialog>
   );
 }
