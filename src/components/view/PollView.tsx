@@ -5,7 +5,7 @@ import MeetingPollForm from "../form/MeetingPollForm";
 import RegularPollForm from "../form/RegularPollForm";
 import usePollView from "../../hooks/usePollView";
 
-export default function PollView({ type, setAppPoll, setPollType }) {
+export default function PollView({ type, setAppPoll, setPollType, setModal }) {
   const {
     data,
     onSubmitRegular,
@@ -20,7 +20,11 @@ export default function PollView({ type, setAppPoll, setPollType }) {
   return (
     <Fragment>
       {type.includes("View") ? (
-        <PollResultView data={data} setAppPoll={setAppPoll} />
+        <PollResultView
+          data={data}
+          setAppPoll={setAppPoll}
+          setModal={setModal}
+        />
       ) : type === "Meeting" ? (
         <MeetingPollForm
           validDate={validDate}

@@ -44,6 +44,7 @@ export default function Modal({ setAppPoll, setModal }) {
           type={pollType}
           setPollType={setPollType}
           setAppPoll={setAppPoll}
+          setModal={setModal}
         />
       )}
       {pollType !== "" && (

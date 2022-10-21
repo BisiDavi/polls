@@ -11,19 +11,17 @@ import ForgeUI, {
   useEffect,
   Em,
 } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
 import useUser from "../../hooks/useUser";
 import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
-export default function PollResultView({ data, setAppPoll }) {
+export default function PollResultView({ data, setAppPoll, setModal }) {
   const [userDetails, setUserDetails] = useState(null);
   const [savedPolls, setSavedPolls] = useState(null);
   const { getUserDetails } = useUser();
   const { savePollData, getSavedPolls } = usePublish();
-  const [modal, setModal] = useContentProperty("modal", true);
 
   useEffect(async () => {
     if (savedPolls === null) {
@@ -34,8 +32,6 @@ export default function PollResultView({ data, setAppPoll }) {
     }
   }, []);
 
-  console.log("modal-PollResultView", modal);
-
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
   const optionText =
@@ -43,7 +39,7 @@ export default function PollResultView({ data, setAppPoll }) {
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
-  async function publishDataHandler() {
+  function publishDataHandler() {
     const pollData = {
       ...data,
       userDetails,
@@ -52,7 +48,7 @@ export default function PollResultView({ data, setAppPoll }) {
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
     savePollData(`Polls-${pollKey}`, stringifyPollData);
     setAppPoll(stringifyPollData);
-    await setModal(false);
+    setModal(false);
   }
 
   useEffect(async () => {
