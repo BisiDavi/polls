@@ -1,24 +1,18 @@
-import { useEffect } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
+import { useEffect, useState } from "@forge/ui";
 
 export default function useRegularPollForm(
   formState,
   setFormState,
   setPollResult
 ) {
-  const [regularFormData, setRegularFormData] = useContentProperty(
-    "regularFormData",
-    ""
-  );
+  const [regularFormData, setRegularFormData] = useState("");
 
-  useEffect(async () => {
+  useEffect(() => {
     if (formState !== undefined && regularFormData.length === 0) {
-      await setRegularFormData(formState);
+      setRegularFormData(formState);
       setPollResult("Regular-View");
     }
   }, [formState, regularFormData]);
-
-  console.log("regularFormData-RegularPollForm", regularFormData);
 
   const onSubmit = async (formData, pollObj) => {
     const date = new Date();

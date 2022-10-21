@@ -1,5 +1,4 @@
 import { useState, useEffect } from "@forge/ui";
-import { useContentProperty } from "@forge/ui-confluence";
 
 import isDateValid from "../lib/isDateValid";
 import { formatFormPoll } from "../lib/getAgendaName";
@@ -11,10 +10,8 @@ export default function useMeetingPollForm(
 ) {
   const [validDate, setValidDate] = useState(null);
   const [agenda, setAgenda] = useState(["Topic 1"]);
-  const [meetingPollData, setMeetingPollData] = useContentProperty(
-    "meetingPollData",
-    ""
-  );
+  const [meetingPollData, setMeetingPollData] = useState("");
+
   useEffect(() => {
     if (formState !== undefined) {
       const dateStatus = isDateValid(formState.meetingDate);
@@ -22,11 +19,10 @@ export default function useMeetingPollForm(
     }
   }, [formState]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (formState !== undefined && meetingPollData.length === 0 && validDate) {
-      await setMeetingPollData(formState).then(() => {
-        setPollType("Meeting-View");
-      });
+      setMeetingPollData(formState);
+      setPollType("Meeting-View");
     }
   }, [formState, meetingPollData, validDate]);
 
