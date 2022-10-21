@@ -9,6 +9,8 @@ import ForgeUI, {
   Button,
   Row,
   ButtonSet,
+  Tooltip,
+  Tag,
 } from "@forge/ui";
 
 import usePublish from "../../hooks/usePublish";
@@ -71,21 +73,29 @@ export default function PollTable({ setModal }) {
               {head.map((headItem, idx) => {
                 return (
                   <Cell key={idx}>
-                    <Text>{item[headItem.key]}</Text>
+                    {headItem.key !== "type" ? (
+                      <Text>{item[headItem.key]}</Text>
+                    ) : item[headItem.key] === "Meeting Poll" ? (
+                      <Tag text={item[headItem.key]} color="teal" />
+                    ) : (
+                      item[headItem.key] === "Regular Poll" && (
+                        <Tag text={item[headItem.key]} color="blue" />
+                      )
+                    )}
                   </Cell>
                 );
               })}
               <Cell>
                 <ButtonSet>
                   <Button
-                    text="View"
+                    text=""
                     icon="watch-filled"
                     iconPosition="after"
                     appearance="primary"
                     onClick={() => null}
                   />
                   <Button
-                    text="Delete"
+                    text=""
                     icon="trash"
                     iconPosition="after"
                     appearance="danger"
