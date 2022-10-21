@@ -3,14 +3,22 @@ import ForgeUI, { Fragment } from "@forge/ui";
 import MeetingPollForm from "./MeetingPollForm";
 import RegularPollForm from "./RegularPollForm";
 
-export default function PollForm({ type, formType, setPollType }) {
+export default function PollForm({ type, appPoll, formType, setPollType }) {
   return (
     <Fragment>
       {type.includes("Meeting") ? (
-        <MeetingPollForm viewType={formType} setPollType={setPollType} />
+        <MeetingPollForm
+          appPoll={appPoll}
+          viewType={formType}
+          setPollType={setPollType}
+        />
       ) : (
         type.includes("Regular") && (
-          <RegularPollForm viewType={formType} setPollType={setPollType} />
+          <RegularPollForm
+            appPoll={appPoll}
+            viewType={formType}
+            setPollType={setPollType}
+          />
         )
       )}
     </Fragment>

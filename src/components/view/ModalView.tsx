@@ -54,6 +54,7 @@ export default function ModalView({ appPoll }) {
           type={pollType}
           formType={resultView}
           setPollType={setPollType}
+          appPoll={appPoll}
         />
       )}
     </Modal>

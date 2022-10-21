@@ -8,9 +8,11 @@ const App = () => {
 
   return (
     <Fragment>
-      {!appPoll && <ModalView appPoll={appPoll} />}
-      {appPoll && <AppPollView appPoll={appPoll} />}
-      <AppPollView appPoll={appPoll} />
+      {appPoll ? (
+        <AppPollView appPoll={appPoll} />
+      ) : (
+        <ModalView appPoll={appPoll} />
+      )}
     </Fragment>
   );
 };

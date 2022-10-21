@@ -13,7 +13,7 @@ import useMeetingPollForm from "../../hooks/useMeetingPollForm";
 import PollResultView from "../view/PollResultView";
 import PollsFieldSet from "./PollsFieldSet";
 
-export default function MeetingPollForm({ viewType, setPollType }) {
+export default function MeetingPollForm({ viewType, appPoll, setPollType }) {
   const [formState, setFormState] = useState(undefined);
   const { validDate, meetingPollData, onSubmit, agenda, setAgenda } =
     useMeetingPollForm(formState, setFormState, setPollType);

@@ -12,7 +12,7 @@ import useRegularPollForm from "../../hooks/useRegularPollForm";
 import PollResultView from "../view/PollResultView";
 import PollsFieldSet from "./PollsFieldSet";
 
-export default function RegularPollForm({ viewType, setPollType }) {
+export default function RegularPollForm({ viewType, setPollType, appPoll }) {
   const [formState, setFormState] = useState(undefined);
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
   const { onSubmit, regularFormData } = useRegularPollForm(
