@@ -1,12 +1,13 @@
-import usePublish from "@/hooks/usePublish";
 import ForgeUI, {
-  Text,
-  useState,
-  useEffect,
-  Table,
-  Head,
-  Cell,
+    Text,
+    useState,
+    useEffect,
+    Table,
+    Head,
+    Cell,
 } from "@forge/ui";
+
+import usePublish from "../../hooks/usePublish";
 
 export default function PollTable() {
   const [savedPolls, setSavedPolls] = useState(null);
