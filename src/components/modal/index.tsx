@@ -6,7 +6,6 @@ import TabView from "../view/TabView";
 export default function Modal({ setAppPoll, setModal }) {
   const [pollType, setPollType] = useState("");
   const [backState, setBackState] = useState("");
-  const [resultView, setResultView] = useState("");
 
   const backStateType = (pollStateType: string) =>
     pollStateType === "Meeting-View"
@@ -24,16 +23,10 @@ export default function Modal({ setAppPoll, setModal }) {
     setBackState(backStateValue);
   }, [pollType]);
 
-  useEffect(() => {
-    const resultState =
-      pollType === "Meeting-View"
-        ? "Meeting-View"
-        : pollType === "Regular-View"
-        ? "Regular-View"
-        : "";
+ 
 
-    setResultView(resultState);
-  }, [pollType]);
+  console.log("polltype", pollType);
+  console.log("backState", backState);
 
   function modalHandler() {
     setModal(false);
@@ -45,11 +38,10 @@ export default function Modal({ setAppPoll, setModal }) {
       onClose={modalHandler}
     >
       {pollType === "" ? (
-        <TabView setPollType={setPollType} setPollResult={setPollType} />
+        <TabView setPollType={setPollType} />
       ) : (
         <PollView
           type={pollType}
-          formType={resultView}
           setPollType={setPollType}
           setAppPoll={setAppPoll}
         />

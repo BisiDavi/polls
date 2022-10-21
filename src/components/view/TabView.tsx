@@ -3,7 +3,7 @@ import ForgeUI, { Tabs, Tab } from "@forge/ui";
 import MeetingPollView from "./MeetingPollView";
 import RegularPollView from "./RegularPollView";
 
-export default function TabView({ setPollType, setPollResult }) {
+export default function TabView({ setPollType }) {
   return (
     <Tabs>
       <Tab label="Meeting Poll">

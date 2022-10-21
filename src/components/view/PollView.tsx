@@ -5,7 +5,7 @@ import MeetingPollForm from "../form/MeetingPollForm";
 import RegularPollForm from "../form/RegularPollForm";
 import usePollView from "../../hooks/usePollView";
 
-export default function PollView({ type, setAppPoll, formType, setPollType }) {
+export default function PollView({ type, setAppPoll, setPollType }) {
   const {
     data,
     onSubmitRegular,
@@ -13,7 +13,7 @@ export default function PollView({ type, setAppPoll, formType, setPollType }) {
     validDate,
     agenda,
     setAgenda,
-  } = usePollView(setPollType, formType);
+  } = usePollView(setPollType, type);
 
   return (
     <Fragment>

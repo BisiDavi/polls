@@ -6,6 +6,8 @@ import PollTable from "./components/Table/PollTable";
 const App = () => {
   const [appPoll, setAppPoll] = useState(null);
   const [modal, setModal] = useState(false);
+
+  console.log("appPoll", appPoll);
  
   return (
     <Fragment>
@@ -16,3 +18,4 @@ const App = () => {
 };
 
 export const run = render(<Macro app={<App />} />);
+ 
