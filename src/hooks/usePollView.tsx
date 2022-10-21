@@ -3,7 +3,7 @@ import { useState } from "@forge/ui";
 import useRegularPollForm from "./useRegularPollForm";
 import useMeetingPollForm from "./useMeetingPollForm";
 
-export default function usePollForm(setPollType, viewType: string) {
+export default function usePollView(setPollType, viewType: string) {
   const [formState, setFormState] = useState(undefined);
 
   const { onSubmit: onSubmitRegular, regularFormData } = useRegularPollForm(

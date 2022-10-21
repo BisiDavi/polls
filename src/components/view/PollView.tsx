@@ -1,9 +1,9 @@
-import usePollForm from "@/hooks/usePollForm";
 import ForgeUI, { Fragment } from "@forge/ui";
 
 import PollResultView from "./PollResultView";
 import MeetingPollForm from "../form/MeetingPollForm";
 import RegularPollForm from "../form/RegularPollForm";
+import usePollView from "../../hooks/usePollView";
 
 export default function PollView({ type, appPoll, formType, setPollType }) {
   const {
@@ -13,7 +13,7 @@ export default function PollView({ type, appPoll, formType, setPollType }) {
     validDate,
     agenda,
     setAgenda,
-  } = usePollForm(setPollType, formType);
+  } = usePollView(setPollType, formType);
 
   return (
     <Fragment>
