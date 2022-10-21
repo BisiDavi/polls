@@ -18,13 +18,12 @@ import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
-export default function PollResultView({ data }) {
+export default function PollResultView({ data, appPoll }) {
   const [userDetails, setUserDetails] = useState(null);
   const [savedPolls, setSavedPolls] = useState(null);
   const { getUserDetails } = useUser();
   const { savePollData, getSavedPolls } = usePublish();
   const [modal, setModal] = useContentProperty("modal", true);
-  const [appPoll, setAppPoll] = useContentProperty("appPoll", "");
 
   useEffect(async () => {
     if (savedPolls === null) {
@@ -35,7 +34,6 @@ export default function PollResultView({ data }) {
     }
   }, []);
 
-  console.log("PollResultView-appPoll", appPoll);
   console.log("modal-PollResultView", modal);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
@@ -52,7 +50,6 @@ export default function PollResultView({ data }) {
     };
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
-    await setAppPoll(stringifyPollData);
     savePollData(`Polls-${pollKey}`, stringifyPollData);
     await setModal(false);
   }
