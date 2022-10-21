@@ -66,46 +66,50 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
   return (
     <Fragment>
       <Heading size="medium">Polls Details ({pollType})</Heading>
-      <Text>
-        <Strong>Title: </Strong>
-        {data.title}
-      </Text>
-      <Text>
-        <Strong>Description: </Strong>
-        {data.description}
-      </Text>
-      {data?.duration && (
-        <Text>
-          <Strong>Duration: </Strong>
-          {data.duration}
-        </Text>
-      )}
-      {data?.link && (
-        <Text>
-          <Strong>Link: </Strong>
-          <Link href={data?.link}>{data?.link}</Link>
-        </Text>
-      )}
-      {data?.meetingDate && (
-        <Text>
-          <Strong>Meeting Date: </Strong>
-          <DateLozenge value={new Date(meetingDate).getTime()} />
-        </Text>
-      )}
-      <Text>
-        <Strong>{optionText}</Strong>
-      </Text>
-      {topics &&
-        topics?.map((item, index) => (
-          <Text key={item}>
-            {index + 1}. <Em>{item}</Em>
+      {data && (
+        <Fragment>
+          <Text>
+            <Strong>Title: </Strong>
+            {data.title}
           </Text>
-        ))}
-      {userDetails !== null && (
-        <Text>
-          <Strong>Author: </Strong>
-          <User accountId={userDetails.accountId} />
-        </Text>
+          <Text>
+            <Strong>Description: </Strong>
+            {data.description}
+          </Text>
+          {data?.duration && (
+            <Text>
+              <Strong>Duration: </Strong>
+              {data.duration}
+            </Text>
+          )}
+          {data?.link && (
+            <Text>
+              <Strong>Link: </Strong>
+              <Link href={data?.link}>{data?.link}</Link>
+            </Text>
+          )}
+          {data?.meetingDate && (
+            <Text>
+              <Strong>Meeting Date: </Strong>
+              <DateLozenge value={new Date(meetingDate).getTime()} />
+            </Text>
+          )}
+          <Text>
+            <Strong>{optionText}</Strong>
+          </Text>
+          {topics &&
+            topics?.map((item, index) => (
+              <Text key={item}>
+                {index + 1}. <Em>{item}</Em>
+              </Text>
+            ))}
+          {userDetails !== null && (
+            <Text>
+              <Strong>Author: </Strong>
+              <User accountId={userDetails.accountId} />
+            </Text>
+          )}
+        </Fragment>
       )}
       <Button
         text="Publish"
