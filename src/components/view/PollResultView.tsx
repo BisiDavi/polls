@@ -39,8 +39,6 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
-  console.log("data,", data);
-
   function publishDataHandler() {
     const pollData = {
       ...data,
