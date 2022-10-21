@@ -9,16 +9,16 @@ import ForgeUI, {
   Button,
   Row,
   ButtonSet,
-  Tooltip,
   Tag,
 } from "@forge/ui";
-
+import Spinner from '@atlaskit/spinner'
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
-  const { getSavedPolls } = usePublish();
+  const [deletePollStatus, setDeletePollStatus] = useState(false);
+  const { getSavedPolls, deletePoll } = usePublish();
   const polls = [];
 
   useEffect(async () => {
@@ -68,6 +68,7 @@ export default function PollTable({ setModal }) {
           </Cell>
         </Head>
         {pollsData.map((item, index) => {
+          console.log("item", item);
           return (
             <Row key={index}>
               {head.map((headItem, idx) => {
@@ -99,7 +100,7 @@ export default function PollTable({ setModal }) {
                     icon="trash"
                     iconPosition="after"
                     appearance="danger"
-                    onClick={() => null}
+                    onClick={() => deletePoll(item["key"])}
                   />
                 </ButtonSet>
               </Cell>

@@ -12,6 +12,7 @@ export default function formatPollTable(data: any[]) {
       date: formatPollDate(item.value.date),
       type: pollType,
       pollStatus: "",
+      key: item.key,
     });
   });
   return pollArray;

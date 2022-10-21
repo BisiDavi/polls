@@ -9,5 +9,9 @@ export default function usePublish() {
     return await storage.query().where("key", startsWith("Polls")).getMany();
   }
 
-  return { savePollData, getSavedPolls };
+  async function deletePoll(storageKey: string) {
+    return await storage.delete(storageKey);
+  }
+
+  return { savePollData, getSavedPolls, deletePoll };
 }
