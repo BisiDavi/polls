@@ -5,15 +5,16 @@ import ModalView from "./components/view/ModalView";
 
 const App = () => {
   const [appPoll, setAppPoll] = useState(null);
+  const [modalState, setModalState] = useState(false);
 
   return (
     <Fragment>
       {appPoll ? (
-        <AppPollView appPoll={appPoll} />
+        <AppPollView appPoll={appPoll} setModalState={setModalState} />
       ) : (
         <ModalView setAppPoll={setAppPoll} />
       )}
-      <AppPollView appPoll={appPoll} />
+      <AppPollView appPoll={appPoll} setModalState={setModalState} />
     </Fragment>
   );
 };
