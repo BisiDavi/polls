@@ -1,7 +1,6 @@
 import ForgeUI, {
   Heading,
   Form,
-  useState,
   TextField,
   TextArea,
   DatePicker,
@@ -9,8 +8,6 @@ import ForgeUI, {
   Button,
 } from "@forge/ui";
 
-import useMeetingPollForm from "../../hooks/useMeetingPollForm";
-import PollResultView from "../view/PollResultView";
 import PollsFieldSet from "./PollsFieldSet";
 
 export default function MeetingPollForm({
@@ -21,9 +18,6 @@ export default function MeetingPollForm({
 }) {
   return (
     <Fragment>
-      {/* {viewType === "Meeting-View" ? (
-        <PollResultView data={meetingPollData} />
-      ) : ( */}
       <Form submitButtonAppearance="primary" onSubmit={onSubmit}>
         <Heading>Meeting Poll Form</Heading>
         {validDate !== null && !validDate && (
@@ -65,7 +59,6 @@ export default function MeetingPollForm({
         <TextArea label="Meeting Description" spellCheck name="description" />
         <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
       </Form>
-      {/* )} */}
     </Fragment>
   );
 }

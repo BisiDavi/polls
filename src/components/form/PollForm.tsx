@@ -14,9 +14,12 @@ export default function PollForm({ type, appPoll, formType, setPollType }) {
     agenda,
     setAgenda,
   } = usePollForm(setPollType, formType);
+
   return (
     <Fragment>
-      {type.includes("Meeting") ? (
+      {type.includes("View") ? (
+        <PollResultView data={data} appPoll={appPoll} />
+      ) : type === "Meeting" ? (
         <MeetingPollForm
           validDate={validDate}
           agenda={agenda}
@@ -24,12 +27,7 @@ export default function PollForm({ type, appPoll, formType, setPollType }) {
           onSubmit={onSubmitMeeting}
         />
       ) : (
-        type.includes("Regular") && (
-          <RegularPollForm onSubmit={onSubmitRegular} />
-        )
-      )}
-      {formType.includes("View") && (
-        <PollResultView data={data} appPoll={appPoll} />
+        type === "Regular" && <RegularPollForm onSubmit={onSubmitRegular} />
       )}
     </Fragment>
   );
