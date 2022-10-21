@@ -16,4 +16,6 @@ permissions:
     - read:confluence-user
     - write:confluence-props
     - storage:app
+    - read:space.permission:confluence
+    - write:space.permission:confluence
  

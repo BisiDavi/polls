@@ -39,6 +39,8 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
+  console.log("data", data);
+
   function publishDataHandler() {
     const pollData = {
       ...data,
@@ -93,11 +95,12 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
       <Text>
         <Strong>{optionText}</Strong>
       </Text>
-      {topics.map((item, index) => (
-        <Text key={item}>
-          {index + 1}. <Em>{item}</Em>
-        </Text>
-      ))}
+      {topics &&
+        topics?.map((item, index) => (
+          <Text key={item}>
+            {index + 1}. <Em>{item}</Em>
+          </Text>
+        ))}
       {userDetails !== null && (
         <Text>
           <Strong>Author: </Strong>

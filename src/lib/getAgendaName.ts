@@ -18,6 +18,7 @@ export function formatFormPoll(pollState) {
 export function formatPollTopic(data: any, type: "topic" | "poll") {
   const dataEntries = Object.entries(data);
   const topicsArray = [];
+  console.log("dataEntries", dataEntries);
   dataEntries.map((item) => {
     if (item[0].includes(type)) {
       topicsArray.push(item[1]);
