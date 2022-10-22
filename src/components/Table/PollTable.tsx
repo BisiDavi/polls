@@ -46,6 +46,8 @@ export default function PollTable({ setModal }) {
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
+  console.log("savedPolls", savedPolls);
+
   const head = [
     { key: "title", text: "Title" },
     { key: "author", text: "Author" },
@@ -53,6 +55,14 @@ export default function PollTable({ setModal }) {
     { key: "type", text: "Poll Type" },
     { key: "pollStatus", text: "Poll Status" },
   ];
+
+  function viewPollHandler(pollKey: string) {
+    const selectedPoll = savedPolls
+      ? savedPolls.filter((item) => item.key === pollKey)[0]
+      : null;
+
+    return selectedPoll;
+  }
 
   return (
     <Fragment>
