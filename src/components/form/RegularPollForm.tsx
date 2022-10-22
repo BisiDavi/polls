@@ -24,7 +24,6 @@ export default function RegularPollForm({ onSubmit }) {
         <Heading>Regular Poll Form</Heading>
         <TextField name="title" label="Poll Title" isRequired />
         <TextArea spellCheck label="Poll Description" name="description" />
-
         <PollsFieldSet
           type="regular"
           poll={regularPolls}

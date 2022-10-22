@@ -1,8 +1,8 @@
 import { useState, useEffect } from "@forge/ui";
+import { useContentProperty } from "@forge/ui-confluence";
 
 import isDateValid from "../lib/isDateValid";
 import { formatFormPoll } from "../lib/getAgendaName";
-import { useContentProperty } from "@forge/ui-confluence";
 
 export default function useMeetingPollForm(
   formState,
@@ -26,7 +26,7 @@ export default function useMeetingPollForm(
   }, [formState]);
 
   useEffect(async () => {
-    if (formState !== undefined && meetingPollData.length === 0 && validDate) {
+    if (formState !== undefined  && validDate) {
       await setMeetingPollData(formState).then(() => {
         setPollType("Meeting-View");
       });
