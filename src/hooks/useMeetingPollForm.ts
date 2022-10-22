@@ -26,12 +26,12 @@ export default function useMeetingPollForm(
   }, [formState]);
 
   useEffect(async () => {
-    if (formState !== undefined  && validDate) {
+    if (formState !== undefined && validDate) {
       await setMeetingPollData(formState).then(() => {
         setPollType("Meeting-View");
       });
     }
-  }, [formState, meetingPollData, validDate]);
+  }, [formState, validDate]);
 
   async function onSubmit(formData) {
     const date = new Date();

@@ -17,7 +17,7 @@ export default function useRegularPollForm(
         setPollType("Regular-View");
       });
     }
-  }, [formState, regularFormData]);
+  }, [formState]);
 
   const onSubmit = async (formData, pollObj) => {
     const date = new Date();
