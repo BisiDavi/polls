@@ -14,7 +14,6 @@ const chartTypeArray = [
   { text: "Bar", value: "bar" },
   { text: "Pie Chart", value: "pie" },
   { text: "Doughtnut", value: "doughtnut" },
-  { text: "Line", value: "line" },
   { text: "Polar Area", value: "polarArea" },
 ];
 
