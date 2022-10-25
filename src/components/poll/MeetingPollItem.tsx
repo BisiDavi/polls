@@ -11,7 +11,6 @@ import ForgeUI, {
 import PollsFieldSet from "../form/PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 
-
 export default function MeetingPollItem({ pollOptions, author }) {
   const [agenda, setAgenda] = useState(["Agenda 1"]);
   const [formState, setFormState] = useState(null);
@@ -42,7 +41,7 @@ export default function MeetingPollItem({ pollOptions, author }) {
           Do you have any <Strong>agenda</Strong> to add to this Meeting?
         </Em>
       </Text>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} submitButtonText="Submit Agenda">
         <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
       </Form>
     </Fragment>
