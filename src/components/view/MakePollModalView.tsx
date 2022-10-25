@@ -15,12 +15,17 @@ export default function MakePollModalView({ data, user }) {
       <Heading>{data.title}</Heading>
 
       {data.type === "regularMeetingPoll" ? (
-        <RegularPollItem pollOptions={pollOptions} user={user} title={data.title} />
+        <RegularPollItem
+          pollOptions={pollOptions}
+          user={user}
+          title={data.title}
+        />
       ) : (
         <MeetingPollItem
           pollOptions={pollOptions}
           author={data?.userDetails?.accountId}
           currentUser={user}
+          title={data.title}
         />
       )}
     </Fragment>

@@ -24,7 +24,8 @@ export default function RegularPollItem({ pollOptions, user, title }) {
     });
   }, []);
 
-  function saveRegularPoll() {
+  function saveRegularPoll(item:string) {
+    makePoll(item);
     const dateInstance = new Date();
     const dataObj = {
       date: dateInstance.toISOString(),
@@ -33,10 +34,17 @@ export default function RegularPollItem({ pollOptions, user, title }) {
     };
     const existingData = pollData ? pollData : "";
     const data = [...existingData, dataObj];
-    saveData("dataKey", data);
+    saveData(dataKey, data);
   }
 
-  function resetHandler() {}
+  function resetHandler() {
+    makePoll(null);
+    if (pollData) {
+      const tempPollData = pollData;
+      const splicePollData = tempPollData.splice(pollData.length - 1, 1);
+      saveData(dataKey, splicePollData);
+    }
+  }
 
   return (
     <Fragment>
@@ -57,7 +65,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
               icon={buttonIcon}
               appearance="primary"
               text={item}
-              onClick={() => makePoll(item)}
+              onClick={() => saveRegularPoll(item)}
               disabled={disableButton}
             />
           );
@@ -68,7 +76,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
           text="Reset"
           icon="error"
           appearance="danger"
-          onClick={() => makePoll(null)}
+          onClick={resetHandler}
         />
       )}
     </Fragment>
