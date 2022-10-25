@@ -9,9 +9,9 @@ import ForgeUI, {
   ButtonSet,
 } from "@forge/ui";
 
-import PollChartView from "../view/PollChartView";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
+import ChartTabs from "../tabs/ChartTabs";
 
 export default function RegularPollItem({ pollOptions, user, title }) {
   const [poll, makePoll] = useState(null);
@@ -79,7 +79,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
             />
           );
         })}
-      <PollChartView pollOptions={pollOptions} poll={poll} />
+      <ChartTabs data={pollData} />
       {poll && (
         <ButtonSet>
           <Button

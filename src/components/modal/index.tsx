@@ -1,7 +1,7 @@
 import ForgeUI, { useState, useEffect, Button, ModalDialog } from "@forge/ui";
 
 import PollView from "../view/PollView";
-import TabView from "../tabs/PollTab";
+import TabView from "../tabs/PollTabs";
 
 export default function Modal({ setAppPoll, setModal }) {
   const [pollType, setPollType] = useState("");
