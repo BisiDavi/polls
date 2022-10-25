@@ -10,7 +10,7 @@ export default function useMeetingPollForm(
   setPollType
 ) {
   const [validDate, setValidDate] = useState(null);
-  const [agenda, setAgenda] = useState(["Topic 1"]);
+  const [agenda, setAgenda] = useState(["Agenda 1"]);
   const [meetingPollData, setMeetingPollData] = useContentProperty(
     "meetingPollData",
     ""

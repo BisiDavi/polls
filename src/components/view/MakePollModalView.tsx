@@ -1,5 +1,6 @@
 import { formatPollTopic } from "@/lib/getAgendaName";
 import ForgeUI, { Fragment, Heading } from "@forge/ui";
+import MeetingPollItem from "../poll/MeetingPollItem";
 
 import RegularPollItem from "../poll/RegularPollItem";
 
@@ -12,6 +13,10 @@ export default function MakePollModalView({ data }) {
       <Heading>{data.title}</Heading>
 
       <RegularPollItem pollOptions={pollOptions} />
+      <MeetingPollItem
+        pollOptions={pollOptions}
+        author={data.value.userDetails.accountId}
+      />
     </Fragment>
   );
 }
