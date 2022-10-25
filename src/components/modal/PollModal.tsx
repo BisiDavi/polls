@@ -1,4 +1,3 @@
-import { formatDate } from "@/lib/isDateValid";
 import ForgeUI, {
   ModalDialog,
   Fragment,
@@ -9,6 +8,8 @@ import ForgeUI, {
   DateLozenge,
   User,
 } from "@forge/ui";
+
+import { formatDate } from "../../lib/isDateValid";
 
 export default function PollModal({ setPollModal, data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;

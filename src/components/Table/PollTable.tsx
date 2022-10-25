@@ -16,11 +16,14 @@ import ForgeUI, {
 
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
+import PollModal from "../modal/PollModal";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
   const [selectedPoll, setSelectedPoll] = useState(null);
+  const [showPollModal, setShowPollModal] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
+
   const polls = [];
 
   async function deletePollHandler(pollKey: string) {
@@ -48,6 +51,7 @@ export default function PollTable({ setModal }) {
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
   console.log("savedPolls", savedPolls);
+  console.log("selectedPoll", selectedPoll);
 
   const head = [
     { key: "title", text: "Title" },
@@ -61,10 +65,8 @@ export default function PollTable({ setModal }) {
     const selectedPollData = savedPolls
       ? savedPolls.filter((item) => item.key === pollKey)[0]
       : null;
-
-    console.log("selectedPollData", selectedPollData);
-
     setSelectedPoll(selectedPollData);
+    setShowPollModal(true);
   }
 
   return (
@@ -83,7 +85,12 @@ export default function PollTable({ setModal }) {
             appearance="primary"
             onClick={() => setModal(true)}
           />
-
+          {showPollModal && selectedPoll && (
+            <PollModal
+              setPollModal={setShowPollModal}
+              data={selectedPoll.value}
+            />
+          )}
           <Table>
             <Head>
               {head.map((item) => (
