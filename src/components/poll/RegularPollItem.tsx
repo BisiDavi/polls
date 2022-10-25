@@ -1,9 +1,11 @@
+import useStorage from "@/hooks/useStorage";
 import ForgeUI, { Fragment, Text, Em, Button, useState } from "@forge/ui";
 
 import PollChartView from "../view/PollChartView";
 
-export default function RegularPollItem({ pollOptions }) {
+export default function RegularPollItem({ pollOptions, user }) {
   const [poll, makePoll] = useState(null);
+  const {} = useStorage();
 
   return (
     <Fragment>

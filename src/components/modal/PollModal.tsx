@@ -9,6 +9,7 @@ export default function PollModal({ setPollModal, data }) {
   const { context } = useUser();
 
   console.log("context", context);
+  const user = context?.accountId;
 
   function modalHandler() {
     setPollModal(false);
@@ -23,7 +24,7 @@ export default function PollModal({ setPollModal, data }) {
           <PollModalDetailsView data={data} />
         </Tab>
         <Tab label="Make Poll">
-          <MakePollModalView data={data} />
+          <MakePollModalView data={data} user={user} />
         </Tab>
       </Tabs>
     </ModalDialog>

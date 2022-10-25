@@ -11,7 +11,7 @@ import ForgeUI, {
 import PollsFieldSet from "../form/PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 
-export default function MeetingPollItem({ pollOptions, author }) {
+export default function MeetingPollItem({ pollOptions, author, currentUser }) {
   const [agenda, setAgenda] = useState(["Agenda 1"]);
   const [formState, setFormState] = useState(null);
 

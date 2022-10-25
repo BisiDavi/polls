@@ -4,7 +4,7 @@ import MeetingPollItem from "../poll/MeetingPollItem";
 import RegularPollItem from "../poll/RegularPollItem";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
-export default function MakePollModalView({ data }) {
+export default function MakePollModalView({ data, user }) {
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
   const pollOptions = data ? formatPollTopic(data, formatPollType) : null;
 
@@ -15,11 +15,12 @@ export default function MakePollModalView({ data }) {
       <Heading>{data.title}</Heading>
 
       {data.type === "regularMeetingPoll" ? (
-        <RegularPollItem pollOptions={pollOptions} />
+        <RegularPollItem pollOptions={pollOptions} user={user} />
       ) : (
         <MeetingPollItem
           pollOptions={pollOptions}
           author={data?.userDetails?.accountId}
+          currentUser={user}
         />
       )}
     </Fragment>
