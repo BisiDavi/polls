@@ -16,7 +16,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
   const [pollData, setPollData] = useState(null);
   const { saveData, getDataFromStorage } = useStorage();
 
-  const dataKey = `vote-${toSlug(title)}`;
+  const dataKey = `Vote-${toSlug(title)}`;
 
   useEffect(async () => {
     await getDataFromStorage(dataKey).then((response) => {
