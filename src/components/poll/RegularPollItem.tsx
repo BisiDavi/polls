@@ -1,5 +1,3 @@
-import useStorage from "@/hooks/useStorage";
-import toSlug from "@/lib/toSlug";
 import ForgeUI, {
   useEffect,
   Fragment,
@@ -10,6 +8,8 @@ import ForgeUI, {
 } from "@forge/ui";
 
 import PollChartView from "../view/PollChartView";
+import useStorage from "../../hooks/useStorage";
+import toSlug from "../../lib/toSlug";
 
 export default function RegularPollItem({ pollOptions, user, title }) {
   const [poll, makePoll] = useState(null);
@@ -24,7 +24,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
     });
   }, []);
 
-  function saveRegularPoll(item:string) {
+  function saveRegularPoll(item: string) {
     makePoll(item);
     const dateInstance = new Date();
     const dataObj = {

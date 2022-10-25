@@ -5,21 +5,24 @@ import ForgeUI, {
   useState,
   Form,
   Strong,
-  User,
+  Heading,
 } from "@forge/ui";
 
 import PollsFieldSet from "../form/PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 
-export default function MeetingPollItem({ pollOptions, author, currentUser, title }) {
+export default function MeetingPollItem({ pollOptions, currentUser, title }) {
   const [agenda, setAgenda] = useState(["Agenda 1"]);
   const [formState, setFormState] = useState(null);
+
+  const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
 
   async function onSubmit(formData) {
     const agendaObj = formatFormPoll(agenda);
     console.log("formData", formData);
     setFormState({
-      agendaObj,
+      ...agendaObj,
+      ...formData,
     });
   }
 
@@ -27,10 +30,9 @@ export default function MeetingPollItem({ pollOptions, author, currentUser, titl
 
   return (
     <Fragment>
-      <Text>
-        <Strong>Here is the Meeting Agenda, made by Author: </Strong>
-        <User accountId={author} />
-      </Text>
+      <Heading>
+        {agendaText} to be discussed in the meeting "{title}":
+      </Heading>
       {pollOptions.map((item, index) => (
         <Text key={index}>
           {index + 1}. {item}
