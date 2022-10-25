@@ -79,7 +79,6 @@ export default function RegularPollItem({ pollOptions, user, title }) {
             />
           );
         })}
-      <ChartTabs data={pollData} />
       {poll && (
         <ButtonSet>
           <Button
@@ -96,6 +95,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
           />
         </ButtonSet>
       )}
+      <ChartTabs data={pollData} />
     </Fragment>
   );
 }
