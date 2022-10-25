@@ -27,6 +27,7 @@ export default function RegularPollItem({ pollOptions }) {
             />
           );
         })}
+        
       <Button
         text="Reset"
         icon="error"
