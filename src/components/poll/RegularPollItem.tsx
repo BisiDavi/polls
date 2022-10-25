@@ -7,20 +7,28 @@ import ForgeUI, {
   useState,
   Heading,
   ButtonSet,
+  SectionMessage,
 } from "@forge/ui";
 
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
+import { getVoteOptionCount } from "../../lib/formatVote";
+
 
 export default function RegularPollItem({ pollOptions, user, title }) {
   const [poll, makePoll] = useState(null);
-  const [pollData, setPollData] = useState(null);
+  const [pollData, setPollData] = useState([]);
+  const [submitPoll, setSubmitPollStatus] = useState(false);
   const { saveData, getDataFromStorage } = useStorage();
 
   const dataKey = `Vote-${toSlug(title)}`;
 
-  console.log("pollData", pollData);
+  const voteOptionData =
+    pollData.length > 0 ? getVoteOptionCount(pollData) : null;
+
+  console.log("pollData[0]?.value", pollData[0]?.value);
+  console.log("voteOptionData", voteOptionData);
 
   const titleText = title.toLowerCase().includes("poll")
     ? title
@@ -28,6 +36,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   useEffect(async () => {
     await getDataFromStorage(dataKey).then((response) => {
+      console.log("response", response);
       setPollData(response.results);
     });
   }, [poll]);
@@ -38,18 +47,25 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   function resetHandler() {
     makePoll(null);
+    setSubmitPollStatus(false);
   }
 
-  function onSubmitHandler() {
+  async function onSubmitHandler() {
     const dateInstance = new Date();
     const dataObj = {
       date: dateInstance.toISOString(),
       author: user,
       vote: poll,
     };
-    const existingData = pollData ? pollData : "";
+    const existingData = pollData.length > 0 ? pollData[0].value : "";
     const data = [...existingData, dataObj];
-    saveData(dataKey, data);
+    await saveData(dataKey, data)
+      .then(() => {
+        return setSubmitPollStatus(true);
+      })
+      .catch(() => {
+        return setSubmitPollStatus(null);
+      });
   }
 
   const disableButtonStatus = !poll ? true : false;
@@ -60,6 +76,11 @@ export default function RegularPollItem({ pollOptions, user, title }) {
       <Text>
         <Em>Note: Click on the Button to Vote</Em>
       </Text>
+      {submitPoll && (
+        <SectionMessage title="Poll Status" appearance="confirmation">
+          <Text>Poll Submitted Successfully</Text>
+        </SectionMessage>
+      )}
       {pollOptions &&
         pollOptions?.map((item, index) => {
           const buttonIcon =
