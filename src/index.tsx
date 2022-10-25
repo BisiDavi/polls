@@ -1,7 +1,7 @@
 import ForgeUI, { render, Fragment, Macro, useState } from "@forge/ui";
 
 import Modal from "./components/modal";
-import PollTable from "./components/Table/PollTable";
+import PollTable from "./components/table/PollTable";
 
 const App = () => {
   const [appPoll, setAppPoll] = useState(null);
