@@ -51,7 +51,7 @@ export default function PollModalDetailsView({ data }) {
       {data.userDetails !== null && (
         <Text>
           <Strong>Author: </Strong>
-          <User accountId={data.userDetails.accountId} />
+          <User accountId={data.userDetails?.accountId} />
         </Text>
       )}
       <Text>

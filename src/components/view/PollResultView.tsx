@@ -107,7 +107,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
           {userDetails !== null && (
             <Text>
               <Strong>Author: </Strong>
-              <User accountId={userDetails.accountId} />
+              <User accountId={userDetails?.accountId} />
             </Text>
           )}
         </Fragment>
