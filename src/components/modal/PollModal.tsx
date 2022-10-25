@@ -1,3 +1,4 @@
+import { formatPollTopic } from "@/lib/getAgendaName";
 import ForgeUI, {
   ModalDialog,
   Fragment,
@@ -15,6 +16,8 @@ export default function PollModal({ setPollModal, data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
+  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
+  const topics = data ? formatPollTopic(data, formatPollType) : null;
 
   function modalHandler() {
     setPollModal(false);
@@ -51,21 +54,21 @@ export default function PollModal({ setPollModal, data }) {
             <DateLozenge value={new Date(meetingDate).getTime()} />
           </Text>
         )}
-        <Text>
-          <Strong>{optionText}</Strong>
-        </Text>
-        {data.topics &&
-          data.topics?.map((item, index) => (
-            <Text key={item}>
-              {index + 1}. <Em>{item}</Em>
-            </Text>
-          ))}
         {data.userDetails !== null && (
           <Text>
             <Strong>Author: </Strong>
             <User accountId={data.userDetails.accountId} />
           </Text>
         )}
+        <Text>
+          <Strong>{optionText}</Strong>
+        </Text>
+        {topics &&
+          topics?.map((item, index) => (
+            <Text key={item}>
+              {index + 1}. <Em>{item}</Em>
+            </Text>
+          ))}
       </Fragment>
     </ModalDialog>
   );

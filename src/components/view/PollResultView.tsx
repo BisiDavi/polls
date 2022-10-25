@@ -34,7 +34,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
   }, []);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
-  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
+  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";  
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
 
