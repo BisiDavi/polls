@@ -8,7 +8,6 @@ import PollModalDetailsView from "../view/PollModalDetailsView";
 export default function PollModal({ setPollModal, data }) {
   const { context } = useUser();
 
-  console.log("context", context);
   const user = context?.accountId;
 
   function modalHandler() {

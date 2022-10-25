@@ -20,6 +20,8 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   const dataKey = `Vote-${toSlug(title)}`;
 
+  console.log("pollData", pollData);
+
   const titleText = title.toLowerCase().includes("poll")
     ? title
     : `${title} Poll`;
@@ -32,6 +34,13 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   function saveRegularPoll(item: string) {
     makePoll(item);
+  }
+
+  function resetHandler() {
+    makePoll(null);
+  }
+
+  function onSubmitHandler() {
     const dateInstance = new Date();
     const dataObj = {
       date: dateInstance.toISOString(),
@@ -43,16 +52,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
     saveData(dataKey, data);
   }
 
-  function resetHandler() {
-    makePoll(null);
-    if (pollData) {
-      const tempPollData = pollData;
-      const splicePollData = tempPollData.splice(pollData.length - 1, 1);
-      saveData(dataKey, splicePollData);
-    }
-  }
-
-  console.log("pollData", pollData);
+  const disableButtonStatus = !poll ? true : false;
 
   return (
     <Fragment>
@@ -79,22 +79,22 @@ export default function RegularPollItem({ pollOptions, user, title }) {
             />
           );
         })}
-      {poll && (
-        <ButtonSet>
-          <Button
-            text="Submit"
-            icon="activity"
-            appearance="primary"
-            onClick={() => null}
-          />
-          <Button
-            text="Reset"
-            icon="error"
-            appearance="danger"
-            onClick={resetHandler}
-          />
-        </ButtonSet>
-      )}
+      <ButtonSet>
+        <Button
+          text="Submit"
+          icon="send"
+          appearance="primary"
+          onClick={onSubmitHandler}
+          disabled={disableButtonStatus}
+        />
+        <Button
+          text="Reset"
+          icon="error"
+          appearance="danger"
+          onClick={resetHandler}
+          disabled={disableButtonStatus}
+        />
+      </ButtonSet>
       <ChartTabs data={pollData} />
     </Fragment>
   );
