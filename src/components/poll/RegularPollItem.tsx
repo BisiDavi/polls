@@ -1,11 +1,42 @@
 import useStorage from "@/hooks/useStorage";
-import ForgeUI, { Fragment, Text, Em, Button, useState } from "@forge/ui";
+import toSlug from "@/lib/toSlug";
+import ForgeUI, {
+  useEffect,
+  Fragment,
+  Text,
+  Em,
+  Button,
+  useState,
+} from "@forge/ui";
 
 import PollChartView from "../view/PollChartView";
 
-export default function RegularPollItem({ pollOptions, user }) {
+export default function RegularPollItem({ pollOptions, user, title }) {
   const [poll, makePoll] = useState(null);
-  const {} = useStorage();
+  const [pollData, setPollData] = useState(null);
+  const { saveData, getDataFromStorage } = useStorage();
+
+  const dataKey = `vote-${toSlug(title)}`;
+
+  useEffect(async () => {
+    await getDataFromStorage(dataKey).then((response) => {
+      setPollData(response.results);
+    });
+  }, []);
+
+  function saveRegularPoll() {
+    const dateInstance = new Date();
+    const dataObj = {
+      date: dateInstance.toISOString(),
+      author: user,
+      vote: poll,
+    };
+    const existingData = pollData ? pollData : "";
+    const data = [...existingData, dataObj];
+    saveData("dataKey", data);
+  }
+
+  function resetHandler() {}
 
   return (
     <Fragment>
@@ -32,12 +63,14 @@ export default function RegularPollItem({ pollOptions, user }) {
           );
         })}
       <PollChartView pollOptions={pollOptions} poll={poll} />
-      <Button
-        text="Reset"
-        icon="error"
-        appearance="danger"
-        onClick={() => makePoll(null)}
-      />
+      {poll && (
+        <Button
+          text="Reset"
+          icon="error"
+          appearance="danger"
+          onClick={() => makePoll(null)}
+        />
+      )}
     </Fragment>
   );
 }

@@ -15,7 +15,7 @@ export default function MakePollModalView({ data, user }) {
       <Heading>{data.title}</Heading>
 
       {data.type === "regularMeetingPoll" ? (
-        <RegularPollItem pollOptions={pollOptions} user={user} />
+        <RegularPollItem pollOptions={pollOptions} user={user} title={data.title} />
       ) : (
         <MeetingPollItem
           pollOptions={pollOptions}
