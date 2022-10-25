@@ -122,5 +122,3 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
     </Fragment>
   );
 }
-
-// import GraphBarIcon from '@atlaskit/icon/glyph/graph-bar'

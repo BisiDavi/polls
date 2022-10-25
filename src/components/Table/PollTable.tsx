@@ -16,7 +16,7 @@ import ForgeUI, {
 
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
-import PollModal from "../modal/PollModal";
+import PollModal from "../modal/PollModalDetails";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
@@ -122,8 +122,8 @@ export default function PollTable({ setModal }) {
                 <Cell>
                   <ButtonSet>
                     <Button
-                      text="Poll"
-                      icon="watch-filled"
+                      text=""
+                      icon="graph-bar"
                       iconPosition="after"
                       appearance="warning"
                       onClick={() => null}
