@@ -14,14 +14,7 @@ export default function MakePollModalView({ data }) {
   const topics = data ? formatPollTopic(data, formatPollType) : null;
   const [poll, makePoll] = useState(null);
 
-  //   const buttonAppearance: any = (item: string): any =>
-  //     poll === item ? "primary" : "subtle";
-
-  //   const buttonIcon = (item: string): any =>
-  //     poll === item ? "check-circle" : "presence-active";
-
-  const disableButton =
-    poll === null ? false : typeof poll === "string" && true;
+  console.log("poll", poll);
 
   return (
     <Fragment>
@@ -34,13 +27,16 @@ export default function MakePollModalView({ data }) {
           const buttonAppearance: any = poll === item ? "primary" : "subtle";
 
           const buttonIcon = poll === item ? "check-circle" : "presence-active";
+          console.log("buttonAppearance", buttonAppearance);
+          const disableButton =
+            poll === null ? false : poll === item ? false : true;
 
           return (
             <Button
+              iconPosition="before"
               key={index}
               icon={buttonIcon}
-              iconPosition="before"
-              appearance={buttonAppearance}
+              appearance="primary"
               text={item}
               onClick={() => makePoll(item)}
               disabled={disableButton}

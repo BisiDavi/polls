@@ -50,9 +50,6 @@ export default function PollTable({ setModal }) {
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
-  console.log("savedPolls", savedPolls);
-  console.log("selectedPoll", selectedPoll);
-
   const head = [
     { key: "title", text: "Title" },
     { key: "author", text: "Author" },
