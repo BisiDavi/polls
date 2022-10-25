@@ -122,6 +122,13 @@ export default function PollTable({ setModal }) {
                 <Cell>
                   <ButtonSet>
                     <Button
+                      text="Poll"
+                      icon="watch-filled"
+                      iconPosition="after"
+                      appearance="warning"
+                      onClick={() => null}
+                    />
+                    <Button
                       text=""
                       icon="watch-filled"
                       iconPosition="after"

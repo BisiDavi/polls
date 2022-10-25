@@ -1,4 +1,3 @@
-import { formatPollTopic } from "@/lib/getAgendaName";
 import ForgeUI, {
   ModalDialog,
   Fragment,
@@ -11,6 +10,7 @@ import ForgeUI, {
 } from "@forge/ui";
 
 import { formatDate } from "../../lib/isDateValid";
+import { formatPollTopic } from "../../lib/getAgendaName";
 
 export default function PollModal({ setPollModal, data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
@@ -45,7 +45,7 @@ export default function PollModal({ setPollModal, data }) {
         {data?.link && (
           <Text>
             <Strong>Link: </Strong>
-            <Link href={data?.link}>{data?.link}</Link>
+            <Link href={data?.link} openNewTab>{data?.link}</Link>
           </Text>
         )}
         {data?.meetingDate && (

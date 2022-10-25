@@ -30,7 +30,9 @@ export default function AppMeetingPollView({ polls }) {
       {polls?.link && (
         <Text>
           <Strong>Link: </Strong>
-          <Link href={polls?.link}>{polls?.link}</Link>
+          <Link href={polls?.link} openNewTab>
+            {polls?.link}
+          </Link>
         </Text>
       )}
       {polls?.meetingDate && (

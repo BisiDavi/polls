@@ -84,7 +84,9 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
           {data?.link && (
             <Text>
               <Strong>Link: </Strong>
-              <Link href={data?.link}>{data?.link}</Link>
+              <Link href={data?.link} openNewTab>
+                {data?.link}
+              </Link>
             </Text>
           )}
           {data?.meetingDate && (
@@ -120,3 +122,5 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
     </Fragment>
   );
 }
+
+// import GraphBarIcon from '@atlaskit/icon/glyph/graph-bar'
