@@ -5,6 +5,8 @@ import ForgeUI, {
   Em,
   Button,
   useState,
+  Heading,
+  ButtonSet,
 } from "@forge/ui";
 
 import PollChartView from "../view/PollChartView";
@@ -18,11 +20,15 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   const dataKey = `Vote-${toSlug(title)}`;
 
+  const titleText = title.toLowerCase().includes("poll")
+    ? title
+    : `${title} Poll`;
+
   useEffect(async () => {
     await getDataFromStorage(dataKey).then((response) => {
       setPollData(response.results);
     });
-  }, []);
+  }, [poll]);
 
   function saveRegularPoll(item: string) {
     makePoll(item);
@@ -46,8 +52,11 @@ export default function RegularPollItem({ pollOptions, user, title }) {
     }
   }
 
+  console.log("pollData", pollData);
+
   return (
     <Fragment>
+      <Heading>{titleText}</Heading>
       <Text>
         <Em>Note: Click on the Button to Vote</Em>
       </Text>
@@ -72,12 +81,20 @@ export default function RegularPollItem({ pollOptions, user, title }) {
         })}
       <PollChartView pollOptions={pollOptions} poll={poll} />
       {poll && (
-        <Button
-          text="Reset"
-          icon="error"
-          appearance="danger"
-          onClick={resetHandler}
-        />
+        <ButtonSet>
+          <Button
+            text="Submit"
+            icon="activity"
+            appearance="primary"
+            onClick={() => null}
+          />
+          <Button
+            text="Reset"
+            icon="error"
+            appearance="danger"
+            onClick={resetHandler}
+          />
+        </ButtonSet>
       )}
     </Fragment>
   );
