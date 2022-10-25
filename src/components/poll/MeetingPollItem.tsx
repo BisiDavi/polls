@@ -1,4 +1,3 @@
-import { formatFormPoll } from "@/lib/getAgendaName";
 import ForgeUI, {
   Fragment,
   Text,
@@ -8,7 +7,10 @@ import ForgeUI, {
   Strong,
   User,
 } from "@forge/ui";
+
 import PollsFieldSet from "../form/PollsFieldSet";
+import { formatFormPoll } from "../../lib/getAgendaName";
+
 
 export default function MeetingPollItem({ pollOptions, author }) {
   const [agenda, setAgenda] = useState(["Agenda 1"]);
@@ -22,20 +24,24 @@ export default function MeetingPollItem({ pollOptions, author }) {
     });
   }
 
+  console.log("formState", formState);
+
   return (
     <Fragment>
       <Text>
         <Strong>Here is the Meeting Agenda, made by Author: </Strong>
         <User accountId={author} />
       </Text>
+      {pollOptions.map((item, index) => (
+        <Text key={index}>
+          {index + 1}. {item}
+        </Text>
+      ))}
       <Text>
         <Em>
-          Do you have any <Strong>agenda</Strong> to add to this Meeting{" "}
+          Do you have any <Strong>agenda</Strong> to add to this Meeting?
         </Em>
       </Text>
-      {pollOptions.map((item, index) => (
-        <Text key={index}>{item}</Text>
-      ))}
       <Form onSubmit={onSubmit}>
         <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
       </Form>
