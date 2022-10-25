@@ -1,5 +1,3 @@
-import { formatPollTopic } from "@/lib/getAgendaName";
-import { formatDate } from "@/lib/isDateValid";
 import ForgeUI, {
   Fragment,
   Text,
@@ -9,6 +7,9 @@ import ForgeUI, {
   DateLozenge,
   User,
 } from "@forge/ui";
+
+import { formatPollTopic } from "../../lib/getAgendaName";
+import { formatDate } from "../../lib/isDateValid";
 
 export default function PollModalDetailsView({ data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;

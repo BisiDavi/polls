@@ -1,5 +1,6 @@
-import { formatPollTopic } from "@/lib/getAgendaName";
 import ForgeUI, { Fragment, Text, Em } from "@forge/ui";
+
+import { formatPollTopic } from "../../lib/getAgendaName";
 
 export default function MakePollModalView({ data }) {
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";

@@ -125,13 +125,6 @@ export default function PollTable({ setModal }) {
                       text=""
                       icon="graph-bar"
                       iconPosition="after"
-                      appearance="warning"
-                      onClick={() => null}
-                    />
-                    <Button
-                      text=""
-                      icon="watch-filled"
-                      iconPosition="after"
                       appearance="primary"
                       onClick={() => viewPollHandler(item.key)}
                     />
