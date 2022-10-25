@@ -19,6 +19,7 @@ import formatPollTable from "../../lib/formatPollTable";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
+  const [selectedPoll, setSelectedPoll] = useState(null);
   const { getSavedPolls, deletePoll } = usePublish();
   const polls = [];
 
@@ -57,11 +58,13 @@ export default function PollTable({ setModal }) {
   ];
 
   function viewPollHandler(pollKey: string) {
-    const selectedPoll = savedPolls
+    const selectedPollData = savedPolls
       ? savedPolls.filter((item) => item.key === pollKey)[0]
       : null;
 
-    return selectedPoll;
+    console.log("selectedPollData", selectedPollData);
+
+    setSelectedPoll(selectedPollData);
   }
 
   return (
@@ -80,6 +83,7 @@ export default function PollTable({ setModal }) {
             appearance="primary"
             onClick={() => setModal(true)}
           />
+
           <Table>
             <Head>
               {head.map((item) => (
@@ -115,7 +119,7 @@ export default function PollTable({ setModal }) {
                       icon="watch-filled"
                       iconPosition="after"
                       appearance="primary"
-                      onClick={() => null}
+                      onClick={() => viewPollHandler(item.key)}
                     />
                     <Button
                       text=""
