@@ -1,7 +1,5 @@
 import generateRandomColor from "./generateRandomColor";
 
-
-
 export default function chartData(data, type) {
   const chartObj = {
     type,

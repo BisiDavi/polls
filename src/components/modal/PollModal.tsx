@@ -1,9 +1,15 @@
-import ForgeUI, { ModalDialog, Tab, Tabs } from "@forge/ui";
+import ForgeUI, { ModalDialog, Tab, Tabs, useProductContext } from "@forge/ui";
+
 import MakePollModalView from "../view/MakePollModalView";
+import useUser from "../../hooks/useUser";
 
 import PollModalDetailsView from "../view/PollModalDetailsView";
 
 export default function PollModal({ setPollModal, data }) {
+  const { context } = useUser();
+
+  console.log("context", context);
+
   function modalHandler() {
     setPollModal(false);
   }
