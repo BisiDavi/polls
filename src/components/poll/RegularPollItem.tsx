@@ -1,4 +1,5 @@
 import ForgeUI, { Fragment, Text, Em, Button, useState } from "@forge/ui";
+import PollChartView from "../view/PollChartView";
 
 export default function RegularPollItem({ pollOptions }) {
   const [poll, makePoll] = useState(null);
@@ -27,7 +28,7 @@ export default function RegularPollItem({ pollOptions }) {
             />
           );
         })}
-        
+      <PollChartView pollOptions={pollOptions} poll={poll} />
       <Button
         text="Reset"
         icon="error"

@@ -7,6 +7,7 @@ import ForgeUI, {
   Select,
   Option,
   Form,
+  Image,
 } from "@forge/ui";
 
 const chartTypeArray = [
@@ -17,27 +18,34 @@ const chartTypeArray = [
   { text: "Polar Area", value: "polarArea" },
 ];
 
-export default function PollChartView() {
-                                                                                                  async function onSubmit(formData) {
+export default function PollChartView({ pollOptions, poll }) {
+  const [formState, setFormState] = useState(undefined);
+  async function onSubmit(formData) {
     formData: {
       chartType: "";
     }
+    setFormState(formData);
   }
 
+  console.log("formState", formState);
+
   return (
-    <Form submitButtonText="Submit Chart Type" onSubmit={() => null}>
-      <Select label="Change Chart Type" name="chartType">
-        {chartTypeArray.map((item) => {
-          const defaultSelected = item.value === "bar" ? true : false;
-          return (
-            <Option
-              defaultSelected={defaultSelected}
-              label={item.text}
-              value={item.value}
-            />
-          );
-        })}
-      </Select>
-    </Form>
+    <Fragment>
+      <Form submitButtonText="Submit Chart Type" onSubmit={onSubmit}>
+        <Select label="Change Chart Type" name="chartType">
+          {chartTypeArray.map((item) => {
+            const defaultSelected = item.value === "bar" ? true : false;
+            return (
+              <Option
+                defaultSelected={defaultSelected}
+                label={item.text}
+                value={item.value}
+              />
+            );
+          })}
+        </Select>
+      </Form>
+      {formState && <Image src="/" alt={`${formState} chart`} />}
+    </Fragment>
   );
 }
