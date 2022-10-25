@@ -23,3 +23,6 @@ export default function PollModal({ setPollModal, data }) {
     </ModalDialog>
   );
 }
+
+
+//  import CheckIcon from '@atlaskit/icon/glyph/check'
