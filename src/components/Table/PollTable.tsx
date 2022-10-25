@@ -16,7 +16,7 @@ import ForgeUI, {
 
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
-import PollModal from "../modal/PollModalDetails";
+import PollModalDetails from "../modal/PollModalDetails";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
@@ -86,7 +86,7 @@ export default function PollTable({ setModal }) {
             onClick={() => setModal(true)}
           />
           {showPollModal && selectedPoll && (
-            <PollModal
+            <PollModalDetails
               setPollModal={setShowPollModal}
               data={selectedPoll.value}
             />

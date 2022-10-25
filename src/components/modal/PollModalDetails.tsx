@@ -12,7 +12,7 @@ import ForgeUI, {
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
-export default function PollModal({ setPollModal, data }) {
+export default function PollModalDetails({ setPollModal, data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
