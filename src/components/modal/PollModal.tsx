@@ -10,19 +10,27 @@ export default function PollModal({ setPollModal, data }) {
 
   const user = context?.accountId;
 
+  const tab1Text =
+    data.type === "meetingPoll" ? "Meeting Details" : "Poll Details";
+  const tab2Text =
+    data.type === "meetingPoll" ? "Suggest Meeting Agenda" : "Make Poll";
+
+  console.log("data", data);
+
   function modalHandler() {
     setPollModal(false);
   }
+
   return (
     <ModalDialog
       header="Welcome to Polls, plan your meeting succintly."
       onClose={modalHandler}
     >
       <Tabs>
-        <Tab label="Poll Detail">
+        <Tab label={tab1Text}>
           <PollModalDetailsView data={data} />
         </Tab>
-        <Tab label="Make Poll">
+        <Tab label={tab2Text}>
           <MakePollModalView data={data} user={user} />
         </Tab>
       </Tabs>

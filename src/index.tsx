@@ -7,8 +7,6 @@ const App = () => {
   const [appPoll, setAppPoll] = useState(null);
   const [modal, setModal] = useState(false);
 
-  console.log("appPoll,", appPoll);
- 
   return (
     <Fragment>
       {modal && <Modal setAppPoll={setAppPoll} setModal={setModal} />}
@@ -18,4 +16,3 @@ const App = () => {
 };
 
 export const run = render(<Macro app={<App />} />);
- 
