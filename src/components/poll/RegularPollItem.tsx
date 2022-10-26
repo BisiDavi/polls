@@ -74,6 +74,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
       {submitPoll && (
         <SectionMessage title="Poll Status" appearance="confirmation">
           <Text>Poll Submitted Successfully</Text>
+          <Text>Thanks, for participating in the Poll</Text>
         </SectionMessage>
       )}
       {pollOptions &&
@@ -95,7 +96,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
             />
           );
         })}
-      <ButtonSet>
+      {!submitPoll &&<ButtonSet>
         <Button
           text="Submit"
           icon="send"
@@ -110,7 +111,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
           onClick={resetHandler}
           disabled={disableButtonStatus}
         />
-      </ButtonSet>
+      </ButtonSet>}
       <ChartTabs data={pollChartData} />
     </Fragment>
   );
