@@ -6,10 +6,10 @@ import RegularPollView from "../view/RegularPollView";
 export default function PollTabs({ setPollType }) {
   return (
     <Tabs>
-      <Tab label="Meeting Poll">
+      <Tab label="Meeting+">
         <MeetingPollView setPollType={setPollType} />
       </Tab>
-      <Tab label="Regular Poll">
+      <Tab label="Poll">
         <RegularPollView setPollType={setPollType} />
       </Tab>
     </Tabs>

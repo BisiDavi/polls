@@ -25,8 +25,6 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   const polls = [];
 
-  console.log("savedPolls", savedPolls);
-
   async function deletePollHandler(pollKey: string) {
     await deletePoll(pollKey).then((response) => {
       console.log("response-deletePollHandler", response);

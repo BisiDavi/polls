@@ -10,8 +10,8 @@ export default function MeetingPollView({ setPollType }) {
   return (
     <Fragment>
       <Heading size="small">
-        Manage Team Meetings - Allow Team members To Contribute To Meeting
-        Topics before the Meeting.
+        Manage Meetings - Allow Team members To Contribute To Meeting
+        Agenda before the Meeting.
       </Heading>
       {pollContent.meeting.map((item) => (
         <Text key={item}>{item}</Text>
