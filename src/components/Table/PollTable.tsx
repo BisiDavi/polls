@@ -10,7 +10,6 @@ import ForgeUI, {
   Row,
   ButtonSet,
   Tag,
-  Image,
   SectionMessage,
   User,
 } from "@forge/ui";
@@ -18,14 +17,11 @@ import ForgeUI, {
 import PollModal from "../modal/PollModal";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
-import useStorage from "../../hooks/useStorage";
 
 export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
   const [showPollModal, setShowPollModal] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
-  const [poll, setPoll] = useState([]);
-  const { getDataFromStorage } = useStorage();
 
   const polls = [];
 
@@ -61,7 +57,6 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
     { key: "author", text: "Author" },
     { key: "date", text: "Date Created" },
     { key: "type", text: "Poll Type" },
-    { key: "pollStatus", text: "Poll Status" },
   ];
 
   function viewPollHandler(pollKey: string) {
