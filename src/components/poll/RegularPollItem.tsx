@@ -72,6 +72,13 @@ export default function RegularPollItem({ pollOptions, user, title }) {
       {submitPoll && (
         <SectionMessage title="Poll Status" appearance="confirmation">
           <Text>Poll Submitted Successfully</Text>
+          <Button
+            text="Refresh"
+            icon="refresh"
+            iconPosition="before"
+            appearance="warning"
+            onClick={() => null}
+          />
         </SectionMessage>
       )}
       {pollOptions &&
