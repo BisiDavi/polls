@@ -96,22 +96,24 @@ export default function RegularPoll({ pollOptions, user, title }) {
             />
           );
         })}
-      {!submitPoll &&<ButtonSet>
-        <Button
-          text="Submit"
-          icon="send"
-          appearance="primary"
-          onClick={onSubmitHandler}
-          disabled={disableButtonStatus}
-        />
-        <Button
-          text="Reset"
-          icon="error"
-          appearance="danger"
-          onClick={resetHandler}
-          disabled={disableButtonStatus}
-        />
-      </ButtonSet>}
+      {!submitPoll && (
+        <ButtonSet>
+          <Button
+            text="Submit"
+            icon="send"
+            appearance="primary"
+            onClick={onSubmitHandler}
+            disabled={disableButtonStatus}
+          />
+          <Button
+            text="Reset"
+            icon="error"
+            appearance="danger"
+            onClick={resetHandler}
+            disabled={disableButtonStatus}
+          />
+        </ButtonSet>
+      )}
       <ChartTabs data={pollChartData} />
     </Fragment>
   );

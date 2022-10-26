@@ -76,10 +76,12 @@ export default function PollResultView({
             <Strong>Description: </Strong>
             {data.description}
           </Text>
-          <Text>
-            <Strong>Time:</Strong>
-            {data.time}
-          </Text>
+          {data.type !== "regularMeetingPoll" && (
+            <Text>
+              <Strong>Time:</Strong>
+              {data.time}
+            </Text>
+          )}
           {data?.duration && (
             <Text>
               <Strong>Duration: </Strong>

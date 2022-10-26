@@ -17,18 +17,22 @@ import ForgeUI, {
 import PollModal from "../modal/PollModal";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
+import useStorage from "../../hooks/useStorage";
+import toSlug from "@/lib/toSlug";
 
 export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
   const [showPollModal, setShowPollModal] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
+  const { deleteStorage } = useStorage();
 
   const polls = [];
 
-  async function deletePollHandler(pollKey: string) {
+  async function deletePollHandler(pollKey: string, deleteKey: string) {
     await deletePoll(pollKey).then((response) => {
       console.log("response-deletePollHandler", response);
     });
+    await deleteStorage(deleteKey);
   }
 
   useEffect(async () => {
@@ -95,10 +99,13 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
                 <Text>Action</Text>
               </Cell>
             </Head>
-            {pollsData.map((item, index) => (
-              <Row key={index}>
-                {head.map((headItem, idx) => {
-                  return (
+            {pollsData.map((item, index) => {
+              const deleteKeyType =
+                item["type"] === "Meeting Planning" ? "Agenda" : "Vote";
+              const deleteKey = `${deleteKeyType}-${toSlug(item["title"])}`;
+              return (
+                <Row key={index}>
+                  {head.map((headItem, idx) => (
                     <Cell key={idx}>
                       {headItem.key === "author" ? (
                         <User accountId={item[headItem.key]} />
@@ -112,28 +119,30 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
                         )
                       )}
                     </Cell>
-                  );
-                })}
-                <Cell>
-                  <ButtonSet>
-                    <Button
-                      text=""
-                      icon="graph-bar"
-                      iconPosition="after"
-                      appearance="primary"
-                      onClick={() => viewPollHandler(item.key)}
-                    />
-                    <Button
-                      text=""
-                      icon="trash"
-                      iconPosition="after"
-                      appearance="danger"
-                      onClick={() => deletePollHandler(item["key"])}
-                    />
-                  </ButtonSet>
-                </Cell>
-              </Row>
-            ))}
+                  ))}
+                  <Cell>
+                    <ButtonSet>
+                      <Button
+                        text=""
+                        icon="graph-bar"
+                        iconPosition="after"
+                        appearance="primary"
+                        onClick={() => viewPollHandler(item.key)}
+                      />
+                      <Button
+                        text=""
+                        icon="trash"
+                        iconPosition="after"
+                        appearance="danger"
+                        onClick={() =>
+                          deletePollHandler(item["key"], deleteKey)
+                        }
+                      />
+                    </ButtonSet>
+                  </Cell>
+                </Row>
+              );
+            })}
           </Table>
         </Fragment>
       ) : (
