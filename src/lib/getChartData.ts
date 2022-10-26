@@ -1,7 +1,7 @@
 import generateRandomColor from "./generateRandomColor";
 
-export default function chartData(data, type) {
-  const chartObj = {
+export default function getChartData(data, type) {
+  return {
     type,
     data: {
       labels: data.labels,
