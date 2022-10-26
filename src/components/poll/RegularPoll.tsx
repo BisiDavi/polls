@@ -22,6 +22,8 @@ export default function RegularPoll({ pollOptions, user, title }) {
 
   const dataKey = `Vote-${toSlug(title)}`;
 
+  console.log("dataKey", dataKey);
+
   const titleText = title.toLowerCase().includes("poll")
     ? title
     : `${title} Poll`;
@@ -64,7 +66,7 @@ export default function RegularPoll({ pollOptions, user, title }) {
 
   const disableButtonStatus = !poll ? true : false;
   const pollChartData = { pollOptions, title, pollData };
-  console.log("pollChartData", pollChartData);
+
   return (
     <Fragment>
       <Heading>{titleText}</Heading>

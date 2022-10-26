@@ -9,12 +9,9 @@ export function getUniqueVoteOptions(votes: voteType) {
 }
 
 export function getVoteOptionCount(votes: voteType) {
-  console.log("votes", votes);
   const uniqueVotes = getUniqueVoteOptions(votes);
   const voteCount = [];
   const usersObj = {};
-
-  console.log("uniqueVotes", uniqueVotes);
 
   uniqueVotes.map((voteItem) => {
     const filteredVote = votes.filter((item) => item.vote === voteItem);

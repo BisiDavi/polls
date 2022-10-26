@@ -18,7 +18,7 @@ import PollModal from "../modal/PollModal";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
 import useStorage from "../../hooks/useStorage";
-import toSlug from "@/lib/toSlug";
+import toSlug from "../../lib/toSlug";
 
 export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
@@ -52,9 +52,6 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   }, []);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
-
-  console.log("savedPolls", savedPolls);
-  console.log("pollsData", pollsData);
 
   const head = [
     { key: "title", text: "Title" },
@@ -102,7 +99,10 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
             {pollsData.map((item, index) => {
               const deleteKeyType =
                 item["type"] === "Meeting Planning" ? "Agenda" : "Vote";
-              const deleteChartKey = `${deleteKeyType}-${toSlug(item["title"])}`;
+              const deleteChartKey = `${deleteKeyType}-${toSlug(
+                item["title"]
+              )}`;
+              console.log("deleteChartKey", deleteChartKey);
               return (
                 <Row key={index}>
                   {head.map((headItem, idx) => (
