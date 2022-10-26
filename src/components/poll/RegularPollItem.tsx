@@ -28,7 +28,6 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   useEffect(async () => {
     await getDataFromStorage(dataKey).then((response) => {
-      console.log("response", response);
       setPollData(response.results);
     });
   }, [poll]);
@@ -52,7 +51,10 @@ export default function RegularPollItem({ pollOptions, user, title }) {
     const existingData = pollData.length > 0 ? pollData[0].value : "";
     const data = [...existingData, dataObj];
     await saveData(dataKey, data)
-      .then(() => {
+      .then(async () => {
+        await getDataFromStorage(dataKey).then((response) => {
+          setPollData(response.results);
+        });
         return setSubmitPollStatus(true);
       })
       .catch(() => {
@@ -72,13 +74,6 @@ export default function RegularPollItem({ pollOptions, user, title }) {
       {submitPoll && (
         <SectionMessage title="Poll Status" appearance="confirmation">
           <Text>Poll Submitted Successfully</Text>
-          <Button
-            text="Refresh"
-            icon="refresh"
-            iconPosition="before"
-            appearance="warning"
-            onClick={() => null}
-          />
         </SectionMessage>
       )}
       {pollOptions &&
