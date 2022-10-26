@@ -14,7 +14,7 @@
     "data": {
       "labels": ["Red", "White", "Blue"],
       "datasets": [
-        { "label": "Red", "data": [200], "backgroundColor": "#9888c9" },
+        { "label": "Red", "data": [0], "backgroundColor": "#9888c9" },
         { "label": "White", "data": [1], "backgroundColor": "#6d7326" },
         { "label": "Blue", "data": [2], "backgroundColor": "#a32acc" }
       ]

@@ -17,7 +17,7 @@ export default function ChartTabs({ data }) {
         <PollChartTab poll="pie" data={data} />
       </Tab>
       <Tab label="Polar Area Chart">
-        <PollChartTab poll="polar-area" data={data} />
+        <PollChartTab poll="polarArea" data={data} />
       </Tab>
     </Tabs>
   );
