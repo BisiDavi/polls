@@ -15,8 +15,10 @@ export default function PollModalDetailsView({ data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
-  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
+  const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const topics = data ? formatPollTopic(data, formatPollType) : null;
+
+  console.log("data", data);
 
   return (
     <Fragment>

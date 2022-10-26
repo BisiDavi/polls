@@ -32,7 +32,7 @@ export default function PollModal({ setPollModal, data }) {
           <MakePollModalView data={data} user={user} />
         </Tab>
         {data.type === "meetingPoll" && (
-          <Tab label="Meeting details (+ Suggested Agenda)">
+          <Tab label="Suggested Agenda">
              
           </Tab>
         )}
