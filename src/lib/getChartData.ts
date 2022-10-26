@@ -1,7 +1,12 @@
+import { getPollChartDataArray } from "./formatVote";
 import generateRandomColor from "./generateRandomColor";
 
 export default function getChartpollData(data, type) {
   const { pollOptions, title, pollData } = data;
+  console.log("pollOptions", pollOptions);
+  console.log("data", data);
+  const chartData = getPollChartDataArray(pollOptions, pollData);
+  console.log("chartData", chartData);
   return {
     type,
     data: {
@@ -9,7 +14,7 @@ export default function getChartpollData(data, type) {
       datasets: [
         {
           label: title,
-          data: pollData.chartpollData,
+          data: [],
           backgroundColor: generateRandomColor(),
         },
       ],

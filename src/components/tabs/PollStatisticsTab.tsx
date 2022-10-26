@@ -4,11 +4,11 @@ import { getVoteOptionCount } from "../../lib/formatVote";
 
 export default function PollStatisticsTab({ data }) {
   const voteOptionData =
-    data.length > 0 ? getVoteOptionCount(data[0].value) : null;
+    data?.length > 0 ? getVoteOptionCount(data[0].value) : null;
 
   return (
     <Fragment>
-      {data[0].length > 0 && (
+      {data[0]?.length > 0 && (
         <Fragment>
           <Text>
             <Strong>Number of Poll: </Strong>

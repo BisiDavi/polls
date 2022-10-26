@@ -29,3 +29,14 @@ export function getVoteOptionCount(votes: voteType) {
   });
   return voteCount;
 }
+
+export function getPollChartDataArray(pollOptions, data) {
+  const result = [];
+  pollOptions.map((item) => {
+    const resultCount = data.filter(
+      (dataItem) => dataItem.vote === item
+    ).length;
+    result.push({ vote: item, count: resultCount });
+  });
+  return result;
+}

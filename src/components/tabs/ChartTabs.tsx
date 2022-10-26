@@ -4,7 +4,8 @@ import PollChartTab from "./PollChartTab";
 import PollStatisticsTab from "./PollStatisticsTab";
 
 export default function ChartTabs({ data }) {
-  const {pollData} = data
+  console.log("data", data);
+  const { pollData } = data;
   return (
     <Tabs>
       <Tab label="Poll Statistics">

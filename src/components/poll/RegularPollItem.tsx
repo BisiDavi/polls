@@ -21,7 +21,6 @@ export default function RegularPollItem({ pollOptions, user, title }) {
   const { saveData, getDataFromStorage } = useStorage();
 
   const dataKey = `Vote-${toSlug(title)}`;
-  const pollChartData = { pollOptions, title, pollData };
 
   const titleText = title.toLowerCase().includes("poll")
     ? title
@@ -62,6 +61,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
   }
 
   const disableButtonStatus = !poll ? true : false;
+  const pollChartData = { pollOptions, title, pollData };
 
   return (
     <Fragment>
@@ -109,7 +109,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
           disabled={disableButtonStatus}
         />
       </ButtonSet>
-      <ChartTabs data={pollChartData}  />
+      <ChartTabs data={pollChartData} />
     </Fragment>
   );
 }
