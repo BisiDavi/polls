@@ -14,9 +14,9 @@ import ForgeUI, {
   SectionMessage,
 } from "@forge/ui";
 
+import PollModal from "../modal/PollModal";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
-import PollModal from "../modal/PollModal";
 
 export default function PollTable({ setModal }) {
   const [savedPolls, setSavedPolls] = useState(null);
@@ -27,7 +27,8 @@ export default function PollTable({ setModal }) {
   const polls = [];
 
   async function deletePollHandler(pollKey: string) {
-    await deletePoll(pollKey).then(() => {
+    await deletePoll(pollKey).then((response) => {
+      console.log("response-deletePollHandler", response);
       setSavedPolls(null);
     });
   }

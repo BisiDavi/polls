@@ -18,18 +18,16 @@ import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
-export default function PollResultView({ data, setAppPoll, setModal }) {
+export default function PollResultView({
+  data,
+  setAppPoll,
+  setModal,
+  setSavedPolls,
+}) {
   const context = useProductContext();
-  const [savedPolls, setSavedPolls] = useState(null);
   const { savePollData, getSavedPolls } = usePublish();
 
-  useEffect(async () => {
-    if (savedPolls === null) {
-      await getSavedPolls().then((response) => {
-        setSavedPolls(response.results);
-      });
-    }
-  }, []);
+  const polls = [];
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
@@ -38,16 +36,27 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
-  function publishDataHandler() {
+  async function publishDataHandler() {
     const pollData = {
       ...data,
       accountId: context?.accountId,
     };
     const stringifyPollData = JSON.stringify(pollData);
-    const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
-    savePollData(`Polls-${pollKey}-${uuidv4()}`, stringifyPollData);
+    savePollData(`Polls--${uuidv4()}`, stringifyPollData);
     setAppPoll(stringifyPollData);
     setModal(false);
+
+    await getSavedPolls().then((response) => {
+      let pollData = {};
+      response.results.map((item: any) => {
+        pollData = {
+          value: JSON.parse(item?.value),
+          key: item.key,
+        };
+        polls.push(pollData);
+      });
+      setSavedPolls(polls);
+    });
   }
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;

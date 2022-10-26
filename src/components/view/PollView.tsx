@@ -5,7 +5,7 @@ import MeetingPollForm from "../form/MeetingPollForm";
 import RegularPollForm from "../form/RegularPollForm";
 import usePollView from "../../hooks/usePollView";
 
-export default function PollView({ type, setAppPoll, setPollType, setModal }) {
+export default function PollView({ type, setAppPoll, setPollType, setModal, setSavedPolls }) {
   const {
     data,
     onSubmitRegular,
@@ -22,6 +22,7 @@ export default function PollView({ type, setAppPoll, setPollType, setModal }) {
           data={data}
           setAppPoll={setAppPoll}
           setModal={setModal}
+          setSavedPolls={setSavedPolls}
         />
       ) : type === "Meeting" ? (
         <MeetingPollForm
