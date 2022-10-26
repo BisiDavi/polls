@@ -10,31 +10,29 @@ import ForgeUI, {
   useState,
   useEffect,
   Em,
+  useProductContext,
 } from "@forge/ui";
 import { v4 as uuidv4 } from "uuid";
 
-import useUser from "../../hooks/useUser";
 import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
 
 export default function PollResultView({ data, setAppPoll, setModal }) {
-  const [userDetails, setUserDetails] = useState(null);
+  const context = useProductContext();
   const [savedPolls, setSavedPolls] = useState(null);
-  const { getUserDetails } = useUser();
   const { savePollData, getSavedPolls } = usePublish();
 
   useEffect(async () => {
     if (savedPolls === null) {
       await getSavedPolls().then((response) => {
-        console.log("savedpolls-response,", response);
         setSavedPolls(response.results);
       });
     }
   }, []);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
-  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";  
+  const formatPollType = data.type === "meetingPoll" ? "topic" : "poll";
   const optionText =
     data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
 
@@ -43,7 +41,7 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
   function publishDataHandler() {
     const pollData = {
       ...data,
-      userDetails,
+      accountId: context?.accountId,
     };
     const stringifyPollData = JSON.stringify(pollData);
     const pollKey = savedPolls !== null ? savedPolls.length + 1 : null;
@@ -51,14 +49,6 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
     setAppPoll(stringifyPollData);
     setModal(false);
   }
-
-  useEffect(async () => {
-    if (userDetails === null) {
-      await getUserDetails().then((response) => {
-        setUserDetails(response);
-      });
-    }
-  }, [userDetails]);
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
 
@@ -104,10 +94,10 @@ export default function PollResultView({ data, setAppPoll, setModal }) {
                 {index + 1}. <Em>{item}</Em>
               </Text>
             ))}
-          {userDetails !== null && (
+          {data?.accountId !== null && (
             <Text>
               <Strong>Author: </Strong>
-              <User accountId={userDetails?.accountId} />
+              <User accountId={data?.accountId} />
             </Text>
           )}
         </Fragment>

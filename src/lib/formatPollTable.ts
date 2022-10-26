@@ -5,7 +5,7 @@ export default function formatPollTable(data: any[]) {
   data.map((item, index) => {
     const id = index + 1;
     const pollType =
-      item.value.type === "meetingPoll" ? "Meeting Poll" : "Regular Poll";
+      item.value.type === "meetingPoll" ? "Meeting Planning" : "Regular Poll";
     pollArray.push({
       title: `${id}.  ${item.value.title}`,
       author: item.value?.userDetails?.displayName,

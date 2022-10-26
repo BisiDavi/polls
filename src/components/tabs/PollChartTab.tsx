@@ -9,7 +9,7 @@ export default function PollChartTab({ data, poll }) {
   const chartLink = `https://quickchart.io/chart?c=${encodedURI}`;
   return (
     <Fragment>
-      {data[0] && <Image src={chartLink} alt={`${poll} chart`} />}
+      <Image src={chartLink} alt={`${poll} chart`} />
     </Fragment>
   );
 }
