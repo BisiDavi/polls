@@ -7,8 +7,6 @@ import ForgeUI, {
   Strong,
   User,
   DateLozenge,
-  useState,
-  useEffect,
   Em,
   useProductContext,
 } from "@forge/ui";
@@ -32,7 +30,7 @@ export default function PollResultView({
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const optionText =
-    data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
+    data.type === "meetingPoll" ? "Agendas to be discussed" : "Poll Options";
 
   const topics = data ? formatPollTopic(data, formatPollType) : null;
 
@@ -74,7 +72,7 @@ export default function PollResultView({
             <Strong>Description: </Strong>
             {data.description}
           </Text>
-          {data.type !== "regularMeetingPoll" && (
+          {data.type === "meetingPoll" && (
             <Text>
               <Strong>Time:</Strong>
               {data.time}
@@ -104,11 +102,16 @@ export default function PollResultView({
             <Strong>{optionText}</Strong>
           </Text>
           {topics &&
-            topics?.map((item, index) => (
-              <Text key={item}>
-                {index + 1}. <Em>{item}</Em>
-              </Text>
-            ))}
+            topics?.map((item, index) => {
+              const list = index + 1;
+              const isIndex = item.includes(list) ? "" : list;
+
+              return (
+                <Text key={item}>
+                  {isIndex}. <Em>{item}</Em>
+                </Text>
+              );
+            })}
           <Text>
             <Strong>Author: </Strong>
             <User accountId={context.accountId} />
