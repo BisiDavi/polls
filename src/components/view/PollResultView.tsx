@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollTopic } from "../../lib/getAgendaName";
+import PollList from "../poll/PollList";
 
 export default function PollResultView({
   data,
@@ -101,17 +102,7 @@ export default function PollResultView({
           <Text>
             <Strong>{optionText}</Strong>
           </Text>
-          {topics &&
-            topics?.map((item, index) => {
-              const list = index + 1;
-              const isIndex = item.includes(list) ? "" : list;
-
-              return (
-                <Text key={item}>
-                  {isIndex}. <Em>{item}</Em>
-                </Text>
-              );
-            })}
+          <PollList pollData={topics} type="italics" />
           <Text>
             <Strong>Author: </Strong>
             <User accountId={context.accountId} />

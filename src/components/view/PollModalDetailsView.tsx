@@ -10,6 +10,7 @@ import ForgeUI, {
 
 import { formatPollTopic } from "../../lib/getAgendaName";
 import { formatDate } from "../../lib/isDateValid";
+import PollList from "../poll/PollList";
 
 export default function PollModalDetailsView({ data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
@@ -57,12 +58,7 @@ export default function PollModalDetailsView({ data }) {
       <Text>
         <Strong>{optionText}</Strong>
       </Text>
-      {topics &&
-        topics?.map((item, index) => (
-          <Text key={item}>
-            {index + 1}. <Em>{item}</Em>
-          </Text>
-        ))}
+      <PollList pollData={topics} type="italics" />
     </Fragment>
   );
 }

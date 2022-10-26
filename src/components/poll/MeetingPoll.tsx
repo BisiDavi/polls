@@ -13,6 +13,7 @@ import PollsFieldSet from "../form/PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
+import PollList from "./PollList";
 
 export default function MeetingPoll({ pollOptions, currentUser, title }) {
   const [agenda, setAgenda] = useState(["Agenda 1"]);
@@ -47,11 +48,7 @@ export default function MeetingPoll({ pollOptions, currentUser, title }) {
       <Heading>
         {agendaText} to be discussed in the meeting "{title}":
       </Heading>
-      {pollOptions.map((item, index) => (
-        <Text key={index}>
-          {index + 1}. {item}
-        </Text>
-      ))}
+      <PollList pollData={pollOptions} />
       <Text>
         <Em>
           Do you have any <Strong>agenda</Strong> to add to this Meeting?

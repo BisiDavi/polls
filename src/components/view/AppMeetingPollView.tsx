@@ -8,6 +8,7 @@ import ForgeUI, {
   DateLozenge,
   Em,
 } from "@forge/ui";
+import PollList from "../poll/PollList";
 
 export default function AppMeetingPollView({ polls }) {
   return (
@@ -44,11 +45,7 @@ export default function AppMeetingPollView({ polls }) {
       <Text>
         <Strong>{polls}</Strong>
       </Text>
-      {polls.map((item, index) => (
-        <Text key={item}>
-          {index + 1}. <Em>{item}</Em>
-        </Text>
-      ))}
+      <PollList pollData={polls} type="italics" />
       {polls !== null && (
         <Text>
           <Strong>Author: </Strong>
