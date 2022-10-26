@@ -61,8 +61,6 @@ export default function PollResultView({
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
 
-  console.log("data", data);
-
   return (
     <Fragment>
       <Heading size="medium">Polls Details ({pollType})</Heading>

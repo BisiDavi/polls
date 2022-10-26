@@ -20,7 +20,6 @@ export default function usePollView(setPollType, viewType: string) {
     setAgenda,
   } = useMeetingPollForm(formState, setFormState, setPollType);
 
-  console.log("formState", formState);
   const data = viewType === "Regular" ? regularFormData : meetingPollData;
 
   return {

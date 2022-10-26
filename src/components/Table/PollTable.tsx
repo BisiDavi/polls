@@ -36,19 +36,17 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   }
 
   useEffect(async () => {
-    if (savedPolls === null) {
-      await getSavedPolls().then((response) => {
-        let pollData = {};
-        response.results.map((item: any) => {
-          pollData = {
-            value: JSON.parse(item?.value),
-            key: item.key,
-          };
-          polls.push(pollData);
-        });
-        setSavedPolls(polls);
+    await getSavedPolls().then((response) => {
+      let pollData = {};
+      response.results.map((item: any) => {
+        pollData = {
+          value: JSON.parse(item?.value),
+          key: item.key,
+        };
+        polls.push(pollData);
       });
-    }
+      setSavedPolls(polls);
+    });
   }, []);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
