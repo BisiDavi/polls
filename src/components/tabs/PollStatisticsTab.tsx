@@ -2,7 +2,7 @@ import ForgeUI, { Fragment, Text, Strong, Image, User } from "@forge/ui";
 
 import { getVoteOptionCount } from "../../lib/formatVote";
 
-export default function PollDetailsTab({ data }) {
+export default function PollStatisticsTab({ data }) {
   const voteOptionData =
     data.length > 0 ? getVoteOptionCount(data[0].value) : null;
 
@@ -11,8 +11,8 @@ export default function PollDetailsTab({ data }) {
       {data[0].length > 0 && (
         <Fragment>
           <Text>
-            <Strong>Number of Poll:</Strong>
-            {data[0]?.value?.length}
+            <Strong>Number of Poll: </Strong>
+            {data[0]?.value?.length} total votes
           </Text>
           <Image
             src="https://res.cloudinary.com/verrb-inc/image/upload/v1666751407/Screenshot_2022-10-26_at_3.28.09_AM_oenkj6.png"

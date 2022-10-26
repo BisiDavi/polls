@@ -1,13 +1,13 @@
 import ForgeUI, { Tabs, Tab } from "@forge/ui";
 
 import PollChartTab from "./PollChartTab";
-import PollDetailsTab from "./PollDetailsTab";
+import PollStatisticsTab from "./PollStatisticsTab";
 
 export default function ChartTabs({ data }) {
   return (
     <Tabs>
       <Tab label="Poll Statistics">
-        <PollDetailsTab data={data} />
+        <PollStatisticsTab data={data} />
       </Tab>
       <Tab label="Bar Chart">
         <PollChartTab data={data} poll="bar-chart" />
