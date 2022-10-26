@@ -3,20 +3,20 @@ import ForgeUI, { Tabs, Tab } from "@forge/ui";
 import PollChartTab from "./PollChartTab";
 import PollStatisticsTab from "./PollStatisticsTab";
 
-export default function ChartTabs({ data }) {
+export default function ChartTabs({ data, pollOptions }) {
   return (
     <Tabs>
       <Tab label="Poll Statistics">
         <PollStatisticsTab data={data} />
       </Tab>
       <Tab label="Bar Chart">
-        <PollChartTab data={data} poll="bar-chart" />
+        <PollChartTab poll="bar" data={data} pollOptions={pollOptions} />
       </Tab>
       <Tab label="Pie Chart">
-        <PollChartTab data={data} poll="pie-chart" />
+        <PollChartTab poll="pie" data={data} pollOptions={pollOptions} />
       </Tab>
       <Tab label="Polar Area Chart">
-        <PollChartTab data={data} poll="polar-area" />
+        <PollChartTab poll="polar-area" data={data} pollOptions={pollOptions} />
       </Tab>
     </Tabs>
   );

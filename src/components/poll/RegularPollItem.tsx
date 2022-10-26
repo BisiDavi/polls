@@ -108,7 +108,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
           disabled={disableButtonStatus}
         />
       </ButtonSet>
-      <ChartTabs data={pollData} />
+      <ChartTabs data={pollData} pollOptions={pollOptions} />
     </Fragment>
   );
 }
