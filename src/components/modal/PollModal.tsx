@@ -3,7 +3,7 @@ import ForgeUI, { ModalDialog, Tab, Tabs, useState } from "@forge/ui";
 import PollModalView from "../view/PollModalView";
 import PollModalDetailsView from "../view/PollModalDetailsView";
 import MeetingTab from "../tabs/MeetingTab";
-import { formatPollAgenda } from "@/lib/getAgendaName";
+import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function PollModal({ setPollModal, data }) {
   const pollOptions = data ? formatPollAgenda(data, "agenda") : null;
