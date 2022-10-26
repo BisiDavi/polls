@@ -61,6 +61,7 @@ export default function MeetingPoll({ pollOptions, currentUser, title }) {
       <Form onSubmit={onSubmit} submitButtonText="Submit Agenda">
         <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
       </Form>
+      
     </Fragment>
   );
 }

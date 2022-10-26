@@ -1,4 +1,4 @@
-import ForgeUI, { ModalDialog, Tab, Tabs, useProductContext } from "@forge/ui";
+import ForgeUI, { ModalDialog, Tab, Tabs } from "@forge/ui";
 
 import MakePollModalView from "../view/MakePollModalView";
 import useUser from "../../hooks/useUser";
@@ -14,8 +14,6 @@ export default function PollModal({ setPollModal, data }) {
     data.type === "meetingPoll" ? "Meeting Details" : "Poll Details";
   const tab2Text =
     data.type === "meetingPoll" ? "Suggest Meeting Agenda" : "Make Poll";
-
-  console.log("data", data);
 
   function modalHandler() {
     setPollModal(false);
@@ -33,6 +31,11 @@ export default function PollModal({ setPollModal, data }) {
         <Tab label={tab2Text}>
           <MakePollModalView data={data} user={user} />
         </Tab>
+        {data.type === "meetingPoll" && (
+          <Tab label="Meeting details (+ Suggested Agenda)">
+             
+          </Tab>
+        )}
       </Tabs>
     </ModalDialog>
   );
