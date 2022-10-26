@@ -1,12 +1,17 @@
 {
   "meeting": [
-    "1. Alert team members about upcoming meeting",
-    "2. Prioritize meeting topics based on your team member opinion.",
-    "3. Team member can add/suggest new meeting topic.",
+    "1. Alert team members about upcoming meeting.",
+    "2. Team member can add (suggest) new meeting agenda.",
+    "3. Prioritize meeting agenda based on your team member opinion.",
     "4. Estimate meeting duration.",
     "5. Team members to indicate if available for meeting.",
-    "6. Publish Meeting Poll.",
-    "7. Save meeting decision."
+    "6. Save meeting memo."
   ],
-  "regular": ["1. List Vote Options.", "2. Publish Poll"]
+  "regular": [
+    "1. Create Poll Options.",
+    "2. Polls can be anonynmous.",
+    "3. Polls can be time based.",
+    "4. View Graphical representation of the Poll, via Bar Chart, Pie Chart and Polar Area Chart.",
+    "5. View Poll Result in Real time."
+  ]
 }
