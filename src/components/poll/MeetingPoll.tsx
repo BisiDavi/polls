@@ -14,7 +14,7 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 
-export default function MeetingPollItem({ pollOptions, currentUser, title }) {
+export default function MeetingPoll({ pollOptions, currentUser, title }) {
   const [agenda, setAgenda] = useState(["Agenda 1"]);
   const [existingData, setExistingData] = useState(null);
   const { saveData, getDataFromStorage } = useStorage();

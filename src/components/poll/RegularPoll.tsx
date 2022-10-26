@@ -14,7 +14,7 @@ import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
 
-export default function RegularPollItem({ pollOptions, user, title }) {
+export default function RegularPoll({ pollOptions, user, title }) {
   const [poll, makePoll] = useState(null);
   const [pollData, setPollData] = useState([]);
   const [submitPoll, setSubmitPollStatus] = useState(false);
