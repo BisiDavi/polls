@@ -6,8 +6,8 @@ import PollDetailsTab from "./PollDetailsTab";
 export default function ChartTabs({ data }) {
   return (
     <Tabs>
-      <Tab label="Poll Details">
-        <PollDetailsTab data={data}  />
+      <Tab label="Poll Statistics">
+        <PollDetailsTab data={data} />
       </Tab>
       <Tab label="Bar Chart">
         <PollChartTab data={data} poll="bar-chart" />
