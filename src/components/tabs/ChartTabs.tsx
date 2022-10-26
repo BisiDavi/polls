@@ -1,18 +1,22 @@
 import ForgeUI, { Tabs, Tab } from "@forge/ui";
 
-import PollChartView from "../view/PollChartView";
+import PollChartTab from "./PollChartTab";
+import PollDetailsTab from "./PollDetailsTab";
 
 export default function ChartTabs({ data }) {
   return (
     <Tabs>
+      <Tab label="Poll Details">
+        <PollDetailsTab data={data}  />
+      </Tab>
       <Tab label="Bar Chart">
-        <PollChartView data={data} poll="bar-chart" />
+        <PollChartTab data={data} poll="bar-chart" />
       </Tab>
       <Tab label="Pie Chart">
-        <PollChartView data={data} poll="pie-chart" />
+        <PollChartTab data={data} poll="pie-chart" />
       </Tab>
       <Tab label="Polar Area Chart">
-        <PollChartView data={data} poll="polar-area" />
+        <PollChartTab data={data} poll="polar-area" />
       </Tab>
     </Tabs>
   );

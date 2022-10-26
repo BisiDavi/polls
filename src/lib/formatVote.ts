@@ -13,6 +13,8 @@ export function getVoteOptionCount(votes: voteType) {
   const voteCount = [];
   const users = [];
 
+  console.log("uniqueVotes", uniqueVotes);
+
   uniqueVotes.map((voteItem) => {
     const filteredVote = votes.filter((item) => item.vote === voteItem);
     const voteAuthor = filteredVote.map((item) => users.push(item.author));
