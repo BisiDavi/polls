@@ -105,7 +105,6 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
               const deleteChartKey = `${deleteKeyType}-${toSlug(
                 item["rowId"]
               )}`;
-              console.log("deleteChartKey", deleteChartKey);
               return (
                 <Row key={index}>
                   {head.map((headItem, idx) => (
