@@ -28,11 +28,11 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   const polls = [];
 
-  async function deletePollHandler(pollKey: string, deleteKey: string) {
+  async function deletePollHandler(pollKey: string, deleteChartKey: string) {
     await deletePoll(pollKey).then((response) => {
       console.log("response-deletePollHandler", response);
     });
-    await deleteStorage(deleteKey);
+    await deleteStorage(deleteChartKey);
   }
 
   useEffect(async () => {
@@ -102,7 +102,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
             {pollsData.map((item, index) => {
               const deleteKeyType =
                 item["type"] === "Meeting Planning" ? "Agenda" : "Vote";
-              const deleteKey = `${deleteKeyType}-${toSlug(item["title"])}`;
+              const deleteChartKey = `${deleteKeyType}-${toSlug(item["title"])}`;
               return (
                 <Row key={index}>
                   {head.map((headItem, idx) => (
@@ -135,7 +135,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
                         iconPosition="after"
                         appearance="danger"
                         onClick={() =>
-                          deletePollHandler(item["key"], deleteKey)
+                          deletePollHandler(item["key"], deleteChartKey)
                         }
                       />
                     </ButtonSet>
