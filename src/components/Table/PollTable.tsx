@@ -69,15 +69,15 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   return (
     <Fragment>
+      <Button
+        text="Create New Poll"
+        icon="add"
+        iconPosition="before"
+        appearance="primary"
+        onClick={() => setModal(true)}
+      />
       {pollsData.length > 0 ? (
         <Fragment>
-          <Button
-            text="Create New Poll"
-            icon="add"
-            iconPosition="before"
-            appearance="primary"
-            onClick={() => setModal(true)}
-          />
           {showPollModal && selectedPoll && (
             <PollModal
               setPollModal={setShowPollModal}
@@ -135,20 +135,11 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
           </Table>
         </Fragment>
       ) : (
-        <Fragment>
-          <Button
-            text="Create New Poll"
-            icon="add"
-            iconPosition="before"
-            appearance="primary"
-            onClick={() => setModal(true)}
-          />
-          <SectionMessage title="Polls" appearance="error">
-            <Text>
-              No poll yet, click on the "Create New Poll" to create Poll
-            </Text>
-          </SectionMessage>
-        </Fragment>
+        <SectionMessage title="Polls" appearance="error">
+          <Text>
+            No poll yet, click on the "Create New Poll" to create Poll
+          </Text>
+        </SectionMessage>
       )}
     </Fragment>
   );
