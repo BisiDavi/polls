@@ -62,7 +62,7 @@ export default function RegularPollItem({ pollOptions, user, title }) {
 
   const disableButtonStatus = !poll ? true : false;
   const pollChartData = { pollOptions, title, pollData };
-
+  console.log("pollChartData", pollChartData);
   return (
     <Fragment>
       <Heading>{titleText}</Heading>

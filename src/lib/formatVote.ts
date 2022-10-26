@@ -33,10 +33,10 @@ export function getVoteOptionCount(votes: voteType) {
 export function getPollChartDataArray(pollOptions, data) {
   const result = [];
   pollOptions.map((item) => {
-    const resultCount = data.filter(
+    const resultCount = data[0].value.filter(
       (dataItem) => dataItem.vote === item
     ).length;
-    result.push({ vote: item, count: resultCount });
+    result.push(resultCount);
   });
   return result;
 }
