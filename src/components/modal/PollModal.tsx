@@ -7,7 +7,7 @@ import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function PollModal({ setPollModal, data }) {
   const pollOptions = data ? formatPollAgenda(data, "agenda") : null;
-  const pollOptionsLength = pollOptions.length;
+  const pollOptionsLength = pollOptions.length + 1;
 
   const [suggestedAgenda, setSuggestedAgenda] = useState([
     `Agenda ${pollOptionsLength}`,

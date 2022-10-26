@@ -49,6 +49,8 @@ export default function MeetingPoll({
     saveData(dataKey, dataArray);
   }
 
+  const pollOptionsLength = pollOptions.length + suggestedAgenda.length;
+
   return (
     <Fragment>
       <Text>
@@ -65,6 +67,7 @@ export default function MeetingPoll({
       <Form onSubmit={onSubmit} submitButtonText="Submit Agenda">
         <PollsFieldSet
           type="meeting"
+          count={pollOptionsLength}
           poll={suggestedAgenda}
           setPoll={setSuggestedAgenda}
         />

@@ -1,4 +1,4 @@
- import ForgeUI, { TextField, Button, ButtonSet, Fragment } from "@forge/ui";
+import ForgeUI, { TextField, Button, ButtonSet, Fragment } from "@forge/ui";
 
 import { getAgendaName } from "../../lib/getAgendaName";
 
@@ -6,9 +6,10 @@ interface Props {
   type: "meeting" | "regular";
   setPoll: any;
   poll: string[];
+  count?: number;
 }
 
-export default function PollsFieldSet({ type, poll, setPoll }: Props) {
+export default function PollsFieldSet({ type, poll, count, setPoll }: Props) {
   const pollText = type === "meeting" ? "Agenda" : "Poll Option";
   const buttonText = type === "meeting" ? "Meeting Agenda" : "Poll Option";
   const inputText =
@@ -43,7 +44,8 @@ export default function PollsFieldSet({ type, poll, setPoll }: Props) {
         )}
       </ButtonSet>
       {poll.map((item, index) => {
-        const { name, agendaCount } = getAgendaName(item, index);
+        const pollIndex = count ? count : index;
+        const { name, agendaCount } = getAgendaName(item, pollIndex);
         return (
           <TextField
             key={index}
