@@ -18,8 +18,7 @@ import PollModal from "../modal/PollModal";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
 
-export default function PollTable({ setModal }) {
-  const [savedPolls, setSavedPolls] = useState(null);
+export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
   const [showPollModal, setShowPollModal] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
@@ -29,7 +28,6 @@ export default function PollTable({ setModal }) {
   async function deletePollHandler(pollKey: string) {
     await deletePoll(pollKey).then((response) => {
       console.log("response-deletePollHandler", response);
-      setSavedPolls(null);
     });
   }
 
@@ -47,7 +45,7 @@ export default function PollTable({ setModal }) {
         setSavedPolls(polls);
       });
     }
-  }, [savedPolls]);
+  }, []);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 

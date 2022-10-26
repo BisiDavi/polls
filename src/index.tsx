@@ -17,7 +17,11 @@ const App = () => {
           setSavedPolls={setSavedPolls}
         />
       )}
-      <PollTable setModal={setModal} savedPolls={savedPolls} />
+      <PollTable
+        setModal={setModal}
+        savedPolls={savedPolls}
+        setSavedPolls={setSavedPolls}
+      />
     </Fragment>
   );
 };
