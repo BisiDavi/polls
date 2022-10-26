@@ -1,4 +1,5 @@
 import ForgeUI, { Fragment, Strong, Text } from "@forge/ui";
+
 import { formatPollAgenda } from "../../lib/getAgendaName";
 import PollList from "../poll/PollList";
 
