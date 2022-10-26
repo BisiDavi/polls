@@ -15,7 +15,6 @@ import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
 import { getVoteOptionCount } from "../../lib/formatVote";
 
-
 export default function RegularPollItem({ pollOptions, user, title }) {
   const [poll, makePoll] = useState(null);
   const [pollData, setPollData] = useState([]);
@@ -25,10 +24,13 @@ export default function RegularPollItem({ pollOptions, user, title }) {
   const dataKey = `Vote-${toSlug(title)}`;
 
   const voteOptionData =
-    pollData.length > 0 ? getVoteOptionCount(pollData) : null;
+    pollData.length > 0 ? getVoteOptionCount(pollData[0].value) : null;
 
+  console.log("pollData[0]", pollData);
   console.log("pollData[0]?.value", pollData[0]?.value);
   console.log("voteOptionData", voteOptionData);
+  console.log("voteOptionData[0]", voteOptionData[0].user);
+  console.log("voteOptionData[1]", voteOptionData[1].user);
 
   const titleText = title.toLowerCase().includes("poll")
     ? title
