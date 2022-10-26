@@ -39,7 +39,7 @@ export default function PollResultView({
   async function publishDataHandler() {
     const pollData = {
       ...data,
-      accountId: context?.accountId,
+      accountId: context.accountId,
     };
     const stringifyPollData = JSON.stringify(pollData);
     savePollData(`Polls--${uuidv4()}`, stringifyPollData);
@@ -61,6 +61,8 @@ export default function PollResultView({
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
 
+  console.log("data", data);
+
   return (
     <Fragment>
       <Heading size="medium">Polls Details ({pollType})</Heading>
@@ -73,6 +75,10 @@ export default function PollResultView({
           <Text>
             <Strong>Description: </Strong>
             {data.description}
+          </Text>
+          <Text>
+            <Strong>Time:</Strong>
+            {data.time}
           </Text>
           {data?.duration && (
             <Text>
@@ -103,12 +109,10 @@ export default function PollResultView({
                 {index + 1}. <Em>{item}</Em>
               </Text>
             ))}
-          {data?.accountId !== null && (
-            <Text>
-              <Strong>Author: </Strong>
-              <User accountId={data?.accountId} />
-            </Text>
-          )}
+          <Text>
+            <Strong>Author: </Strong>
+            <User accountId={context.accountId} />
+          </Text>
         </Fragment>
       )}
       <Button

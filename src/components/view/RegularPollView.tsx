@@ -14,7 +14,7 @@ export default function RegularPollView({ setPollType }) {
         <Text key={item}>{item}</Text>
       ))}
       <Button
-        text="Get Started with Regular Polls"
+        text="Get Started with Polls"
         icon="arrow-right"
         iconPosition="after"
         onClick={buttonHandler}

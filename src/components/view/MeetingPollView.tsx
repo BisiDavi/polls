@@ -18,7 +18,7 @@ export default function MeetingPollView({ setPollType }) {
       ))}
 
       <Button
-        text="Get Started With Meeting Polls"
+        text="Get Started With Meeting+"
         icon="arrow-right"
         iconPosition="after"
         appearance="primary"

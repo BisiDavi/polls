@@ -49,6 +49,9 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
+  console.log("savedPolls", savedPolls);
+  console.log("pollsData", pollsData);
+
   const head = [
     { key: "title", text: "Title" },
     { key: "author", text: "Author" },
@@ -96,6 +99,8 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
             {pollsData.map((item, index) => (
               <Row key={index}>
                 {head.map((headItem, idx) => {
+                  console.log("head", head);
+                  console.log("headItem", headItem);
                   return (
                     <Cell key={idx}>
                       {headItem.key !== "type" ? (
