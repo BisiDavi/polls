@@ -31,7 +31,6 @@ export default function MeetingPoll({ pollOptions, currentUser, title }) {
   async function onSubmit(formData) {
     const agendaObj = formatFormPoll(agenda);
     const dateInstance = new Date();
-    console.log("formData", formData);
     const formstateData = {
       ...agendaObj,
       ...formData,
@@ -61,7 +60,6 @@ export default function MeetingPoll({ pollOptions, currentUser, title }) {
       <Form onSubmit={onSubmit} submitButtonText="Submit Agenda">
         <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
       </Form>
-      
     </Fragment>
   );
 }
