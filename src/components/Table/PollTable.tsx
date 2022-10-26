@@ -18,11 +18,14 @@ import ForgeUI, {
 import PollModal from "../modal/PollModal";
 import usePublish from "../../hooks/usePublish";
 import formatPollTable from "../../lib/formatPollTable";
+import useStorage from "../../hooks/useStorage";
 
 export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
   const [showPollModal, setShowPollModal] = useState(false);
   const { getSavedPolls, deletePoll } = usePublish();
+  const [poll, setPoll] = useState([]);
+  const { getDataFromStorage } = useStorage();
 
   const polls = [];
 
