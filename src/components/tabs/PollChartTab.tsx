@@ -2,7 +2,7 @@ import ForgeUI, { Fragment, Image } from "@forge/ui";
 
 import getChartData from "../../lib/getChartData";
 
-export default function PollChartTab({ data, poll, pollOptions }) {
+export default function PollChartTab({ data, poll }) {
   const chartData = getChartData(data, poll);
   return (
     <Fragment>

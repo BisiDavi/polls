@@ -1,14 +1,15 @@
 import generateRandomColor from "./generateRandomColor";
 
-export default function getChartData(data, type) {
+export default function getChartpollData(data, type) {
+  const { pollOptions, title, pollData } = data;
   return {
     type,
     data: {
-      labels: data.labels,
+      labels: pollOptions,
       datasets: [
         {
-          label: data.label,
-          data: data.chartData,
+          label: title,
+          data: pollData.chartpollData,
           backgroundColor: generateRandomColor(),
         },
       ],
@@ -16,7 +17,7 @@ export default function getChartData(data, type) {
     options: {
       title: {
         display: true,
-        text: data.title,
+        text: title,
       },
       plugins: {
         datalabels: {
