@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
-import { formatPollTopic } from "../../lib/getAgendaName";
+import { formatPollAgenda } from "../../lib/getAgendaName";
 import PollList from "../poll/PollList";
 
 export default function PollResultView({
@@ -33,7 +33,7 @@ export default function PollResultView({
   const optionText =
     data.type === "meetingPoll" ? "Agendas to be discussed" : "Poll Options";
 
-  const topics = data ? formatPollTopic(data, formatPollType) : null;
+  const topics = data ? formatPollAgenda(data, formatPollType) : null;
 
   async function publishDataHandler() {
     const pollData = {

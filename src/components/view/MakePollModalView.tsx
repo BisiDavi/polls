@@ -2,11 +2,11 @@ import ForgeUI, { Fragment } from "@forge/ui";
 
 import MeetingPoll from "../poll/MeetingPoll";
 import RegularPoll from "../poll/RegularPoll";
-import { formatPollTopic } from "../../lib/getAgendaName";
+import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function MakePollModalView({ data, user }) {
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
-  const pollOptions = data ? formatPollTopic(data, formatPollType) : null;
+  const pollOptions = data ? formatPollAgenda(data, formatPollType) : null;
 
   return (
     <Fragment>

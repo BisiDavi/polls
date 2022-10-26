@@ -8,16 +8,16 @@ import ForgeUI, {
   User,
 } from "@forge/ui";
 
-import { formatPollTopic } from "../../lib/getAgendaName";
+import { formatPollAgenda } from "../../lib/getAgendaName";
 import { formatDate } from "../../lib/isDateValid";
 import PollList from "../poll/PollList";
 
 export default function PollModalDetailsView({ data }) {
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
   const optionText =
-    data.type === "meetingPoll" ? "Topics to be discussed" : "Poll Options";
+    data.type === "meetingPoll" ? "Agendas to be discussed" : "Poll Options";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
-  const topics = data ? formatPollTopic(data, formatPollType) : null;
+  const topics = data ? formatPollAgenda(data, formatPollType) : null;
 
   return (
     <Fragment>
@@ -29,6 +29,12 @@ export default function PollModalDetailsView({ data }) {
         <Strong>Description: </Strong>
         {data.description}
       </Text>
+      {data?.time && (
+        <Text>
+          <Strong>Time:</Strong>
+          {data.time}
+        </Text>
+      )}
       {data?.duration && (
         <Text>
           <Strong>Duration: </Strong>

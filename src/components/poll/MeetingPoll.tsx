@@ -23,6 +23,8 @@ export default function MeetingPoll({ pollOptions, currentUser, title }) {
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
   const dataKey = `Agenda-${toSlug(title)}`;
 
+  console.log("agenda", agenda);
+
   useEffect(async () => {
     getDataFromStorage(dataKey).then((response) => {
       setExistingData(response.results);
@@ -45,9 +47,11 @@ export default function MeetingPoll({ pollOptions, currentUser, title }) {
 
   return (
     <Fragment>
-      <Heading>
-        {agendaText} to be discussed in the meeting "{title}":
-      </Heading>
+      <Text>
+        <Strong>
+          {agendaText} to be discussed in the meeting "{title}":
+        </Strong>
+      </Text>
       <PollList pollData={pollOptions} />
       <Text>
         <Em>
