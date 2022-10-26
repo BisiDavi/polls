@@ -25,6 +25,8 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   const polls = [];
 
+  console.log("savedPolls", savedPolls);
+
   async function deletePollHandler(pollKey: string) {
     await deletePoll(pollKey).then((response) => {
       console.log("response-deletePollHandler", response);
@@ -67,12 +69,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   return (
     <Fragment>
-      {savedPolls === null ? (
-        <Image
-          src="https://res.cloudinary.com/verrb-inc/image/upload/v1666363950/loader-gif_i7owby.gif"
-          alt="loader"
-        />
-      ) : pollsData.length > 0 ? (
+      {pollsData.length > 0 ? (
         <Fragment>
           <Button
             text="Create New Poll"
@@ -138,11 +135,20 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
           </Table>
         </Fragment>
       ) : (
-        <SectionMessage title="Polls" appearance="error">
-          <Text>
-            No poll yet, click on the "Create New Poll" to create Poll
-          </Text>
-        </SectionMessage>
+        <Fragment>
+          <Button
+            text="Create New Poll"
+            icon="add"
+            iconPosition="before"
+            appearance="primary"
+            onClick={() => setModal(true)}
+          />
+          <SectionMessage title="Polls" appearance="error">
+            <Text>
+              No poll yet, click on the "Create New Poll" to create Poll
+            </Text>
+          </SectionMessage>
+        </Fragment>
       )}
     </Fragment>
   );
