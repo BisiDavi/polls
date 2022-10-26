@@ -23,6 +23,7 @@ function barChart(pollOptions, chartData) {
       backgroundColor: generateRandomColor(),
     });
   });
+  return barChartDataset;
 }
 
 export default function getChartpollData(data, type) {
