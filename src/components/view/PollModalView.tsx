@@ -4,7 +4,7 @@ import MeetingPoll from "../poll/MeetingPoll";
 import RegularPoll from "../poll/RegularPoll";
 import { formatPollAgenda } from "../../lib/getAgendaName";
 
-export default function MakePollModalView({ data, user }) {
+export default function PollModalView({ data, user }) {
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const pollOptions = data ? formatPollAgenda(data, formatPollType) : null;
 

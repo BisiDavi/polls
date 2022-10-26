@@ -1,13 +1,13 @@
 import ForgeUI, { ModalDialog, Tab, Tabs } from "@forge/ui";
 
-import MakePollModalView from "../view/MakePollModalView";
-import useUser from "../../hooks/useUser";
-
+import PollModalView from "../view/PollModalView";
 import PollModalDetailsView from "../view/PollModalDetailsView";
+import MeetingTab from "../tabs/MeetingTab";
+import useUser from "../../hooks/useUser";
 
 export default function PollModal({ setPollModal, data }) {
   const { context } = useUser();
-
+  
   const user = context?.accountId;
 
   const tab1Text =
@@ -29,11 +29,11 @@ export default function PollModal({ setPollModal, data }) {
           <PollModalDetailsView data={data} />
         </Tab>
         <Tab label={tab2Text}>
-          <MakePollModalView data={data} user={user} />
+          <PollModalView data={data} user={user} />
         </Tab>
         {data.type === "meetingPoll" && (
           <Tab label="Suggested Agenda">
-             
+            <MeetingTab data={data} />
           </Tab>
         )}
       </Tabs>
