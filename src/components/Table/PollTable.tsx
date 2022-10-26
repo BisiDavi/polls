@@ -29,25 +29,30 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   const polls = [];
 
   async function deletePollHandler(pollKey: string, deleteChartKey: string) {
-    await deletePoll(pollKey).then((response) => {
-      console.log("response-deletePollHandler", response);
-    });
-    await deleteStorage(deleteChartKey);
+    try {
+      await deletePoll(pollKey);
+      await deleteStorage(deleteChartKey);
+      setSavedPolls(null);
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   useEffect(async () => {
-    await getSavedPolls().then((response) => {
-      let pollData = {};
-      response.results.map((item: any) => {
-        pollData = {
-          value: JSON.parse(item?.value),
-          key: item.key,
-        };
-        polls.push(pollData);
+    if (savedPolls === null) {
+      await getSavedPolls().then((response) => {
+        let pollData = {};
+        response.results.map((item: any) => {
+          pollData = {
+            value: JSON.parse(item?.value),
+            key: item.key,
+          };
+          polls.push(pollData);
+        });
+        setSavedPolls(polls);
       });
-      setSavedPolls(polls);
-    });
-  }, []);
+    }
+  }, [savedPolls]);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
@@ -100,6 +105,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
               const deleteChartKey = `${deleteKeyType}-${toSlug(
                 item["rowId"]
               )}`;
+              console.log("deleteChartKey", deleteChartKey);
               return (
                 <Row key={index}>
                   {head.map((headItem, idx) => (
