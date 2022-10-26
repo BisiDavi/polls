@@ -12,6 +12,7 @@ import ForgeUI, {
   Tag,
   Image,
   SectionMessage,
+  User,
 } from "@forge/ui";
 
 import PollModal from "../modal/PollModal";
@@ -99,13 +100,13 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
             {pollsData.map((item, index) => (
               <Row key={index}>
                 {head.map((headItem, idx) => {
-                  console.log("head", head);
-                  console.log("headItem", headItem);
                   return (
                     <Cell key={idx}>
-                      {headItem.key !== "type" ? (
+                      {headItem.key === "author" ? (
+                        <User accountId={item[headItem.key]} />
+                      ) : headItem.key !== "type" ? (
                         <Text>{item[headItem.key]}</Text>
-                      ) : item[headItem.key] === "Meeting Poll" ? (
+                      ) : item[headItem.key] === "Meeting Planning" ? (
                         <Tag text={item[headItem.key]} color="teal" />
                       ) : (
                         item[headItem.key] === "Regular Poll" && (
