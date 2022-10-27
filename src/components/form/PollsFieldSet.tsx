@@ -3,17 +3,31 @@ import ForgeUI, { TextField, Button, ButtonSet, Fragment } from "@forge/ui";
 import { getAgendaName } from "../../lib/getAgendaName";
 
 interface Props {
-  type: "meeting" | "regular";
+  type: "meeting" | "regular" | "suggested";
   setPoll: any;
   poll: string[];
-  count?: number;
 }
 
-export default function PollsFieldSet({ type, poll, count, setPoll }: Props) {
-  const pollText = type === "meeting" ? "Agenda" : "Poll Option";
-  const buttonText = type === "meeting" ? "Meeting Agenda" : "Poll Option";
+export default function PollsFieldSet({ type, poll, setPoll }: Props) {
+  const pollText =
+    type === "meeting"
+      ? "Agenda"
+      : type === "suggested"
+      ? "Suggest Agenda"
+      : "Poll Option";
+
+  const buttonText =
+    type === "meeting"
+      ? "Meeting Agenda"
+      : type === "suggested"
+      ? "Suggested Agenda"
+      : "Poll Option";
   const inputText =
-    type === "meeting" ? "what's the meeting agenda" : "what's the poll option";
+    type === "meeting"
+      ? "what's the meeting agenda"
+      : type === "suggested"
+      ? "suggest meeting agenda"
+      : "what's the poll option";
 
   function removeAgendaHandler() {
     if (poll.length > 1) {
@@ -44,8 +58,7 @@ export default function PollsFieldSet({ type, poll, count, setPoll }: Props) {
         )}
       </ButtonSet>
       {poll.map((item, index) => {
-        const pollIndex = count ? count : index;
-        const { name, agendaCount } = getAgendaName(item, pollIndex);
+        const { name, agendaCount } = getAgendaName(item, index);
         return (
           <TextField
             key={index}

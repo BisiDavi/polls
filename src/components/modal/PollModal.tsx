@@ -3,15 +3,9 @@ import ForgeUI, { ModalDialog, Tab, Tabs, useState } from "@forge/ui";
 import PollModalView from "../view/PollModalView";
 import PollModalDetailsView from "../view/PollModalDetailsView";
 import MeetingTab from "../tabs/MeetingTab";
-import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function PollModal({ setPollModal, data }) {
-  const pollOptions = data ? formatPollAgenda(data, "agenda") : null;
-  const pollOptionsLength = pollOptions.length + 1;
-
-  const [suggestedAgenda, setSuggestedAgenda] = useState([
-    `Agenda ${pollOptionsLength}`,
-  ]);
+  const [suggestedAgenda, setSuggestedAgenda] = useState(["Agenda 1"]);
 
   const tab1Text =
     data.type === "meetingPoll" ? "Meeting Details" : "Poll Details";
