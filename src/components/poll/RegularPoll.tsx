@@ -1,4 +1,3 @@
-import useUser from "@/hooks/useUser";
 import ForgeUI, {
   useEffect,
   Fragment,
@@ -9,6 +8,7 @@ import ForgeUI, {
   Heading,
   ButtonSet,
   SectionMessage,
+  useProductContext,
 } from "@forge/ui";
 
 import useStorage from "../../hooks/useStorage";
@@ -20,7 +20,7 @@ export default function RegularPoll({ pollOptions, title }) {
   const [pollData, setPollData] = useState([]);
   const [submitPoll, setSubmitPollStatus] = useState(false);
   const { saveData, getDataFromStorage } = useStorage();
-  const { context } = useUser();
+  const context = useProductContext();
 
   const dataKey = `Vote-${toSlug(title)}`;
 

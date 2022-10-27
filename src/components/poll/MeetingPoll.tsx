@@ -7,6 +7,7 @@ import ForgeUI, {
   Strong,
   useEffect,
   SectionMessage,
+  useProductContext,
 } from "@forge/ui";
 
 import PollsFieldSet from "../form/PollsFieldSet";
@@ -14,7 +15,6 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import PollList from "./PollList";
-import useUser from "@/hooks/useUser";
 
 export default function MeetingPoll({
   pollOptions,
@@ -25,7 +25,7 @@ export default function MeetingPoll({
   const [existingData, setExistingData] = useState(null);
   const { saveData, getDataFromStorage } = useStorage();
   const [saveAgendastatus, setSaveAgendaStatus] = useState(false);
-  const { context } = useUser();
+  const context = useProductContext();
 
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
   const dataKey = `Agenda-${toSlug(title)}`;
