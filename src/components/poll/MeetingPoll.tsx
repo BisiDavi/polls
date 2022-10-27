@@ -48,7 +48,6 @@ export default function MeetingPoll({
     };
     const previousData = existingData ? existingData : "";
     const dataArray = [...previousData, formstateData];
-    console.log("dataArray", dataArray);
     await saveData(dataKey, dataArray).then(() => {
       setSaveAgendaStatus(true);
     });

@@ -26,8 +26,6 @@ export default function MeetingTab({ data }) {
     });
   }, []);
 
-  console.log("MeetingTab-suggestedAgenda", suggestedAgenda);
-
   const agendas = data ? formatPollAgenda(data, "agenda") : null;
 
   return (
@@ -41,14 +39,15 @@ export default function MeetingTab({ data }) {
       </Text>
       {suggestedAgenda.length > 0 &&
         suggestedAgenda.map((item) => {
-          console.log("item", item);
           const date = formatAgendaDate(item.date);
           const formatAgenda = formatPollAgenda(item, "suggest");
           return (
             <Text key={item.date}>
               <Strong>-</Strong>
               {formatAgenda[0]}
-              <User accountId={item.author} />({date})
+              {`         `}
+              <User accountId={item.author} />
+              {`         `}({date})
             </Text>
           );
         })}
