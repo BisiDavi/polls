@@ -15,7 +15,7 @@ export function formatFormPoll(pollState) {
   return agendaObj;
 }
 
-export function formatPollAgenda(data: any, type: "agenda" | "poll") {
+export function formatPollAgenda(data: any, type: "agenda" | "poll"| "suggest") {
   const dataEntries = Object.entries(data);
   const topicsArray = [];
   dataEntries.map((item) => {
