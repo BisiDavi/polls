@@ -86,7 +86,7 @@ export default function MeetingPoll({
           icon="add-item"
           iconPosition="before"
           text="New Agenda"
-          onClick={() => setSaveAgendaStatus(true)}
+          onClick={() => setSaveAgendaStatus(false)}
         />
       )}
     </Fragment>

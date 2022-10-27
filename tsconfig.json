@@ -11,10 +11,7 @@
     "baseUrl": "./",
     "allowJs": true,
     "jsx": "react",
-    "jsxFactory": "ForgeUI.createElement",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "jsxFactory": "ForgeUI.createElement"
   },
   "include": ["./src/**/*"]
 }

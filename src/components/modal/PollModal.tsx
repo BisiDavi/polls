@@ -4,7 +4,7 @@ import PollModalView from "../view/PollModalView";
 import PollModalDetailsView from "../view/PollModalDetailsView";
 import MeetingTab from "../tabs/MeetingTab";
 import MeetingPoll from "../poll/MeetingPoll";
-import { formatPollAgenda } from "@/lib/getAgendaName";
+import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function PollModal({ setPollModal, data }) {
   const [suggestedAgenda, setSuggestedAgenda] = useState(["Suggest Agenda 1"]);
