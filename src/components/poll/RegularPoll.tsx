@@ -9,6 +9,7 @@ import ForgeUI, {
   ButtonSet,
   SectionMessage,
   useProductContext,
+  User,
 } from "@forge/ui";
 
 import useStorage from "../../hooks/useStorage";
@@ -18,6 +19,7 @@ import ChartTabs from "../tabs/ChartTabs";
 export default function RegularPoll({ pollOptions, title }) {
   const [poll, makePoll] = useState(null);
   const [pollData, setPollData] = useState([]);
+  const [notify, setNotify] = useState(false);
   const [submitPoll, setSubmitPollStatus] = useState(false);
   const { saveData, getDataFromStorage } = useStorage();
   const context = useProductContext();
@@ -35,13 +37,24 @@ export default function RegularPoll({ pollOptions, title }) {
   }, [poll]);
 
   function saveRegularPoll(item: string) {
-    makePoll(item);
+    if (!hasVotedBefore) {
+      makePoll(item);
+    } else {
+      setNotify(true);
+    }
   }
 
   function resetHandler() {
     makePoll(null);
     setSubmitPollStatus(false);
   }
+
+  const checkPolls = pollData[0]?.value.filter(
+    (item) => item.author === context.accountId
+  )[0];
+
+  const hasVotedBefore =
+    pollData.length > 0 ? (checkPolls ? true : false) : false;
 
   async function onSubmitHandler() {
     const dateInstance = new Date();
@@ -73,6 +86,14 @@ export default function RegularPoll({ pollOptions, title }) {
       <Text>
         <Em>Note: Click on the Button to Vote</Em>
       </Text>
+      {notify && (
+        <SectionMessage title="Poll Alert" appearance="error">
+          <Text>
+            <User accountId={checkPolls.author} /> {"    "}
+            You've voted earlier, you can only vote once.
+          </Text>
+        </SectionMessage>
+      )}
       {submitPoll && (
         <SectionMessage title="Poll Status" appearance="confirmation">
           <Text>Poll Submitted Successfully</Text>

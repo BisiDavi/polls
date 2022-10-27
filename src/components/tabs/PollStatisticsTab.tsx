@@ -8,7 +8,7 @@ export default function PollStatisticsTab({ data }) {
 
   return (
     <Fragment>
-      { data.length > 0 && (
+      {data.length > 0 && (
         <Fragment>
           <Text>
             <Strong>Number of Poll: </Strong>
@@ -35,14 +35,15 @@ export default function PollStatisticsTab({ data }) {
                     <Strong>{item.vote}:</Strong> {item.count} {voteText}
                   </Text>
                   <Text>
-                    <Strong>Users:</Strong>
+                    <Strong>Users: </Strong>
                     {uniqueUserArray?.map((item) => {
                       const voteCount = voteUserGroupArray.filter(
                         (voteItem) => voteItem === item
                       ).length;
                       return (
                         <Fragment key={item}>
-                          <User accountId={item} />({voteCount})
+                          <User accountId={item} />
+                          {"   "}({voteCount}) {"         "}
                         </Fragment>
                       );
                     })}
