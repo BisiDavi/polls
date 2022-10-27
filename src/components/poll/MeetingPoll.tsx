@@ -9,6 +9,7 @@ import ForgeUI, {
   SectionMessage,
   useProductContext,
 } from "@forge/ui";
+import { v4 as uuidv4 } from "uuid";
 
 import PollsFieldSet from "../form/PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
@@ -28,7 +29,7 @@ export default function MeetingPoll({
   const context = useProductContext();
 
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
-  const dataKey = `Agenda-${toSlug(title)}`;
+  const dataKey = `Agenda-${toSlug(title)}-${uuidv4()}`;
 
   useEffect(async () => {
     getDataFromStorage(dataKey).then((response) => {
