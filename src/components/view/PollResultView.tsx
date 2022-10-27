@@ -8,6 +8,7 @@ import ForgeUI, {
   User,
   DateLozenge,
   useProductContext,
+  useState,
 } from "@forge/ui";
 import { v4 as uuidv4 } from "uuid";
 
@@ -25,6 +26,8 @@ export default function PollResultView({
 }) {
   const context = useProductContext();
   const { savePollData, getSavedPolls } = usePublish();
+  const [meetingLink, setMeetingLink] = useState(null);
+  const [formState, setFormState] = useState(null);
 
   const polls = [];
 

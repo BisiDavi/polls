@@ -3,13 +3,23 @@ import ForgeUI, {
   ButtonSet,
   useEffect,
   Fragment,
-  useState,
   TextField,
-	Form,
+  Form,
 } from "@forge/ui";
 
-export default function MeetingLink({}) {
-  const [meetingLink, setMeetingLink] = useState(null);
+export default function MeetingLink({
+  meetingLink,
+  setFormState,
+  setMeetingLink,
+}) {
+  async function onSubmit(formData) {
+    formData: {
+      link: "";
+    }
+    setFormState({
+      ...formData,
+    });
+  }
 
   useEffect(() => {
     if (meetingLink === "generate-zoom-link") {
@@ -45,9 +55,20 @@ export default function MeetingLink({}) {
           />
         )}
       </ButtonSet>
-      <Form>
-        <TextField name="link" />
-      </Form>
+      {meetingLink === "enter-meeting-link" && (
+        <Form
+          submitButtonAppearance="primary"
+          submitButtonText="Submit Link"
+          onSubmit={onSubmit}
+        >
+          <TextField
+            name="link"
+            label="Meeting Link"
+            placeholder="Enter meeting link (zoom/google meet or any)"
+            isRequired
+          />
+        </Form>
+      )}
     </Fragment>
   );
 }
