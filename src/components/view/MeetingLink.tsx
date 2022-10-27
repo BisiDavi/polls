@@ -4,17 +4,17 @@ import ForgeUI, {
   useEffect,
   Fragment,
   useState,
+  TextField,
+	Form,
 } from "@forge/ui";
-
 
 export default function MeetingLink({}) {
   const [meetingLink, setMeetingLink] = useState(null);
 
   useEffect(() => {
-		if(meetingLink === "generate-zoom-link"){
-
-		}
-	}, []);
+    if (meetingLink === "generate-zoom-link") {
+    }
+  }, []);
 
   return (
     <Fragment>
@@ -45,6 +45,9 @@ export default function MeetingLink({}) {
           />
         )}
       </ButtonSet>
+      <Form>
+        <TextField name="link" />
+      </Form>
     </Fragment>
   );
 }
