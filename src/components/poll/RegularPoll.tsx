@@ -1,3 +1,4 @@
+import useUser from "@/hooks/useUser";
 import ForgeUI, {
   useEffect,
   Fragment,
@@ -14,11 +15,12 @@ import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
 
-export default function RegularPoll({ pollOptions, user, title }) {
+export default function RegularPoll({ pollOptions, title }) {
   const [poll, makePoll] = useState(null);
   const [pollData, setPollData] = useState([]);
   const [submitPoll, setSubmitPollStatus] = useState(false);
   const { saveData, getDataFromStorage } = useStorage();
+  const { context } = useUser();
 
   const dataKey = `Vote-${toSlug(title)}`;
 
@@ -45,7 +47,7 @@ export default function RegularPoll({ pollOptions, user, title }) {
     const dateInstance = new Date();
     const dataObj = {
       date: dateInstance.toISOString(),
-      author: user,
+      author: context.accountId,
       vote: poll,
     };
     const existingData = pollData.length > 0 ? pollData[0].value : "";

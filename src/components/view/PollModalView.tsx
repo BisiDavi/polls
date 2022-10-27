@@ -8,8 +8,6 @@ import useUser from "../../hooks/useUser";
 export default function PollModalView({ data, suggestedAgenda, setSuggestedAgenda }) {
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const pollOptions = data ? formatPollAgenda(data, formatPollType) : null;
-  const { context } = useUser();
-  const user = context?.accountId;
 
   return (
     <Fragment>
@@ -18,7 +16,6 @@ export default function PollModalView({ data, suggestedAgenda, setSuggestedAgend
       ) : (
         <MeetingPoll
           pollOptions={pollOptions}
-          currentUser={user}
           title={data.title}
           suggestedAgenda={suggestedAgenda}
           setSuggestedAgenda={setSuggestedAgenda}

@@ -5,7 +5,11 @@ import PollModalDetailsView from "../view/PollModalDetailsView";
 import MeetingTab from "../tabs/MeetingTab";
 
 export default function PollModal({ setPollModal, data }) {
-  const [suggestedAgenda, setSuggestedAgenda] = useState(["Agenda 1"]);
+  const [suggestedAgenda, setSuggestedAgenda] = useState([
+    "Suggest Agenda 1",
+  ]);
+
+  console.log("suggestedAgenda", suggestedAgenda);
 
   const tab1Text =
     data.type === "meetingPoll" ? "Meeting Details" : "Poll Details";

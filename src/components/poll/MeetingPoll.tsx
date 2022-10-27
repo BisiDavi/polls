@@ -6,6 +6,7 @@ import ForgeUI, {
   Form,
   Strong,
   useEffect,
+  SectionMessage,
 } from "@forge/ui";
 
 import PollsFieldSet from "../form/PollsFieldSet";
@@ -13,21 +14,21 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import PollList from "./PollList";
+import useUser from "@/hooks/useUser";
 
 export default function MeetingPoll({
   pollOptions,
-  currentUser,
   title,
   suggestedAgenda,
   setSuggestedAgenda,
 }) {
   const [existingData, setExistingData] = useState(null);
   const { saveData, getDataFromStorage } = useStorage();
+  const [saveAgendastatus, setSaveAgendaStatus] = useState(false);
+  const { context } = useUser();
 
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
   const dataKey = `Agenda-${toSlug(title)}`;
-
-  console.log("agenda", suggestedAgenda);
 
   useEffect(async () => {
     getDataFromStorage(dataKey).then((response) => {
@@ -41,12 +42,15 @@ export default function MeetingPoll({
     const formstateData = {
       ...agendaObj,
       ...formData,
-      author: currentUser,
+      author: context.accountId,
       date: dateInstance.toISOString(),
     };
     const previousData = existingData ? existingData : "";
     const dataArray = [...previousData, formstateData];
-    saveData(dataKey, dataArray);
+    console.log("dataArray", dataArray);
+    await saveData(dataKey, dataArray).then(() => {
+      setSaveAgendaStatus(true);
+    });
   }
 
   return (
@@ -62,6 +66,11 @@ export default function MeetingPoll({
           Do you have any <Strong>agenda</Strong> to add to this Meeting?
         </Em>
       </Text>
+      {saveAgendastatus && (
+        <SectionMessage appearance="confirmation">
+          <Text>Suggested Agenda Submitted</Text>
+        </SectionMessage>
+      )}
       <Form onSubmit={onSubmit} submitButtonText="Submit Suggested Agenda">
         <PollsFieldSet
           type="suggested"
