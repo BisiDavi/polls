@@ -17,6 +17,7 @@ import usePublish from "../../hooks/usePublish";
 import { formatDate } from "../../lib/isDateValid";
 import { formatPollAgenda } from "../../lib/getAgendaName";
 import PollList from "../poll/PollList";
+import MeetingLink from "./MeetingLink";
 
 export default function PollResultView({
   data,
@@ -110,12 +111,7 @@ export default function PollResultView({
           </Text>
         </Fragment>
       )}
-      <Fragment>
-        <ButtonSet>
-          <Button text="generate zoom link" onClick={() => null} />
-          <Button text="or enter a meeting link" onClick={() => null} />
-        </ButtonSet>
-      </Fragment>
+      <MeetingLink />
       <Button
         text="Publish"
         icon="book"
