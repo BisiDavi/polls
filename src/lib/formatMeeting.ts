@@ -12,5 +12,7 @@ export function getSuggestedAgenda(agenda, dataKey) {
 
 export function formatAgendaDate(dateString) {
   const dateInstance = new Date(dateString);
-  return dateInstance.toLocaleString("en-CA");
+  return dateInstance.toLocaleString("en-US", {
+    hour12: true,
+  });
 }

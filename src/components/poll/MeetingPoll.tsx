@@ -8,6 +8,7 @@ import ForgeUI, {
   useEffect,
   SectionMessage,
   useProductContext,
+  Button,
 } from "@forge/ui";
 import { v4 as uuidv4 } from "uuid";
 
@@ -22,10 +23,11 @@ export default function MeetingPoll({
   title,
   suggestedAgenda,
   setSuggestedAgenda,
+  saveAgendaStatus,
+  setSaveAgendaStatus,
 }) {
   const [existingData, setExistingData] = useState(null);
   const { saveData, getDataFromStorage } = useStorage();
-  const [saveAgendastatus, setSaveAgendaStatus] = useState(false);
   const context = useProductContext();
 
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
@@ -66,18 +68,27 @@ export default function MeetingPoll({
           Do you have any <Strong>agenda</Strong> to add to this Meeting?
         </Em>
       </Text>
-      {saveAgendastatus && (
+      {saveAgendaStatus && (
         <SectionMessage appearance="confirmation">
           <Text>Suggested Agenda Submitted</Text>
         </SectionMessage>
       )}
-      <Form onSubmit={onSubmit} submitButtonText="Submit Suggested Agenda">
-        <PollsFieldSet
-          type="suggested"
-          poll={suggestedAgenda}
-          setPoll={setSuggestedAgenda}
+      {!saveAgendaStatus ? (
+        <Form onSubmit={onSubmit} submitButtonText="Submit Suggested Agenda">
+          <PollsFieldSet
+            type="suggested"
+            poll={suggestedAgenda}
+            setPoll={setSuggestedAgenda}
+          />
+        </Form>
+      ) : (
+        <Button
+          icon="add-item"
+          iconPosition="before"
+          text="New Agenda"
+          onClick={() => setSaveAgendaStatus(true)}
         />
-      </Form>
+      )}
     </Fragment>
   );
 }
