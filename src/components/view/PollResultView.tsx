@@ -31,6 +31,8 @@ export default function PollResultView({
 
   const polls = [];
 
+  console.log("formState", formState);
+
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const optionText =
@@ -112,7 +114,12 @@ export default function PollResultView({
           </Text>
         </Fragment>
       )}
-      <MeetingLink />
+      <MeetingLink
+        data={data}
+        meetingLink={meetingLink}
+        setMeetingLink={setMeetingLink}
+        setFormState={setFormState}
+      />
       <Button
         text="Publish"
         icon="book"

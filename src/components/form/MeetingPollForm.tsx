@@ -30,11 +30,6 @@ export default function MeetingPollForm({
         placeholder="Enter your Meeting Title"
         isRequired
       />
-      <TextField
-        name="link"
-        label="Meeting Link"
-        placeholder="zoom/google meet/any video call link"
-      />
       <DatePicker
         name="meetingDate"
         placeholder="Select Date"

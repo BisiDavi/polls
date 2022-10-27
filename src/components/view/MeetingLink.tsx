@@ -8,6 +8,7 @@ import ForgeUI, {
 } from "@forge/ui";
 
 export default function MeetingLink({
+  data,
   meetingLink,
   setFormState,
   setMeetingLink,
@@ -64,7 +65,7 @@ export default function MeetingLink({
           <TextField
             name="link"
             label="Meeting Link"
-            placeholder="Enter meeting link (zoom/google meet or any)"
+            placeholder="Enter a meeting link (zoom/google meet or any video call platform link)"
             isRequired
           />
         </Form>
