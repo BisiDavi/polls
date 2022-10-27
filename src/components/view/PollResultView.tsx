@@ -9,6 +9,7 @@ import ForgeUI, {
   DateLozenge,
   Em,
   useProductContext,
+  ButtonSet,
 } from "@forge/ui";
 import { v4 as uuidv4 } from "uuid";
 
@@ -109,6 +110,12 @@ export default function PollResultView({
           </Text>
         </Fragment>
       )}
+      <Fragment>
+        <ButtonSet>
+          <Button text="generate zoom link" onClick={() => null} />
+          <Button text="or enter a meeting link" onClick={() => null} />
+        </ButtonSet>
+      </Fragment>
       <Button
         text="Publish"
         icon="book"

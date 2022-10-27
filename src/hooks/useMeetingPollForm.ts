@@ -36,7 +36,6 @@ export default function useMeetingPollForm(
     const agendaObj = formatFormPoll(agenda);
     formData: {
       title: "";
-      link: "";
       description: "";
       meetingDate: "";
       duration: "";
