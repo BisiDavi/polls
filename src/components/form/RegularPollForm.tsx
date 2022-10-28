@@ -33,7 +33,7 @@ export default function RegularPollForm({ onSubmit }) {
           <Checkbox value="true" label="Yes" />
           <Checkbox value="false" label="No" />
         </CheckboxGroup>
-        <Select label="Select Poll Duration" name="pollDuration">
+        <Select label="Select Poll Duration" name="pollDuration" isRequired>
           {pollDurationOption.map((item) => (
             <Option key={item} label={item} value={item} />
           ))}

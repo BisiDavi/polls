@@ -24,7 +24,7 @@ export default function useRegularPollForm(
     formData: {
       title: "";
       description: "";
-      hideVotes: "";
+      hideVotes: [""];
       pollDuration: "";
     }
     setFormState({
