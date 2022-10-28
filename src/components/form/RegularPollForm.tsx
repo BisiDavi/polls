@@ -50,3 +50,7 @@ export default function RegularPollForm({ onSubmit }) {
     </Form>
   );
 }
+
+// Nigeria Presidential Aspirant Poll
+
+// A poll on preferred Nigeria Presidential Aspirant
