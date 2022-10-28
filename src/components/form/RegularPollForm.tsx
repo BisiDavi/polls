@@ -15,7 +15,7 @@ import PollsFieldSet from "./PollsFieldSet";
 
 export default function RegularPollForm({ onSubmit }) {
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
-
+  
   const pollObj = formatFormPoll(regularPolls);
   const pollDurationOption = [
     { label: "1 hr", value: 1 },

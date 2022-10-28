@@ -10,7 +10,7 @@ export default function PollList({ pollData, type }: Props) {
     <Fragment>
       {pollData.map((item, index) => {
         const list = index + 1;
-        const isIndex = item.includes(`${list}`) ? "" : `${list}.`;
+        const isIndex = item?.includes(`${list}`) ? "" : `${list}.`;
         return (
           <Text key={item}>
             {isIndex} {type ? <Em>{item}</Em> : item}
