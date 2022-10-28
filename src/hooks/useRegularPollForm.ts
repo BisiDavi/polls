@@ -1,6 +1,8 @@
 import { useEffect } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
 
+import { addHours } from "../lib/isDateValid";
+
 export default function useRegularPollForm(
   formState,
   setFormState,
@@ -27,9 +29,13 @@ export default function useRegularPollForm(
       hideVotes: [""];
       pollDuration: "";
     }
+
+    const currentDate = new Date();
+    const pollDeadline = addHours(formData.pollDuration, currentDate);
     setFormState({
       ...pollObj,
       ...formData,
+      pollDeadline,
       type: "regularMeetingPoll",
       date: date.toISOString(),
     });

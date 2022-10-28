@@ -1,4 +1,10 @@
-import ForgeUI, { useEffect, Fragment, useState, Text } from "@forge/ui";
+import ForgeUI, {
+  useEffect,
+  Fragment,
+  useState,
+  Text,
+  ButtonSet,
+} from "@forge/ui";
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -25,11 +31,17 @@ export default function RegularPollTimer({ deadline }) {
         H: (time / HOUR) % 24,
         M: (time / MINUTE) % 60,
         S: (time / SECOND) % 60,
-      }).map(([label, value]) => (
-        <Fragment key={label}>
-          <Text>{`${label}:${Math.floor(value)}`.padStart(2, "0")}</Text>
-        </Fragment>
-      ))}
+      }).map(([label, value]) => {
+        const timeString = `${Math.floor(value)}`.padStart(2, "0");
+        return (
+          <ButtonSet key={label}>
+            {/* <Button text="" /> */}
+            <Text>
+              {label}:{`${Math.floor(value)}`.padStart(2, "0")}
+            </Text>
+          </ButtonSet>
+        );
+      })}
     </Fragment>
   );
 }

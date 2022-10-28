@@ -15,6 +15,7 @@ import ForgeUI, {
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
+import RegularPollTimer from "./RegularPollTimer";
 
 export default function RegularPoll({ pollOptions, title }) {
   const [poll, makePoll] = useState(null);
@@ -83,6 +84,7 @@ export default function RegularPoll({ pollOptions, title }) {
   return (
     <Fragment>
       <Heading>{titleText}</Heading>
+      <RegularPollTimer deadline="2022-10-28T17:41:50.783Z" />
       <Text>
         <Em>Note: Click on the Button to Vote</Em>
       </Text>
