@@ -7,18 +7,12 @@ import ForgeUI, {
   Form,
   useState,
 } from "@forge/ui";
+import { fetch } from "@forge/api";
+
 import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function MeetingLink({ data, setFormState, setMeetingLink }) {
   const [meetingType, setMeetingType] = useState(null);
-
-  const agendas = data ? formatPollAgenda(data, "agenda") : null;
-  let agendaString = "";
-  agendas.map((item) => {
-    agendaString += `${item} \n`;
-  });
-  console.log("agenda", agendas);
-  console.log("agendaString", agendaString);
 
   async function onSubmit(formData) {
     formData: {
@@ -50,7 +44,11 @@ export default function MeetingLink({ data, setFormState, setMeetingLink }) {
         setMeetingLink(result);
       });
     }
-  }, []);
+  }, [meetingType]);
+
+  const disableZoomBtn = meetingType === "generate-zoom-link" ? true : false;
+  const disableMeetingLinkBtn =
+    meetingType === "enter-meeting-link" ? true : false;
 
   return (
     <Fragment>
@@ -62,12 +60,14 @@ export default function MeetingLink({ data, setFormState, setMeetingLink }) {
               icon="link"
               iconPosition="before"
               appearance="primary"
+              disabled={disableZoomBtn}
               onClick={() => setMeetingType("generate-zoom-link")}
             />
             <Button
               text="Or Enter a meeting link"
               icon="add"
               appearance="warning"
+              disabled={disableMeetingLinkBtn}
               onClick={() => setMeetingType("enter-meeting-link")}
             />
           </Fragment>
@@ -77,7 +77,7 @@ export default function MeetingLink({ data, setFormState, setMeetingLink }) {
             text="Reset"
             icon="error"
             appearance="danger"
-            onClick={() => null}
+            onClick={() => setMeetingType(null)}
           />
         )}
       </ButtonSet>
