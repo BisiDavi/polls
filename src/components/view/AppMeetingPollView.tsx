@@ -6,7 +6,6 @@ import ForgeUI, {
   Strong,
   User,
   DateLozenge,
-  Em,
 } from "@forge/ui";
 import PollList from "../poll/PollList";
 

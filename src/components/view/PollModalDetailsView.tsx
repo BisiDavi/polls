@@ -3,7 +3,6 @@ import ForgeUI, {
   Text,
   Strong,
   Link,
-  Em,
   DateLozenge,
   User,
 } from "@forge/ui";

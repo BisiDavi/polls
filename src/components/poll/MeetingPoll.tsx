@@ -65,7 +65,7 @@ export default function MeetingPoll({
 
   return (
     <Fragment>
-      {isMeetingValid ? (
+      {!isMeetingValid ? (
         <Fragment>
           <Text>
             <Strong>
