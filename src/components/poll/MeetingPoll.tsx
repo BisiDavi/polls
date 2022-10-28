@@ -35,8 +35,6 @@ export default function MeetingPoll({
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
   const dataKey = `Agenda-${toSlug(data.title)}-${uuidv4()}`;
 
-  console.log("data-data", data);
-
   useEffect(async () => {
     getDataFromStorage(dataKey).then((response) => {
       setExistingData(response.results);
@@ -61,11 +59,9 @@ export default function MeetingPoll({
 
   const isMeetingValid = isDateValid(data.meetingDate);
 
-  console.log("isMeetingValid", isMeetingValid);
-
   return (
     <Fragment>
-      {!isMeetingValid ? (
+      {isMeetingValid ? (
         <Fragment>
           <Text>
             <Strong>
@@ -110,7 +106,8 @@ export default function MeetingPoll({
             alt="meeting date expired"
           />
           <Text>
-            Meeting date has expired, you can't suggest any agenda for this meeting.
+            Meeting date has expired, you can't suggest any agenda for this
+            meeting.
           </Text>
         </Fragment>
       )}

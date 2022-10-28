@@ -1,4 +1,11 @@
-import ForgeUI, { Fragment, Text, Strong, Image, User } from "@forge/ui";
+import ForgeUI, {
+  Fragment,
+  Text,
+  Strong,
+  Image,
+  User,
+  UserGroup,
+} from "@forge/ui";
 
 import { getVoteOptionCount } from "../../lib/formatVote";
 
@@ -35,18 +42,14 @@ export default function PollStatisticsTab({ data }) {
                     <Strong>{item.vote}:</Strong> {item.count} {voteText}
                   </Text>
                   <Text>
-                    <Strong>User: </Strong>
-                    {uniqueUserArray?.map((item) => {
-                      const voteCount = voteUserGroupArray.filter(
-                        (voteItem) => voteItem === item
-                      ).length;
-                      return (
-                        <Fragment key={item}>
+                    <Strong>User(s): </Strong>
+                    {uniqueUserArray?.map((item) => (
+                      <Fragment key={item}>
+                        <UserGroup>
                           <User accountId={item} />
-                          {"   "}({voteCount}) {"         "}
-                        </Fragment>
-                      );
-                    })}
+                        </UserGroup>
+                      </Fragment>
+                    ))}
                   </Text>
                   <Image
                     src="https://res.cloudinary.com/verrb-inc/image/upload/v1666751407/Screenshot_2022-10-26_at_3.28.09_AM_oenkj6.png"
