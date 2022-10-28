@@ -11,7 +11,7 @@ import ForgeUI, {
 } from "@forge/ui";
 
 import PollList from "../poll/PollList";
-import usePollResultView from "src/hooks/usePollResultView";
+import usePollResultView from "../../hooks/usePollResultView";
 import MeetingLinkForm from "../form/MeetingLinkForm";
 import MeetingLinkView from "./MeetingLinkView";
 

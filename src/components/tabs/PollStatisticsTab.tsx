@@ -35,7 +35,7 @@ export default function PollStatisticsTab({ data }) {
                     <Strong>{item.vote}:</Strong> {item.count} {voteText}
                   </Text>
                   <Text>
-                    <Strong>Users: </Strong>
+                    <Strong>User: </Strong>
                     {uniqueUserArray?.map((item) => {
                       const voteCount = voteUserGroupArray.filter(
                         (voteItem) => voteItem === item

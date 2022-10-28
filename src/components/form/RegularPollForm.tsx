@@ -5,6 +5,8 @@ import ForgeUI, {
   Heading,
   TextArea,
   Fragment,
+  CheckboxGroup,
+  Checkbox,
 } from "@forge/ui";
 
 import { formatFormPoll } from "../../lib/getAgendaName";
@@ -24,6 +26,10 @@ export default function RegularPollForm({ onSubmit }) {
         <Heading>Regular Poll Form</Heading>
         <TextField name="title" label="Poll Title" isRequired />
         <TextArea spellCheck label="Poll Description" name="description" />
+        <CheckboxGroup label="Make Poll Voters Anonymous" name="hideVoters">
+          <Checkbox value="true" label="Yes" />
+          <Checkbox value="false" label="No" />
+        </CheckboxGroup>
         <PollsFieldSet
           type="regular"
           poll={regularPolls}
