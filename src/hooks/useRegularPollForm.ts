@@ -12,7 +12,7 @@ export default function useRegularPollForm(
   );
 
   useEffect(async () => {
-    if (formState !== undefined && formState.type !== "meetingPoll") {
+    if (formState !== undefined && formState.type === "regularMeetingPoll") {
       await setRegularFormData(formState).then(() => {
         setPollType("Regular-View");
       });

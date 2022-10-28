@@ -16,17 +16,19 @@ export default function useMeetingPollForm(
     ""
   );
 
-  console.log('formState',formState)
-
   useEffect(() => {
-    if (formState !== undefined && formState === "meetingPoll") {
+    if (formState !== undefined && formState.type === "meetingPoll") {
       const dateStatus = isDateValid(formState.meetingDate);
       setValidDate(dateStatus);
     }
   }, [formState]);
 
   useEffect(async () => {
-    if (formState !== undefined && validDate && formState === "meetingPoll") {
+    if (
+      formState !== undefined &&
+      validDate &&
+      formState.type === "meetingPoll"
+    ) {
       await setMeetingPollData(formState).then(() => {
         setPollType("Meeting-View");
       });

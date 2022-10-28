@@ -16,8 +16,6 @@ export default function MeetingPollForm({
   setAgenda,
   onSubmit,
 }) {
-  console.log("ValidDate", validDate);
-
   return (
     <Form submitButtonAppearance="primary" onSubmit={onSubmit}>
       <Heading>Meeting Poll Form</Heading>
