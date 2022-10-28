@@ -31,7 +31,7 @@ export default function useRegularPollForm(
     }
 
     const currentDate = new Date();
-    const deadline = addHours(formData.pollDuration, currentDate);
+    const deadline = addHours(formData.duration, currentDate);
     setFormState({
       ...pollObj,
       ...formData,

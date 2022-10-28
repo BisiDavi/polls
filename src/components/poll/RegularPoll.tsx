@@ -82,12 +82,14 @@ export default function RegularPoll({ pollOptions, data }) {
 
   const disableButtonStatus = !poll ? true : false;
   const pollChartData = { pollOptions, title: data.title, pollData };
-  const isTimerValid = isTimeValid("2022-10-28T17:41:50.783Z");
+  const isTimerValid = isTimeValid(data.deadline);
+
+  console.log("data-regularpoll", data);
 
   return (
     <Fragment>
       <Heading>{titleText}</Heading>
-      {isTimerValid && <RegularPollTimer deadline="2022-10-28T17:41:50.783Z" />}
+      {isTimerValid && <RegularPollTimer deadline={data.deadline} />}
       {isTimerValid ? (
         <Fragment>
           <Text>

@@ -33,8 +33,6 @@ export default function PollResultView({
     meetingLinkResult,
   } = usePollResultView(setAppPoll, setSavedPolls, setModal, data);
 
-  console.log("data-data", data);
-
   return (
     <Fragment>
       <Heading size="medium">Polls Details ({pollType})</Heading>
