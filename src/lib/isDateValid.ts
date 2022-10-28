@@ -21,3 +21,8 @@ export function formatPollDate(dateString: string) {
   const date = dateInstance.toDateString();
   return date;
 }
+
+export function addHours(numOfHours, date) {
+  date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+  return date;
+}

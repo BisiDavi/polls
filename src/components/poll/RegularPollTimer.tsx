@@ -21,13 +21,13 @@ export default function RegularPollTimer({ deadline }) {
   return (
     <Fragment>
       {Object.entries({
-        Days: time / DAY,
-        Hours: (time / HOUR) % 24,
-        Minutes: (time / MINUTE) % 60,
-        Seconds: (time / SECOND) % 60,
+        D: time / DAY,
+        H: (time / HOUR) % 24,
+        M: (time / MINUTE) % 60,
+        S: (time / SECOND) % 60,
       }).map(([label, value]) => (
         <Fragment key={label}>
-          <Text>{`${Math.floor(value)}`.padStart(2, "0")}</Text>
+          <Text>{`${label}:${Math.floor(value)}`.padStart(2, "0")}</Text>
         </Fragment>
       ))}
     </Fragment>
