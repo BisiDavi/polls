@@ -151,7 +151,7 @@ export default function RegularPoll({ pollOptions, data }) {
             src="https://res.cloudinary.com/verrb-inc/image/upload/v1666959221/error_zaf55u.gif"
             alt="poll has expired"
           />
-          <Text>This Poll has expired</Text>
+          <Text>This Poll has ended.</Text>
         </Fragment>
       )}
       <ChartTabs data={pollChartData} />
