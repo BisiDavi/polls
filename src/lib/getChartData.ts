@@ -27,7 +27,7 @@ function barChart(pollOptions, chartData) {
 }
 
 export default function getChartpollData(data, type) {
-  const { pollOptions, title, pollData } = data;
+  const { pollOptions, regularChartData, pollData } = data;
   const chartData = getPollChartDataArray(pollOptions, pollData);
   const barChartDataset = barChart(pollOptions, chartData);
   const pieChartDataset = pieChart(pollOptions, chartData);
@@ -48,7 +48,7 @@ export default function getChartpollData(data, type) {
       ...legend,
       title: {
         display: true,
-        text: title,
+        text: regularChartData.title,
       },
       plugins: {
         datalabels: {

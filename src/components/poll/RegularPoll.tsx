@@ -81,7 +81,7 @@ export default function RegularPoll({ pollOptions, data }) {
   }
 
   const disableButtonStatus = !poll ? true : false;
-  const pollChartData = { pollOptions, title: data.title, pollData };
+  const pollChartData = { pollOptions, regularChartData: data, pollData };
   const isTimerValid = isTimeValid(data.deadline);
 
   return (

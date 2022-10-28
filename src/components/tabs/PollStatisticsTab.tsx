@@ -9,9 +9,11 @@ import ForgeUI, {
 
 import { getVoteOptionCount } from "../../lib/formatVote";
 
-export default function PollStatisticsTab({ data }) {
+export default function PollStatisticsTab({ data, chartData }) {
   const voteOptionData =
     data.length > 0 ? getVoteOptionCount(data[0].value) : null;
+
+  console.log("data.hideVoters", chartData?.hideVoters);
 
   return (
     <Fragment>
@@ -41,14 +43,16 @@ export default function PollStatisticsTab({ data }) {
                   <Text>
                     <Strong>{item.vote}:</Strong> {item.count} {voteText}
                   </Text>
-                  <Text>
-                    <Strong>User(s): </Strong>
-                    {uniqueUserArray?.map((item) => (
-                      <UserGroup key={item}>
-                        <User accountId={item} />
-                      </UserGroup>
-                    ))}
-                  </Text>
+                  {chartData?.hideVoters[0] === "false" && (
+                    <Text>
+                      <Strong>User(s): </Strong>
+                      {uniqueUserArray?.map((item) => (
+                        <UserGroup key={item}>
+                          <User accountId={item} />
+                        </UserGroup>
+                      ))}
+                    </Text>
+                  )}
                   <Image
                     src="https://res.cloudinary.com/verrb-inc/image/upload/v1666751407/Screenshot_2022-10-26_at_3.28.09_AM_oenkj6.png"
                     alt="underline"
