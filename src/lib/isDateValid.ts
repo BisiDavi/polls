@@ -27,3 +27,11 @@ export function addHours(numOfHours, date) {
   date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
   return date.toISOString();
 }
+
+export function isTimeValid(dateString: string) {
+  const timeString = new Date(dateString);
+  const currentTime = new Date();
+
+  const isTimeValid = timeString > currentTime;
+  return isTimeValid;
+}

@@ -10,7 +10,9 @@ import ForgeUI, {
   SectionMessage,
   useProductContext,
   User,
+  Image,
 } from "@forge/ui";
+import { isTimeValid } from "src/lib/isDateValid";
 
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
@@ -80,64 +82,77 @@ export default function RegularPoll({ pollOptions, data }) {
 
   const disableButtonStatus = !poll ? true : false;
   const pollChartData = { pollOptions, title: data.title, pollData };
+  const isTimerValid = isTimeValid("2022-10-28T17:41:50.783Z");
 
   return (
     <Fragment>
       <Heading>{titleText}</Heading>
-      <RegularPollTimer deadline="2022-10-28T17:41:50.783Z" />
-      <Text>
-        <Em>Note: Click on the Button to Vote</Em>
-      </Text>
-      {notify && (
-        <SectionMessage title="Poll Alert" appearance="error">
+      {isTimerValid && <RegularPollTimer deadline="2022-10-28T17:41:50.783Z" />}
+      {isTimerValid ? (
+        <Fragment>
           <Text>
-            <User accountId={checkPolls.author} /> {"    "}
-            You've voted earlier, you can only vote once.
+            <Em>Note: Click on the Button to Vote</Em>
           </Text>
-        </SectionMessage>
-      )}
-      {submitPoll && (
-        <SectionMessage title="Poll Status" appearance="confirmation">
-          <Text>Poll Submitted Successfully</Text>
-          <Text>Thanks, for participating in the Poll</Text>
-        </SectionMessage>
-      )}
-      {pollOptions &&
-        pollOptions?.map((item, index) => {
-          const buttonIcon =
-            poll === item ? "check-circle-outline" : "presence-active";
-          const disableButton =
-            poll === null ? false : poll === item ? false : true;
+          {notify && (
+            <SectionMessage title="Poll Alert" appearance="error">
+              <Text>
+                <User accountId={checkPolls.author} /> {"    "}
+                You've voted earlier, you can only vote once.
+              </Text>
+            </SectionMessage>
+          )}
+          {submitPoll && (
+            <SectionMessage title="Poll Status" appearance="confirmation">
+              <Text>Poll Submitted Successfully</Text>
+              <Text>Thanks, for participating in the Poll</Text>
+            </SectionMessage>
+          )}
+          {pollOptions &&
+            pollOptions?.map((item, index) => {
+              const buttonIcon =
+                poll === item ? "check-circle-outline" : "presence-active";
+              const disableButton =
+                poll === null ? false : poll === item ? false : true;
 
-          return (
-            <Button
-              iconPosition="before"
-              key={index}
-              icon={buttonIcon}
-              appearance="primary"
-              text={item}
-              onClick={() => saveRegularPoll(item)}
-              disabled={disableButton}
-            />
-          );
-        })}
-      {!submitPoll && (
-        <ButtonSet>
-          <Button
-            text="Submit"
-            icon="send"
-            appearance="primary"
-            onClick={onSubmitHandler}
-            disabled={disableButtonStatus}
+              return (
+                <Button
+                  iconPosition="before"
+                  key={index}
+                  icon={buttonIcon}
+                  appearance="primary"
+                  text={item}
+                  onClick={() => saveRegularPoll(item)}
+                  disabled={disableButton}
+                />
+              );
+            })}
+          {!submitPoll && (
+            <ButtonSet>
+              <Button
+                text="Submit"
+                icon="send"
+                appearance="primary"
+                onClick={onSubmitHandler}
+                disabled={disableButtonStatus}
+              />
+              <Button
+                text="Reset"
+                icon="error"
+                appearance="danger"
+                onClick={resetHandler}
+                disabled={disableButtonStatus}
+              />
+            </ButtonSet>
+          )}
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Image
+            src="https://res.cloudinary.com/verrb-inc/image/upload/v1666959221/error_zaf55u.gif"
+            alt="poll has expired"
           />
-          <Button
-            text="Reset"
-            icon="error"
-            appearance="danger"
-            onClick={resetHandler}
-            disabled={disableButtonStatus}
-          />
-        </ButtonSet>
+          <Text>This Poll has expired</Text>
+        </Fragment>
       )}
       <ChartTabs data={pollChartData} />
     </Fragment>
