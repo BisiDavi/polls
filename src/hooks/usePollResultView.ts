@@ -24,8 +24,6 @@ export default function usePollResultView(
     ? formState?.link
     : null;
 
-  console.log("meetingLinkResult", meetingLinkResult);
-
   const meetingLinkData = meetingLink
     ? {
         link: {

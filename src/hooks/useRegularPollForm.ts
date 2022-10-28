@@ -27,15 +27,15 @@ export default function useRegularPollForm(
       title: "";
       description: "";
       hideVotes: [""];
-      pollDuration: "";
+      duration: "";
     }
 
     const currentDate = new Date();
-    const pollDeadline = addHours(formData.pollDuration, currentDate);
+    const deadline = addHours(formData.pollDuration, currentDate);
     setFormState({
       ...pollObj,
       ...formData,
-      pollDeadline,
+      deadline,
       type: "regularMeetingPoll",
       date: date.toISOString(),
     });
