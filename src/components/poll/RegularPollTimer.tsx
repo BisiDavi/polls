@@ -33,11 +33,12 @@ export default function RegularPollTimer({ deadline }) {
             Second: (time / SECOND) % 60,
           }).map(([label, value]) => {
             const timeString = `${Math.floor(value)}`.padStart(2, "0");
-            const hourLabel = label === "Hour" && value > 1 ? "hrs" : "hr";
+            const hourLabel =
+              label === "Hour" && Number(value) > 1 ? "hrs" : "hr";
             const minuteLabel =
-              label === "Minute" && value > 1 ? "mins" : "min";
+              label === "Minute" && Number(value) > 1 ? "mins" : "min";
             const secondLabel =
-              label === "Second" && value > 1 ? "secs" : "sec";
+              label === "Second" && Number(value) > 1 ? "secs" : "sec";
             const timeLabel =
               label === "Hour"
                 ? hourLabel

@@ -12,8 +12,8 @@ import ForgeUI, {
   User,
   Image,
 } from "@forge/ui";
-import { isTimeValid } from "src/lib/isDateValid";
 
+import { isTimeValid } from "../../lib/isDateValid";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
