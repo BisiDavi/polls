@@ -5,14 +5,20 @@ import ForgeUI, {
   Fragment,
   TextField,
   Form,
+  useState,
 } from "@forge/ui";
+import { formatPollAgenda } from "../../lib/getAgendaName";
 
-export default function MeetingLink({
-  data,
-  meetingLink,
-  setFormState,
-  setMeetingLink,
-}) {
+export default function MeetingLink({ data, setFormState, setMeetingLink }) {
+  const [meetingType, setMeetingType] = useState(null);
+
+  const agendas = data ? formatPollAgenda(data, "agenda") : null;
+  let agendaString = "";
+  agendas.map((item) => {
+    agendaString += `${item} \n`;
+  });
+  console.log("agendaString", agendaString);
+
   async function onSubmit(formData) {
     formData: {
       link: "";
@@ -22,32 +28,50 @@ export default function MeetingLink({
     });
   }
 
-  useEffect(() => {
-    if (meetingLink === "generate-zoom-link") {
+  useEffect(async () => {
+    if (meetingType === "generate-zoom-link") {
+      const agendas = data ? formatPollAgenda(data, "agenda") : null;
+      let agendaString = "";
+      agendas.map((item) => {
+        agendaString += `${item} \n`;
+      });
+      console.log("agendaString", agendaString);
+
+      await fetch("https://confluence-api.vercel.app/api/zoom/create-meeting", {
+        method: "POST",
+        body: JSON.stringify({
+          topic: data.title,
+          agenda: agendaString,
+        }),
+      }).then((response) => {
+        const result = response.json();
+        console.log("zoom-api-response", result);
+        setMeetingLink(result);
+      });
     }
   }, []);
 
   return (
     <Fragment>
       <ButtonSet>
-        {meetingLink === null && (
+        {meetingType === null && (
           <Fragment>
             <Button
               text="Generate zoom meeting link"
               icon="link"
               iconPosition="before"
               appearance="primary"
-              onClick={() => setMeetingLink("generate-zoom-link")}
+              onClick={() => setMeetingType("generate-zoom-link")}
             />
             <Button
               text="Or Enter a meeting link"
               icon="add"
               appearance="warning"
-              onClick={() => setMeetingLink("enter-meeting-link")}
+              onClick={() => setMeetingType("enter-meeting-link")}
             />
           </Fragment>
         )}
-        {meetingLink && (
+        {meetingType && (
           <Button
             text="Reset"
             icon="error"
@@ -56,7 +80,7 @@ export default function MeetingLink({
           />
         )}
       </ButtonSet>
-      {meetingLink === "enter-meeting-link" && (
+      {meetingType === "enter-meeting-link" && (
         <Form
           submitButtonAppearance="primary"
           submitButtonText="Submit Link"

@@ -31,7 +31,10 @@ export default function PollResultView({
 
   const polls = [];
 
+  const meetingLinkResult = meetingLink ? meetingLink : formState;
+
   console.log("formState", formState);
+  console.log("PollResultView-data", data);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
@@ -116,7 +119,6 @@ export default function PollResultView({
       )}
       <MeetingLink
         data={data}
-        meetingLink={meetingLink}
         setMeetingLink={setMeetingLink}
         setFormState={setFormState}
       />
