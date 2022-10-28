@@ -26,22 +26,25 @@ export default function RegularPollTimer({ deadline }) {
 
   return (
     <Fragment>
-      {Object.entries({
-        D: time / DAY,
-        H: (time / HOUR) % 24,
-        M: (time / MINUTE) % 60,
-        S: (time / SECOND) % 60,
-      }).map(([label, value]) => {
-        const timeString = `${Math.floor(value)}`.padStart(2, "0");
-        return (
-          <ButtonSet key={label}>
-            {/* <Button text="" /> */}
-            <Text>
-              {label}:{`${Math.floor(value)}`.padStart(2, "0")}
-            </Text>
-          </ButtonSet>
-        );
-      })}
+      <Text>
+        {Object.entries({
+          Hour: (time / HOUR) % 24,
+          Minute: (time / MINUTE) % 60,
+          Second: (time / SECOND) % 60,
+        }).map(([label, value]) => {
+          const timeString = `${Math.floor(value)}`.padStart(2, "0");
+          const hourLabel = label === "Hour" && value > 1 ? "hrs" : "hr";
+          const minuteLabel = label === "Minute" && value > 1 ? "mins" : "min";
+          const secondLabel = label === "Second" && value > 1 ? "secs" : "sec";
+          const timeLabel =
+            label === "Hour"
+              ? hourLabel
+              : label === "Minute"
+              ? minuteLabel
+              : secondLabel;
+          return `${timeString} ${timeLabel} `;
+        })}
+      </Text>
     </Fragment>
   );
 }
