@@ -10,7 +10,7 @@ export default function PollModalView({ data, children }) {
   return (
     <Fragment>
       {data.type === "regularMeetingPoll" ? (
-        <RegularPoll pollOptions={pollOptions} title={data.title} />
+        <RegularPoll pollOptions={pollOptions} data={data} />
       ) : (
         children
       )}

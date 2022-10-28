@@ -3,14 +3,12 @@ import ForgeUI, {
   Fragment,
   useState,
   Text,
-  ButtonSet,
   Strong,
 } from "@forge/ui";
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
-const DAY = HOUR * 24;
 
 export default function RegularPollTimer({ deadline }) {
   const parsedDeadline = Date.parse(deadline);

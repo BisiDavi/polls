@@ -17,7 +17,7 @@ import toSlug from "../../lib/toSlug";
 import ChartTabs from "../tabs/ChartTabs";
 import RegularPollTimer from "./RegularPollTimer";
 
-export default function RegularPoll({ pollOptions, title }) {
+export default function RegularPoll({ pollOptions, data }) {
   const [poll, makePoll] = useState(null);
   const [pollData, setPollData] = useState([]);
   const [notify, setNotify] = useState(false);
@@ -25,11 +25,11 @@ export default function RegularPoll({ pollOptions, title }) {
   const { saveData, getDataFromStorage } = useStorage();
   const context = useProductContext();
 
-  const dataKey = `Vote-${toSlug(title)}`;
+  const dataKey = `Vote-${toSlug(data.title)}`;
 
-  const titleText = title.toLowerCase().includes("poll")
-    ? title
-    : `${title} Poll`;
+  const titleText = data.title.toLowerCase().includes("poll")
+    ? data.title
+    : `${data.title} Poll`;
 
   useEffect(async () => {
     await getDataFromStorage(dataKey).then((response) => {
@@ -79,7 +79,7 @@ export default function RegularPoll({ pollOptions, title }) {
   }
 
   const disableButtonStatus = !poll ? true : false;
-  const pollChartData = { pollOptions, title, pollData };
+  const pollChartData = { pollOptions, title: data.title, pollData };
 
   return (
     <Fragment>
