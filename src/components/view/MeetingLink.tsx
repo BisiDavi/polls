@@ -53,25 +53,23 @@ export default function MeetingLink({ data, setFormState, setMeetingLink }) {
   return (
     <Fragment>
       <ButtonSet>
-        {meetingType === null && (
-          <Fragment>
-            <Button
-              text="Generate zoom meeting link"
-              icon="link"
-              iconPosition="before"
-              appearance="primary"
-              disabled={disableZoomBtn}
-              onClick={() => setMeetingType("generate-zoom-link")}
-            />
-            <Button
-              text="Or Enter a meeting link"
-              icon="add"
-              appearance="warning"
-              disabled={disableMeetingLinkBtn}
-              onClick={() => setMeetingType("enter-meeting-link")}
-            />
-          </Fragment>
-        )}
+        <Fragment>
+          <Button
+            text="Generate zoom meeting link"
+            icon="link"
+            iconPosition="before"
+            appearance="primary"
+            disabled={disableZoomBtn}
+            onClick={() => setMeetingType("generate-zoom-link")}
+          />
+          <Button
+            text="Or Enter a meeting link"
+            icon="add"
+            appearance="warning"
+            disabled={disableMeetingLinkBtn}
+            onClick={() => setMeetingType("enter-meeting-link")}
+          />
+        </Fragment>
         {meetingType && (
           <Button
             text="Reset"

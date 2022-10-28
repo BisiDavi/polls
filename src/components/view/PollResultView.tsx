@@ -31,10 +31,12 @@ export default function PollResultView({
 
   const polls = [];
 
-  const meetingLinkResult = meetingLink ? meetingLink : formState;
+  console.log("meetingLink", meetingLink);
 
-  console.log("formState", formState);
-  console.log("PollResultView-data", data);
+  const meetingLinkResult = meetingLink ? meetingLink : formState?.link;
+
+  console.log("formState-PollResultView", formState);
+  console.log("meetingLinkResult", meetingLinkResult);
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
@@ -124,13 +126,15 @@ export default function PollResultView({
           setFormState={setFormState}
         />
       )}
-      <Button
-        text="Publish"
-        icon="book"
-        iconPosition="before"
-        appearance="primary"
-        onClick={publishDataHandler}
-      />
+      {meetingLinkResult && (
+        <Button
+          text="Publish"
+          icon="book"
+          iconPosition="before"
+          appearance="primary"
+          onClick={publishDataHandler}
+        />
+      )}
     </Fragment>
   );
 }
