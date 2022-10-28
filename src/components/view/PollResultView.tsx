@@ -117,11 +117,13 @@ export default function PollResultView({
           </Text>
         </Fragment>
       )}
-      <MeetingLink
-        data={data}
-        setMeetingLink={setMeetingLink}
-        setFormState={setFormState}
-      />
+      {data.type === "meetingPoll" && (
+        <MeetingLink
+          data={data}
+          setMeetingLink={setMeetingLink}
+          setFormState={setFormState}
+        />
+      )}
       <Button
         text="Publish"
         icon="book"

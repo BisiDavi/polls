@@ -17,6 +17,7 @@ export default function MeetingLink({ data, setFormState, setMeetingLink }) {
   agendas.map((item) => {
     agendaString += `${item} \n`;
   });
+  console.log("agenda", agendas);
   console.log("agendaString", agendaString);
 
   async function onSubmit(formData) {
