@@ -84,8 +84,6 @@ export default function RegularPoll({ pollOptions, data }) {
   const pollChartData = { pollOptions, title: data.title, pollData };
   const isTimerValid = isTimeValid(data.deadline);
 
-  console.log("data-regularpoll", data);
-
   return (
     <Fragment>
       <Heading>{titleText}</Heading>

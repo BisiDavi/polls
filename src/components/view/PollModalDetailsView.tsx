@@ -18,6 +18,8 @@ export default function PollModalDetailsView({ data }) {
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const topics = data ? formatPollAgenda(data, formatPollType) : null;
 
+  const durationText = data?.duration > 1 ? " hrs" : " hr";
+
   return (
     <Fragment>
       <Text>
@@ -38,6 +40,7 @@ export default function PollModalDetailsView({ data }) {
         <Text>
           <Strong>Duration: </Strong>
           {data.duration}
+          {durationText}
         </Text>
       )}
       {data?.link && (
