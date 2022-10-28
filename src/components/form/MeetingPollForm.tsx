@@ -45,6 +45,7 @@ export default function MeetingPollForm({
         name="time"
         label="Meeting Starts At"
         placeholder="Time for the meeting"
+        isRequired
       />
       <TextArea label="Meeting Description" spellCheck name="description" />
       <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />

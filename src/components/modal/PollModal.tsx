@@ -35,7 +35,7 @@ export default function PollModal({ setPollModal, data }) {
           <PollModalView data={data}>
             <MeetingPoll
               pollOptions={pollOptions}
-              title={data.title}
+              data={data}
               suggestedAgenda={suggestedAgenda}
               saveAgendaStatus={saveAgendaStatus}
               setSuggestedAgenda={setSuggestedAgenda}

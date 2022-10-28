@@ -4,6 +4,7 @@ import ForgeUI, {
   Em,
   useState,
   Form,
+  Image,
   Strong,
   useEffect,
   SectionMessage,
@@ -17,10 +18,11 @@ import { formatFormPoll } from "../../lib/getAgendaName";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 import PollList from "./PollList";
+import isDateValid from "../../lib/isDateValid";
 
 export default function MeetingPoll({
   pollOptions,
-  title,
+  data,
   suggestedAgenda,
   setSuggestedAgenda,
   saveAgendaStatus,
@@ -31,7 +33,9 @@ export default function MeetingPoll({
   const context = useProductContext();
 
   const agendaText = pollOptions.length > 1 ? "Agendas" : "Agenda";
-  const dataKey = `Agenda-${toSlug(title)}-${uuidv4()}`;
+  const dataKey = `Agenda-${toSlug(data.title)}-${uuidv4()}`;
+
+  console.log("data-data", data);
 
   useEffect(async () => {
     getDataFromStorage(dataKey).then((response) => {
@@ -55,39 +59,60 @@ export default function MeetingPoll({
     });
   }
 
+  const isMeetingValid = isDateValid(data.meetingDate);
+
+  console.log("isMeetingValid", isMeetingValid);
+
   return (
     <Fragment>
-      <Text>
-        <Strong>
-          {agendaText} to be discussed in the meeting "{title}":
-        </Strong>
-      </Text>
-      <PollList pollData={pollOptions} />
-      <Text>
-        <Em>
-          Do you have any <Strong>agenda</Strong> to add to this Meeting?
-        </Em>
-      </Text>
-      {saveAgendaStatus && (
-        <SectionMessage appearance="confirmation">
-          <Text>Suggested Agenda Submitted</Text>
-        </SectionMessage>
-      )}
-      {!saveAgendaStatus ? (
-        <Form onSubmit={onSubmit} submitButtonText="Submit Suggested Agenda">
-          <PollsFieldSet
-            type="suggested"
-            poll={suggestedAgenda}
-            setPoll={setSuggestedAgenda}
-          />
-        </Form>
+      {isMeetingValid ? (
+        <Fragment>
+          <Text>
+            <Strong>
+              {agendaText} to be discussed in the meeting "{data.title}":
+            </Strong>
+          </Text>
+          <PollList pollData={pollOptions} />
+          <Text>
+            <Em>
+              Do you have any <Strong>agenda</Strong> to add to this Meeting?
+            </Em>
+          </Text>
+          {saveAgendaStatus && (
+            <SectionMessage appearance="confirmation">
+              <Text>Suggested Agenda Submitted</Text>
+            </SectionMessage>
+          )}
+          {!saveAgendaStatus ? (
+            <Form
+              onSubmit={onSubmit}
+              submitButtonText="Submit Suggested Agenda"
+            >
+              <PollsFieldSet
+                type="suggested"
+                poll={suggestedAgenda}
+                setPoll={setSuggestedAgenda}
+              />
+            </Form>
+          ) : (
+            <Button
+              icon="add-item"
+              iconPosition="before"
+              text="New Agenda"
+              onClick={() => setSaveAgendaStatus(false)}
+            />
+          )}
+        </Fragment>
       ) : (
-        <Button
-          icon="add-item"
-          iconPosition="before"
-          text="New Agenda"
-          onClick={() => setSaveAgendaStatus(false)}
-        />
+        <Fragment>
+          <Image
+            src="https://res.cloudinary.com/verrb-inc/image/upload/v1666959221/error_zaf55u.gif"
+            alt="meeting date expired"
+          />
+          <Text>
+            Meeting date has expired, you can't suggest any agenda for this meeting.
+          </Text>
+        </Fragment>
       )}
     </Fragment>
   );

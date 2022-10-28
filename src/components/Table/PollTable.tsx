@@ -74,7 +74,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   return (
     <Fragment>
       <Button
-        text="Create New Poll"
+        text="Create New Meeting/Poll"
         icon="add"
         iconPosition="before"
         appearance="primary"
