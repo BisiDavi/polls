@@ -7,6 +7,8 @@ import ForgeUI, {
   Fragment,
   CheckboxGroup,
   Checkbox,
+  Select,
+  Option,
 } from "@forge/ui";
 
 import { formatFormPoll } from "../../lib/getAgendaName";
@@ -16,6 +18,7 @@ export default function RegularPollForm({ onSubmit }) {
   const [regularPolls, setRegularPolls] = useState(["Poll Option 1"]);
 
   const pollObj = formatFormPoll(regularPolls);
+  const pollDurationOption = ["1 hr", "3 hrs", "6hrs", "12 hrs", "24 hrs"];
 
   return (
     <Fragment>
@@ -30,6 +33,11 @@ export default function RegularPollForm({ onSubmit }) {
           <Checkbox value="true" label="Yes" />
           <Checkbox value="false" label="No" />
         </CheckboxGroup>
+        <Select label="Select Poll Duration" name="pollDuration">
+          {pollDurationOption.map((item) => (
+            <Option key={item} label={item} value={item} />
+          ))}
+        </Select>
         <PollsFieldSet
           type="regular"
           poll={regularPolls}

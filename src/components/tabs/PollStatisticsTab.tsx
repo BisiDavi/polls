@@ -44,11 +44,9 @@ export default function PollStatisticsTab({ data }) {
                   <Text>
                     <Strong>User(s): </Strong>
                     {uniqueUserArray?.map((item) => (
-                      <Fragment key={item}>
-                        <UserGroup>
-                          <User accountId={item} />
-                        </UserGroup>
-                      </Fragment>
+                      <UserGroup key={item}>
+                        <User accountId={item} />
+                      </UserGroup>
                     ))}
                   </Text>
                   <Image
