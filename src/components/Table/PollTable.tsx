@@ -61,6 +61,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
     { key: "author", text: "Author" },
     { key: "date", text: "Date Created" },
     { key: "type", text: "Poll Type" },
+    { key: "status", text: "Status" },
   ];
 
   function viewPollHandler(pollKey: string) {

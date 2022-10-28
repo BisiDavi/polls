@@ -33,6 +33,8 @@ export default function PollResultView({
     meetingLinkResult,
   } = usePollResultView(setAppPoll, setSavedPolls, setModal, data);
 
+  console.log("data-data", data);
+
   return (
     <Fragment>
       <Heading size="medium">Polls Details ({pollType})</Heading>
@@ -89,15 +91,27 @@ export default function PollResultView({
           setFormState={setFormState}
         />
       )}
-      <MeetingLinkView meetingLinkResult={meetingLinkResult} />
-      {meetingLinkResult && (
+      {data.type === "meetingPoll" && (
+        <MeetingLinkView meetingLinkResult={meetingLinkResult} />
+      )}
+      {data.type === "meetingPoll" && meetingLinkResult ? (
         <Button
-          text="Publish"
+          text="Publish Meeting"
           icon="book"
           iconPosition="before"
           appearance="primary"
           onClick={publishDataHandler}
         />
+      ) : (
+        data.type === "regularMeetingPoll" && (
+          <Button
+            text="Publish Poll"
+            icon="book"
+            iconPosition="before"
+            appearance="primary"
+            onClick={publishDataHandler}
+          />
+        )
       )}
     </Fragment>
   );
