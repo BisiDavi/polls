@@ -33,10 +33,26 @@ export default function PollResultView({
 
   console.log("meetingLink", meetingLink);
 
-  const meetingLinkResult = meetingLink ? meetingLink : formState?.link;
+  const meetingLinkResult = meetingLink
+    ? meetingLink
+    : formState
+    ? formState?.link
+    : null;
 
   console.log("formState-PollResultView", formState);
   console.log("meetingLinkResult", meetingLinkResult);
+
+  const meetingLinkData = meetingLink
+    ? {
+        link: {
+          id: meetingLink.id,
+          start_url: meetingLink.start_url,
+          join_url: meetingLink.join_url,
+          password: meetingLink.password,
+          createdAt: meetingLink.created_at,
+        },
+      }
+    : { link: formState?.link };
 
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Regular";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
@@ -48,6 +64,7 @@ export default function PollResultView({
   async function publishDataHandler() {
     const pollData = {
       ...data,
+      ...meetingLinkData,
       accountId: context.accountId,
     };
     const stringifyPollData = JSON.stringify(pollData);
@@ -119,12 +136,39 @@ export default function PollResultView({
           </Text>
         </Fragment>
       )}
-      {data.type === "meetingPoll" && (
+      {data.type === "meetingPoll" && !meetingLinkResult && (
         <MeetingLink
           data={data}
           setMeetingLink={setMeetingLink}
           setFormState={setFormState}
         />
+      )}
+      {meetingLinkResult !== null && typeof meetingLinkResult === "object" ? (
+        <Fragment>
+          <Text>
+            <Strong>Meeting Link (Host/Start URL):</Strong>
+            <Link href={meetingLinkResult.start_url} openNewTab>
+              {meetingLinkResult.start_url}
+            </Link>
+          </Text>
+          <Text>
+            <Strong>Meeting Link (Invite):</Strong>
+            <Link href={meetingLinkResult.join_url} openNewTab>
+              {meetingLinkResult.join_url}
+            </Link>
+          </Text>
+          <Text>
+            <Strong>Password :</Strong>
+            {meetingLinkResult.password}
+          </Text>
+        </Fragment>
+      ) : (
+        <Text>
+          <Strong>Meeting Link:</Strong>
+          <Link href={meetingLinkResult} openNewTab>
+            {meetingLinkResult}
+          </Link>
+        </Text>
       )}
       {meetingLinkResult && (
         <Button
