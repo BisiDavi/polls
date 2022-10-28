@@ -11,7 +11,7 @@ import { fetch } from "@forge/api";
 
 import { formatPollAgenda } from "../../lib/getAgendaName";
 
-export default function MeetingLink({ data, setFormState, setMeetingLink }) {
+export default function MeetingLinkForm({ data, setFormState, setMeetingLink }) {
   const [meetingType, setMeetingType] = useState(null);
 
   async function onSubmit(formData) {

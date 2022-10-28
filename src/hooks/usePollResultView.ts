@@ -18,15 +18,12 @@ export default function usePollResultView(
 
   const polls = [];
 
-  console.log("meetingLink", meetingLink);
-
   const meetingLinkResult = meetingLink
     ? meetingLink
     : formState
     ? formState?.link
     : null;
 
-  console.log("formState-PollResultView", formState);
   console.log("meetingLinkResult", meetingLinkResult);
 
   const meetingLinkData = meetingLink
@@ -73,4 +70,16 @@ export default function usePollResultView(
   }
 
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
+
+  return {
+    meetingDate,
+    publishDataHandler,
+    topics,
+    pollType,
+    optionText,
+    setMeetingLink,
+    setFormState,
+    meetingLinkResult,
+  };
+
 }
