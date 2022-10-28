@@ -4,6 +4,7 @@ import ForgeUI, {
   useState,
   Text,
   ButtonSet,
+  Strong,
 } from "@forge/ui";
 
 const SECOND = 1000;
@@ -27,23 +28,28 @@ export default function RegularPollTimer({ deadline }) {
   return (
     <Fragment>
       <Text>
-        {Object.entries({
-          Hour: (time / HOUR) % 24,
-          Minute: (time / MINUTE) % 60,
-          Second: (time / SECOND) % 60,
-        }).map(([label, value]) => {
-          const timeString = `${Math.floor(value)}`.padStart(2, "0");
-          const hourLabel = label === "Hour" && value > 1 ? "hrs" : "hr";
-          const minuteLabel = label === "Minute" && value > 1 ? "mins" : "min";
-          const secondLabel = label === "Second" && value > 1 ? "secs" : "sec";
-          const timeLabel =
-            label === "Hour"
-              ? hourLabel
-              : label === "Minute"
-              ? minuteLabel
-              : secondLabel;
-          return `${timeString} ${timeLabel} `;
-        })}
+        <Strong>
+          {Object.entries({
+            Hour: (time / HOUR) % 24,
+            Minute: (time / MINUTE) % 60,
+            Second: (time / SECOND) % 60,
+          }).map(([label, value]) => {
+            const timeString = `${Math.floor(value)}`.padStart(2, "0");
+            const hourLabel = label === "Hour" && value > 1 ? "hrs" : "hr";
+            const minuteLabel =
+              label === "Minute" && value > 1 ? "mins" : "min";
+            const secondLabel =
+              label === "Second" && value > 1 ? "secs" : "sec";
+            const timeLabel =
+              label === "Hour"
+                ? hourLabel
+                : label === "Minute"
+                ? minuteLabel
+                : secondLabel;
+            return `${timeString}${timeLabel} `;
+          })}
+          remaining for poll to end.
+        </Strong>
       </Text>
     </Fragment>
   );
