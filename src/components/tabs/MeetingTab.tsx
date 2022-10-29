@@ -34,9 +34,11 @@ export default function MeetingTab({ data, saveAgendastatus }) {
         <Strong>List of Agenda for the Meeting</Strong>
       </Text>
       <PollList pollData={agendas} />
-      <Text>
-        <Strong>Suggested Agenda</Strong>
-      </Text>
+      {suggestedAgenda.length > 0 && (
+        <Text>
+          <Strong>Suggested Agenda</Strong>
+        </Text>
+      )}
       {suggestedAgenda.length > 0 &&
         suggestedAgenda.map((item) => {
           const date = formatAgendaDate(item.date);
