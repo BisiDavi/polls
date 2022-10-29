@@ -40,7 +40,7 @@ export default function PollModalDetailsView({ data }) {
         <Text>
           <Strong>Duration: </Strong>
           {data?.duration}
-          {!data?.duration.includes("hr") && durationText}
+          {typeof data?.duration === "number" && durationText}
         </Text>
       )}
       {data?.link && (
