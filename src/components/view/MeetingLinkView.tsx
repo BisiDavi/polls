@@ -23,12 +23,14 @@ export default function MeetingLinkView({ meetingLinkResult }) {
           </Text>
         </Fragment>
       ) : (
-        <Text>
-          <Strong>Meeting Link:</Strong>
-          <Link href={meetingLinkResult} openNewTab>
-            {meetingLinkResult}
-          </Link>
-        </Text>
+        meetingLinkResult && (
+          <Text>
+            <Strong>Meeting Link:</Strong>
+            <Link href={meetingLinkResult} openNewTab>
+              {meetingLinkResult}
+            </Link>
+          </Text>
+        )
       )}
     </Fragment>
   );

@@ -5,10 +5,12 @@ export default function formatPollTable(data: any[]) {
   data.map((item) => {
     const pollType =
       item.value.type === "meetingPoll" ? "Meeting Planning" : "Regular Poll";
+
     const status =
       item.value.type === "meetingPoll"
         ? isTimeValid(item.value.meetingDate)
         : isTimeValid(item.value.deadline);
+
     pollArray.push({
       rowId: item.value.title,
       title: item.value.title,

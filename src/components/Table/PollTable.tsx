@@ -128,7 +128,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
                         item[headItem.key] ? (
                           <Tag text="Active" color="green" />
                         ) : (
-                          <Tag text="In Active" color="red" />
+                          <Tag text="Inactive" color="red" />
                         )
                       ) : headItem.key !== "type" ? (
                         <Text>{item[headItem.key]}</Text>
