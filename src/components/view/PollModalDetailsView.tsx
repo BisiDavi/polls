@@ -20,8 +20,6 @@ export default function PollModalDetailsView({ data }) {
 
   const durationText = data?.duration > 1 ? " hrs" : " hr";
 
-  console.log("PollModalDetailsView-data", data);
-
   return (
     <Fragment>
       <Text>
@@ -42,17 +40,29 @@ export default function PollModalDetailsView({ data }) {
         <Text>
           <Strong>Duration: </Strong>
           {data.duration}
-          {durationText}
+          {!data.duration.includes("hr") && durationText}
         </Text>
       )}
-      {/* {data?.link && (
-        <Text>
-          <Strong>Link: </Strong>
-          <Link href={data?.link} openNewTab>
-            {data?.link}
-          </Link>
-        </Text>
-      )} */}
+      {data?.link && (
+        <Fragment>
+          <Text>
+            <Strong>Start Url (Host): </Strong>
+            <Link href={data?.link?.start_url} openNewTab>
+              {data?.link.start_url}
+            </Link>
+          </Text>
+          <Text>
+            <Strong>Join Url (Invite): </Strong>
+            <Link href={data?.link?.join_url} openNewTab>
+              {data?.link.join_url}
+            </Link>
+          </Text>
+          <Text>
+            <Strong>Meeting Password: </Strong>
+            {data?.link?.password}
+          </Text>
+        </Fragment>
+      )}
       {data?.meetingDate && (
         <Text>
           <Strong>Meeting Date: </Strong>
