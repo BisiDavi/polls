@@ -64,6 +64,8 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
         )
       : [];
 
+  console.log("sortedPolls", sortedPolls);
+
   const head = [
     { key: "title", text: "Title" },
     { key: "author", text: "Author" },
@@ -89,7 +91,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
         appearance="primary"
         onClick={() => setModal(true)}
       />
-      {pollsData.length > 0 ? (
+      {sortedPolls.length > 0 ? (
         <Fragment>
           {showPollModal && selectedPoll && (
             <PollModal
@@ -124,6 +126,12 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
                         <User accountId={item[headItem.key]} />
                       ) : headItem.key === "title" ? (
                         <Text>{`${indexNumber}. ${item[headItem.key]}`}</Text>
+                      ) : headItem.key === "status" ? (
+                        item[headItem.key] ? (
+                          <Tag text="Active" color="green" />
+                        ) : (
+                          <Tag text="In Active" color="red" />
+                        )
                       ) : headItem.key !== "type" ? (
                         <Text>{item[headItem.key]}</Text>
                       ) : item[headItem.key] === "Meeting Planning" ? (
