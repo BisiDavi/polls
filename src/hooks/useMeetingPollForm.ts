@@ -16,8 +16,6 @@ export default function useMeetingPollForm(
     ""
   );
 
-  console.log("meetingPollData", meetingPollData);
-
   useEffect(() => {
     if (formState !== undefined && formState.type === "meetingPoll") {
       const dateStatus = isDateValid(formState.meetingDate);

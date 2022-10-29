@@ -11,7 +11,11 @@ import { fetch } from "@forge/api";
 
 import { formatPollAgenda } from "../../lib/getAgendaName";
 
-export default function MeetingLinkForm({ data, setFormState, setMeetingLink }) {
+export default function MeetingLinkForm({
+  data,
+  setFormState,
+  setMeetingLink,
+}) {
   const [meetingType, setMeetingType] = useState(null);
 
   async function onSubmit(formData) {
@@ -30,7 +34,6 @@ export default function MeetingLinkForm({ data, setFormState, setMeetingLink }) 
       agendas.map((item) => {
         agendaString += `${item} \n`;
       });
-      console.log("agendaString", agendaString);
 
       await fetch("https://confluence-api.vercel.app/api/zoom/create-meeting", {
         method: "POST",

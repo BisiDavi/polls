@@ -64,8 +64,6 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
         )
       : [];
 
-  console.log("sortedPolls", sortedPolls);
-
   const head = [
     { key: "title", text: "Title" },
     { key: "author", text: "Author" },

@@ -19,7 +19,6 @@ export default function useUser() {
           Accept: "application/json",
         },
       });
-    console.log("readContentProperties-response", await response.json());
     return await response.json();
   }
 
