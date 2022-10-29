@@ -39,8 +39,8 @@ export default function PollModalDetailsView({ data }) {
       {data?.duration && (
         <Text>
           <Strong>Duration: </Strong>
-          {data.duration}
-          {!data.duration.includes("hr") && durationText}
+          {data?.duration}
+          {!data?.duration.includes("hr") && durationText}
         </Text>
       )}
       {data?.link && (

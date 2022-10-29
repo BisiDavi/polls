@@ -57,7 +57,7 @@ export default function PollResultView({
           {data?.duration && (
             <Text>
               <Strong>Duration: </Strong>
-              {data.duration} {durationText}
+              {data?.duration} {durationText}
             </Text>
           )}
           {data?.link && (
