@@ -12,6 +12,7 @@ import ForgeUI, {
   Tag,
   SectionMessage,
   User,
+  Em,
 } from "@forge/ui";
 
 import PollModal from "../modal/PollModal";
@@ -55,6 +56,13 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
   }, [savedPolls]);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
+
+  const sortedPolls =
+    pollsData.length > 0
+      ? pollsData.sort(
+          (a, b) => Number(new Date(b.sortDate)) - Number(new Date(a.sortDate))
+        )
+      : [];
 
   const head = [
     { key: "title", text: "Title" },
@@ -100,18 +108,22 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
                 <Text>Action</Text>
               </Cell>
             </Head>
-            {pollsData.map((item, index) => {
+            {sortedPolls.map((item, index) => {
               const deleteKeyType =
                 item["type"] === "Meeting Planning" ? "Agenda" : "Vote";
               const deleteChartKey = `${deleteKeyType}-${toSlug(
                 item["rowId"]
               )}`;
+              const indexNumber = index + 1;
+
               return (
                 <Row key={index}>
                   {head.map((headItem, idx) => (
                     <Cell key={idx}>
                       {headItem.key === "author" ? (
                         <User accountId={item[headItem.key]} />
+                      ) : headItem.key === "title" ? (
+                        <Text>{`${indexNumber}. ${item[headItem.key]}`}</Text>
                       ) : headItem.key !== "type" ? (
                         <Text>{item[headItem.key]}</Text>
                       ) : item[headItem.key] === "Meeting Planning" ? (
@@ -147,6 +159,10 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
               );
             })}
           </Table>
+          <Text>
+            Invite team member to participate in suggesting meeting agenda or
+            poll by mentioning them <Em>@username</Em>
+          </Text>
         </Fragment>
       ) : (
         <SectionMessage title="Polls" appearance="error">
