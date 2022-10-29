@@ -161,7 +161,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
           </Table>
           <Text>
             Invite team member to participate in suggesting meeting agenda or
-            poll by mentioning them <Em>@username</Em>
+            poll by mentioning them, <Em>@username</Em>
           </Text>
         </Fragment>
       ) : (

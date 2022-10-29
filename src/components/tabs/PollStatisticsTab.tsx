@@ -11,9 +11,7 @@ import { getVoteOptionCount } from "../../lib/formatVote";
 
 export default function PollStatisticsTab({ data, chartData }) {
   const voteOptionData =
-    data.length > 0 ? getVoteOptionCount(data[0].value) : null;
-
-  console.log("data.hideVoters", chartData?.hideVoters);
+    data.length > 0 ? getVoteOptionCount(data[0]?.value) : null;
 
   return (
     <Fragment>
@@ -43,7 +41,7 @@ export default function PollStatisticsTab({ data, chartData }) {
                   <Text>
                     <Strong>{item.vote}:</Strong> {item.count} {voteText}
                   </Text>
-                  {chartData?.hideVoters[0] === "false" && (
+                  {chartData && chartData?.hideVoters[0] === "false" && (
                     <Text>
                       <Strong>User(s): </Strong>
                       {uniqueUserArray?.map((item) => (
