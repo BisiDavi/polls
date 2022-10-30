@@ -15,17 +15,7 @@ import useNotifyTeam from "../../hooks/useNotifyTeam";
 
 export default function NotifyTeam({ data, suggestedAgenda }) {
   const { onSubmit, notify, submitted, pollType, notifyHandler } =
-    useNotifyTeam(data);
-
-  console.log("suggestedAgenda", suggestedAgenda);
-  const suggestedAgendas = [];
-  suggestedAgenda.map((item) => {
-    const formatAgenda = formatPollAgenda(item, "suggest");
-    console.log("formatAgenda", formatAgenda);
-    suggestedAgendas.push(formatAgenda[0]);
-  });
-
-  console.log("suggestedAgendas", suggestedAgendas);
+    useNotifyTeam(data, suggestedAgenda);
 
   return (
     <Fragment>
