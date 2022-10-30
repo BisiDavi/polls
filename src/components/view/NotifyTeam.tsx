@@ -10,11 +10,13 @@ import ForgeUI, {
   TextArea,
 } from "@forge/ui";
 
-import useNotifyTeam from "src/hooks/useNotifyTeam";
+import useNotifyTeam from "../../hooks/useNotifyTeam";
 
-export default function NotifyTeam({ data }) {
+export default function NotifyTeam({ data, suggestedAgenda }) {
   const { onSubmit, notify, submitted, pollType, notifyHandler } =
     useNotifyTeam(data);
+
+  console.log("suggestedAgenda", suggestedAgenda);
 
   return (
     <Fragment>

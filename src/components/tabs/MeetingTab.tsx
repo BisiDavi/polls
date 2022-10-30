@@ -2,34 +2,22 @@ import ForgeUI, {
   Fragment,
   Strong,
   Text,
-  useEffect,
   useProductContext,
   User,
-  useState,
 } from "@forge/ui";
 
 import { formatPollAgenda } from "../../lib/getAgendaName";
 import PollList from "../poll/PollList";
-import toSlug from "../../lib/toSlug";
-import useStorage from "../../hooks/useStorage";
-import { getSuggestedAgenda, formatAgendaDate } from "../../lib/formatMeeting";
+import { formatAgendaDate } from "../../lib/formatMeeting";
 import NotifyTeam from "../view/NotifyTeam";
+import useSuggestedAgenda from "../../hooks/useSuggestedAgenda";
 
 export default function MeetingTab({ data, saveAgendastatus }) {
-  const { getDataFromStorage } = useStorage();
-  const [suggestedAgenda, setSuggestedAgenda] = useState([]);
+  const { agendas, suggestedAgenda } = useSuggestedAgenda(
+    data,
+    saveAgendastatus
+  );
   const context = useProductContext();
-
-  const dataKey = `Agenda-${toSlug(data.title)}`;
-
-  useEffect(async () => {
-    await getDataFromStorage("Agenda-").then((response) => {
-      const agendas = getSuggestedAgenda(response.results, dataKey);
-      setSuggestedAgenda(agendas);
-    });
-  }, [saveAgendastatus]);
-
-  const agendas = data ? formatPollAgenda(data, "agenda") : null;
 
   return (
     <Fragment>
@@ -57,7 +45,7 @@ export default function MeetingTab({ data, saveAgendastatus }) {
           );
         })}
       {suggestedAgenda.length > 0 && context.accountId === data.accountId && (
-        <NotifyTeam data={data} />
+        <NotifyTeam data={data} suggestedAgenda={suggestedAgenda} />
       )}
     </Fragment>
   );
