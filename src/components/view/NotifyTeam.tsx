@@ -7,6 +7,7 @@ import ForgeUI, {
   Text,
   TextArea,
   useEffect,
+  useProductContext,
   useState,
 } from "@forge/ui";
 import { fetch } from "@forge/api";
@@ -17,6 +18,9 @@ export default function NotifyTeam({ data }) {
   const [notify, setNotify] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formState, setFormState] = useState(undefined);
+  const context = useProductContext();
+
+  console.log("data", data);
 
   function notifyHandler() {
     setNotify(true);
@@ -47,7 +51,12 @@ export default function NotifyTeam({ data }) {
           agendaString += `-${item}\n`;
         });
 
-      const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${data.duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\n\n\n\nAgendas to be discussed:\n${agendaString}}`;
+      const durationText = data.duration > 1 ? " hrs" : " hr";
+
+      const duration =
+        typeof data.duration === "number" ? durationText : data.duration;
+
+      const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\n\n\n\nAgendas to be discussed:\n${agendaString}}`;
 
       await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
         method: "POST",

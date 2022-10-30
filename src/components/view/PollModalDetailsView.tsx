@@ -43,7 +43,7 @@ export default function PollModalDetailsView({ data }) {
           {typeof data?.duration === "number" && durationText}
         </Text>
       )}
-      {data?.link && (
+      {typeof data.link === "object" ? (
         <Fragment>
           <Text>
             <Strong>Start Url (Host): </Strong>
@@ -62,6 +62,11 @@ export default function PollModalDetailsView({ data }) {
             {data?.link?.password}
           </Text>
         </Fragment>
+      ) : (
+        <Text>
+          <Strong>Meeting Link: </Strong>
+          {data.link}
+        </Text>
       )}
       {data?.meetingDate && (
         <Text>
