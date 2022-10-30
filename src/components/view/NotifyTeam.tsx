@@ -10,7 +10,8 @@ import ForgeUI, {
   useState,
 } from "@forge/ui";
 import { fetch } from "@forge/api";
-import { formatPollAgenda } from "src/lib/getAgendaName";
+
+import { formatPollAgenda } from "../../lib/getAgendaName";
 
 export default function NotifyTeam({ data }) {
   const [notify, setNotify] = useState(false);

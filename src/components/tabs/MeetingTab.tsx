@@ -12,6 +12,7 @@ import PollList from "../poll/PollList";
 import toSlug from "../../lib/toSlug";
 import useStorage from "../../hooks/useStorage";
 import { getSuggestedAgenda, formatAgendaDate } from "../../lib/formatMeeting";
+import NotifyTeam from "../view/NotifyTeam";
 
 export default function MeetingTab({ data, saveAgendastatus }) {
   const { getDataFromStorage } = useStorage();
@@ -53,6 +54,7 @@ export default function MeetingTab({ data, saveAgendastatus }) {
             </Text>
           );
         })}
+      {suggestedAgenda.length > 0 && <NotifyTeam data={data} />}
     </Fragment>
   );
 }
