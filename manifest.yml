@@ -21,4 +21,4 @@ permissions:
   external:
     fetch:
       backend:
-      - "https://confluence-api.vercel.app/*"
+        - "https://confluence-api.vercel.app/*"

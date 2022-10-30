@@ -10,7 +10,6 @@ import ForgeUI, {
   TextArea,
 } from "@forge/ui";
 
-import { formatPollAgenda } from "../../lib/getAgendaName";
 import useNotifyTeam from "../../hooks/useNotifyTeam";
 
 export default function NotifyTeam({ data, suggestedAgenda }) {
