@@ -1,13 +1,14 @@
 import ForgeUI, {
   Button,
+  Em,
   Form,
   Fragment,
+  Image,
   SectionMessage,
   Strong,
   Text,
   TextArea,
   useEffect,
-  useProductContext,
   useState,
 } from "@forge/ui";
 import { fetch } from "@forge/api";
@@ -18,9 +19,6 @@ export default function NotifyTeam({ data }) {
   const [notify, setNotify] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formState, setFormState] = useState(undefined);
-  const context = useProductContext();
-
-  console.log("data", data);
 
   function notifyHandler() {
     setNotify(true);
@@ -34,7 +32,6 @@ export default function NotifyTeam({ data }) {
     setFormState(formData);
   }
 
-  console.log("formState", formState);
   const pollType = data.type === "meetingPoll" ? "Meeting" : "Poll";
 
   useEffect(async () => {
@@ -56,7 +53,7 @@ export default function NotifyTeam({ data }) {
       const duration =
         typeof data.duration === "number" ? durationText : data.duration;
 
-      const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\n\n\n\nAgendas to be discussed:\n${agendaString}}`;
+      const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\nAgendas to be discussed:\n${agendaString}`;
 
       await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
         method: "POST",
@@ -75,24 +72,32 @@ export default function NotifyTeam({ data }) {
 
   return (
     <Fragment>
+      <Image
+        src="https://res.cloudinary.com/verrb-inc/image/upload/v1666751407/Screenshot_2022-10-26_at_3.28.09_AM_oenkj6.png"
+        alt="underline"
+      />
       {submitted && (
         <SectionMessage title="Team Members Notified" appearance="confirmation">
-          <Text>Email Notification Sent Successfully</Text>
+          <Text>Email Notification Sent to Team, Successfully</Text>
         </SectionMessage>
       )}
-      <Button
-        text="Approve & Notify Team"
-        icon="check-circle-outline"
-        iconPosition="before"
-        appearance="primary"
-        onClick={notifyHandler}
-      />
+      {!submitted && (
+        <Button
+          text="Approve & Notify Team"
+          icon="check-circle-outline"
+          iconPosition="before"
+          appearance="primary"
+          onClick={notifyHandler}
+        />
+      )}
       {notify && (
         <Fragment>
           <Text>
-            Send team member notification email about the {pollType}, enter team
-            member emails, ensure to use <Strong>comma</Strong>for multiple
-            emails
+            <Em>
+              Send team member notification email about the {pollType}, enter
+              team member emails, ensure to use <Strong>comma</Strong> for
+              multiple emails
+            </Em>
           </Text>
           <Form submitButtonAppearance="primary" onSubmit={onSubmit}>
             <TextArea

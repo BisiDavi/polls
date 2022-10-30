@@ -3,6 +3,7 @@ import ForgeUI, {
   Strong,
   Text,
   useEffect,
+  useProductContext,
   User,
   useState,
 } from "@forge/ui";
@@ -17,6 +18,7 @@ import NotifyTeam from "../view/NotifyTeam";
 export default function MeetingTab({ data, saveAgendastatus }) {
   const { getDataFromStorage } = useStorage();
   const [suggestedAgenda, setSuggestedAgenda] = useState([]);
+  const context = useProductContext();
 
   const dataKey = `Agenda-${toSlug(data.title)}`;
 
@@ -54,7 +56,9 @@ export default function MeetingTab({ data, saveAgendastatus }) {
             </Text>
           );
         })}
-      {suggestedAgenda.length > 0 && <NotifyTeam data={data} />}
+      {suggestedAgenda.length > 0 && context.accountId === data.accountId && (
+        <NotifyTeam data={data} />
+      )}
     </Fragment>
   );
 }
