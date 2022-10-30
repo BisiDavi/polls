@@ -10,6 +10,7 @@ import ForgeUI, {
   TextArea,
 } from "@forge/ui";
 
+import { formatPollAgenda } from "../../lib/getAgendaName";
 import useNotifyTeam from "../../hooks/useNotifyTeam";
 
 export default function NotifyTeam({ data, suggestedAgenda }) {
@@ -17,6 +18,14 @@ export default function NotifyTeam({ data, suggestedAgenda }) {
     useNotifyTeam(data);
 
   console.log("suggestedAgenda", suggestedAgenda);
+  const suggestedAgendas = [];
+  suggestedAgenda.map((item) => {
+    const formatAgenda = formatPollAgenda(item, "suggest");
+    console.log("formatAgenda", formatAgenda);
+    suggestedAgendas.push(formatAgenda[0]);
+  });
+
+  console.log("suggestedAgendas", suggestedAgendas);
 
   return (
     <Fragment>

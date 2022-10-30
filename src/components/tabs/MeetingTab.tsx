@@ -1,5 +1,6 @@
 import ForgeUI, {
   Fragment,
+  Image,
   Strong,
   Text,
   useProductContext,
@@ -26,9 +27,15 @@ export default function MeetingTab({ data, saveAgendastatus }) {
       </Text>
       <PollList pollData={agendas} />
       {suggestedAgenda.length > 0 && (
-        <Text>
-          <Strong>Suggested Agenda</Strong>
-        </Text>
+        <Fragment>
+          <Image
+            src="https://res.cloudinary.com/verrb-inc/image/upload/v1666751407/Screenshot_2022-10-26_at_3.28.09_AM_oenkj6.png"
+            alt="underline"
+          />
+          <Text>
+            <Strong>Suggested Agenda</Strong>
+          </Text>
+        </Fragment>
       )}
       {suggestedAgenda.length > 0 &&
         suggestedAgenda.map((item) => {
