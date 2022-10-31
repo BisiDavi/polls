@@ -41,7 +41,7 @@ export default function PollStatisticsTab({ data, chartData }) {
                   <Text>
                     <Strong>{item.vote}:</Strong> {item.count} {voteText}
                   </Text>
-                  {chartData && chartData?.hideVoters[0] === "false" && (
+                  {chartData && chartData?.hideVoters === "false" && (
                     <Text>
                       <Strong>User(s): </Strong>
                       {uniqueUserArray?.map((item) => (

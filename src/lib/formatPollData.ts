@@ -26,10 +26,12 @@ export default function formatPollData(data, suggestedAgenda) {
       agendaString += `-${item}\n`;
     });
 
-  const durationText = data.duration > 1 ? " hrs" : " hr";
+  const durationText = data.duration > 1 ? "hrs" : "hr";
 
   const duration =
-    typeof data.duration === "number" ? durationText : data.duration;
+    typeof data.duration === "number"
+      ? `${data.duration} ${durationText}`
+      : data.duration;
 
   return {
     duration,

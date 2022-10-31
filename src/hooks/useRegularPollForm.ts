@@ -26,7 +26,7 @@ export default function useRegularPollForm(
     formData: {
       title: "";
       description: "";
-      hideVoters: [""];
+      hideVoters: "";
       duration: "";
       team: "";
       authorEmail: "";
