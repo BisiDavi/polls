@@ -12,9 +12,6 @@ const App = () => {
         <Tab label="View Meeting & Poll in this Space">
           <PollTabView type="Space-Polls" />
         </Tab>
-        <Tab label="View All Meeting & Poll">
-          <PollTabView type="Polls" />
-        </Tab>
       </Tabs>
     </Fragment>
   );

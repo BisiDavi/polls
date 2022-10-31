@@ -67,7 +67,6 @@ export default function usePollResultView(setSavedPolls, setModal, data) {
       accountId: context.accountId,
     };
     const stringifyPollData = JSON.stringify(pollData);
-    savePollData(`Polls-${context.contentId}-${uuidv4()}`, stringifyPollData);
     savePollData(
       `Page-Polls-${context.contentId}-${uuidv4()}`,
       stringifyPollData
