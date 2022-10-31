@@ -83,6 +83,18 @@ export default function PollModalDetailsView({ data }) {
           <User accountId={data?.accountId} />
         </Text>
       )}
+      {data?.authorEmail && (
+        <Text>
+          <Strong>Author Email: </Strong>
+          {data?.authorEmail}
+        </Text>
+      )}
+      {data?.team && (
+        <Text>
+          <Strong>Team Emails: </Strong>
+          {data?.team}
+        </Text>
+      )}
       <Text>
         <Strong>{optionText}</Strong>
       </Text>

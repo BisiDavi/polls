@@ -60,7 +60,7 @@ export default function MeetingPoll({
       method: "POST",
       body: JSON.stringify({
         title: `A newly suggested agenda for ${data.title}`,
-        receipent: data.authorEmail,
+        receipent: data?.authorEmail,
         message:
           "Hello, a team member just made a suggestion, do check your confluence for more details",
         type: "meeting",

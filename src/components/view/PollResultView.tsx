@@ -74,6 +74,18 @@ export default function PollResultView({ data, setModal, setSavedPolls }) {
               <DateLozenge value={new Date(meetingDate).getTime()} />
             </Text>
           )}
+          {data?.authorEmail && (
+            <Text>
+              <Strong>Author Email: </Strong>
+              {data?.authorEmail}
+            </Text>
+          )}
+          {data?.team && (
+            <Text>
+              <Strong>Team Emails: </Strong>
+              {data?.team}
+            </Text>
+          )}
           <Text>
             <Strong>{optionText}</Strong>
           </Text>

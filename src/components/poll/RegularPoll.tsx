@@ -71,7 +71,7 @@ export default function RegularPoll({ pollOptions, data }) {
       method: "POST",
       body: JSON.stringify({
         title: titleText,
-        receipent: data.authorEmail,
+        receipent: data?.authorEmail,
         message: `Hello, a team member just made a vote on your Poll-${data.title}`,
         type: "poll",
       }),
