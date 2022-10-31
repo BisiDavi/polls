@@ -27,6 +27,7 @@ export default function PollModal({ setPollModal, data }) {
     <ModalDialog
       header="Welcome to Workspace Meeting & Polls, plan your meeting effectively and conduct polls."
       onClose={modalHandler}
+      width="x-large"
     >
       <Tabs>
         <Tab label={tab1Text}>
@@ -51,7 +52,7 @@ export default function PollModal({ setPollModal, data }) {
         )}
         {data.type === "meetingPoll" && (
           <Tab label="Send Memo to Team">
-            <MemoTab data={data}  />
+            <MemoTab data={data} />
           </Tab>
         )}
       </Tabs>

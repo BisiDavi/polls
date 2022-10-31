@@ -31,6 +31,7 @@ export default function Modal({ setAppPoll, setModal, setSavedPolls }) {
     <ModalDialog
       header="Welcome to Workspace Meeting & Polls, plan your meeting effectively and conduct polls."
       onClose={modalHandler}
+      width="x-large"
     >
       {pollType === "" ? (
         <TabView setPollType={setPollType} />

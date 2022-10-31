@@ -15,6 +15,7 @@ const App = () => {
           setAppPoll={setAppPoll}
           setModal={setModal}
           setSavedPolls={setSavedPolls}
+          
         />
       )}
       <PollTable

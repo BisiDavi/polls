@@ -8,15 +8,15 @@ import ForgeUI, {
   useState,
 } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
-import isDateValid from "../../lib/isDateValid";
 
+import isDateValid from "../../lib/isDateValid";
 import toSlug from "../../lib/toSlug";
 
 export default function MemoTab({ data }) {
   const meetingTitleSlug = toSlug(data.title);
   const [meetingMemo, setMeetingMemo] = useContentProperty(
     `meeting-${meetingTitleSlug}`,
-    undefined
+    ""
   );
   const [formState, setFormState] = useState(null);
   const [meetingStatus, setMeetingStatus] = useState(null);
@@ -42,7 +42,7 @@ export default function MemoTab({ data }) {
           a memo of this meeting via email
         </Strong>
       </Text>
-      {meetingMemo === undefined ? (
+      {!meetingMemo ? (
         <Fragment>
           {formState !== null && (
             <SectionMessage title="Memo status" appearance="confirmation">
