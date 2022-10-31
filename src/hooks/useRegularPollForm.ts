@@ -29,6 +29,7 @@ export default function useRegularPollForm(
       hideVoters: [""];
       duration: "";
       team: "";
+      authorEmail: "";
     }
 
     const currentDate = new Date();

@@ -42,6 +42,13 @@ export default function RegularPollForm({ onSubmit }) {
           <Option key={item.label} label={item.label} value={item.value} />
         ))}
       </Select>
+      <TextField
+        name="authorEmail"
+        label="Your Email"
+        placeholder="Enter your email, so as to receive notification about the poll activities"
+        type="email"
+        isRequired
+      />
       <PollsFieldSet
         type="regular"
         poll={regularPolls}

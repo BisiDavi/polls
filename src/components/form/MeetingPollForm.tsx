@@ -42,6 +42,13 @@ export default function MeetingPollForm({
         placeholder="Allotted time for the meeting in (hr(s)/mins)?"
       />
       <TextField
+        name="authorEmail"
+        label="Your Email"
+        placeholder="Enter your email, so as to receive notification about the meeting activities"
+        type="email"
+        isRequired
+      />
+      <TextField
         name="time"
         label="Meeting Starts At"
         placeholder="Time for the meeting"
