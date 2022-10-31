@@ -3,7 +3,9 @@ modules:
     - key: confluence-plugins-workspace-polls-for-confluence
       function: main
       title: Workspace Meeting & Polls for Confluence
-      description: Team Meeting Management - Allow team-mates to vote topics to be discussed in meetings/regular poll
+      description: Team Meeting Management - Allow team members to vote agendas to be
+        discussed ahead of a meetings, conduct regular poll with grahpical
+        representation
   function:
     - key: main
       handler: index.run
@@ -11,14 +13,13 @@ app:
   id: ari:cloud:ecosystem::app/be7a27cc-c659-4557-b248-5c0e4587b9ce
 permissions:
   scopes:
-    - read:confluence-content.summary
     - read:confluence-props
-    - read:confluence-user
     - write:confluence-props
+    - read:confluence-user
     - storage:app
     - read:space.permission:confluence
     - write:space.permission:confluence
   external:
     fetch:
       backend:
-        - "https://confluence-api.vercel.app/*"
+        - https://confluence-api.vercel.app/*

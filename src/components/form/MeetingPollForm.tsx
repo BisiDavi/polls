@@ -43,8 +43,8 @@ export default function MeetingPollForm({
       />
       <TextField
         name="authorEmail"
-        label="Your Email"
-        placeholder="Enter your email, so as to receive notification about the meeting activities"
+        label="Enter your Email"
+        placeholder="receive notification about the meeting activities"
         type="email"
         isRequired
       />

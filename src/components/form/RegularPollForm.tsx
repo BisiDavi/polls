@@ -44,8 +44,8 @@ export default function RegularPollForm({ onSubmit }) {
       </Select>
       <TextField
         name="authorEmail"
-        label="Your Email"
-        placeholder="Enter your email, so as to receive notification about the poll activities"
+        label="Enter your Email"
+        placeholder="receive notification about the poll activities"
         type="email"
         isRequired
       />
