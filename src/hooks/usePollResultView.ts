@@ -71,10 +71,6 @@ export default function usePollResultView(setModal, data) {
       `Page-Polls-${context.contentId}-${uuidv4()}`,
       stringifyPollData
     );
-    savePollData(
-      `Space-Polls-${context.spaceKey}-${uuidv4()}`,
-      stringifyPollData
-    );
 
     await notifyTeamHandler();
     await getSavedPolls().then((response) => {

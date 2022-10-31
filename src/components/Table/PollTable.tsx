@@ -14,6 +14,7 @@ import ForgeUI, {
   User,
   Em,
   Strong,
+  useProductContext,
 } from "@forge/ui";
 
 import PollModal from "../modal/PollModal";
@@ -22,9 +23,10 @@ import formatPollTable from "../../lib/formatPollTable";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 
-export default function PollTable({ modal, type }) {
+export default function PollTable({ modal }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
   const [savedPolls, setSavedPolls] = useState(null);
+  const context = useProductContext();
 
   const [showPollModal, setShowPollModal] = useState(false);
   const { deletePoll } = usePublish();
@@ -43,17 +45,19 @@ export default function PollTable({ modal, type }) {
   }
 
   useEffect(async () => {
-    await getDataFromStorage(type).then((response) => {
-      let pollData = {};
-      response.results.map((item: any) => {
-        pollData = {
-          value: JSON.parse(item?.value),
-          key: item.key,
-        };
-        polls.push(pollData);
-      });
-      setSavedPolls(polls);
-    });
+    await getDataFromStorage(`Page-Polls-${context.contentId}`).then(
+      (response) => {
+        let pollData = {};
+        response.results.map((item: any) => {
+          pollData = {
+            value: JSON.parse(item?.value),
+            key: item.key,
+          };
+          polls.push(pollData);
+        });
+        setSavedPolls(polls);
+      }
+    );
   }, [modal]);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
@@ -86,13 +90,6 @@ export default function PollTable({ modal, type }) {
       <Text>
         <Strong>Welcome to Workspace Meeting & Poll</Strong>
       </Text>
-      {/* <Button
-        text="Create New Meeting/Poll"
-        icon="add"
-        iconPosition="before"
-        appearance="primary"
-        onClick={() => setModal(true)}
-      /> */}
       {sortedPolls.length > 0 ? (
         <Fragment>
           {showPollModal && selectedPoll && (
