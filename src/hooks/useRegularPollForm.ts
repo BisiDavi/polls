@@ -28,6 +28,7 @@ export default function useRegularPollForm(
       description: "";
       hideVoters: [""];
       duration: "";
+      team: "";
     }
 
     const currentDate = new Date();

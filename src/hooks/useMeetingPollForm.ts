@@ -44,6 +44,7 @@ export default function useMeetingPollForm(
       meetingDate: "";
       duration: "";
       time: "";
+      team: "";
     }
     setFormState({
       ...agendaObj,

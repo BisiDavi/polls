@@ -49,6 +49,12 @@ export default function MeetingPollForm({
       />
       <TextArea label="Meeting Description" spellCheck name="description" />
       <PollsFieldSet type="meeting" poll={agenda} setPoll={setAgenda} />
+      <TextArea
+        label="Notify Team about the meeting (enter team members email, separate with comma"
+        placeholder="Enter team members email, separate with comma"
+        name="team"
+        isRequired
+      />
     </Form>
   );
 }

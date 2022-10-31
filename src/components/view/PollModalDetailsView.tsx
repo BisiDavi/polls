@@ -63,10 +63,13 @@ export default function PollModalDetailsView({ data }) {
           </Text>
         </Fragment>
       ) : (
-        <Text>
-          <Strong>Meeting Link: </Strong>
-          {data.link}
-        </Text>
+        typeof data.link === "string" &&
+        data.link && (
+          <Text>
+            <Strong>Meeting Link: </Strong>
+            {data.link}
+          </Text>
+        )
       )}
       {data?.meetingDate && (
         <Text>

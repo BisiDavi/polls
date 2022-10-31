@@ -47,10 +47,12 @@ export default function RegularPollForm({ onSubmit }) {
         poll={regularPolls}
         setPoll={setRegularPolls}
       />
+      <TextArea
+        label="Notify Team about the Poll (enter team members email, separate with comma"
+        placeholder="Enter team members email, separate with comma"
+        name="team"
+        isRequired
+      />
     </Form>
   );
 }
-
-// Nigeria Presidential Aspirant Poll
-
-// A poll on preferred Nigeria Presidential Aspirant
