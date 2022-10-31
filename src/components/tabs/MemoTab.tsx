@@ -1,4 +1,5 @@
 import ForgeUI, {
+  DateLozenge,
   Form,
   Fragment,
   SectionMessage,
@@ -46,43 +47,57 @@ export default function MemoTab({ data }) {
 
   return (
     <Fragment>
-      <Text>
-        <Strong>
-          Now that you're done with the Meeting ({data.title}), Send your Team,
-          a memo of this meeting via email
-        </Strong>
-      </Text>
-      {!meetingMemo ? (
+      {!isMeetingValid ? (
         <Fragment>
-          {memoStatus !== null && (
-            <SectionMessage title="Memo status" appearance="confirmation">
-              <Text>{data.title} meeting memo sent</Text>
-            </SectionMessage>
-          )}
-          {meetingStatus === "meeting-not-yet-done" && (
-            <SectionMessage title="Memo status" appearance="confirmation">
+          <Text>
+            <Strong>
+              Now that you're done with the Meeting ({data.title}), Send your
+              Team, a memo of this meeting via email
+            </Strong>
+          </Text>
+          {!meetingMemo ? (
+            <Fragment>
+              {memoStatus !== null && (
+                <SectionMessage title="Memo status" appearance="confirmation">
+                  <Text>{data.title} meeting memo sent</Text>
+                </SectionMessage>
+              )}
+              {meetingStatus === "meeting-not-yet-done" && (
+                <SectionMessage title="Memo status" appearance="confirmation">
+                  <Text>
+                    {data.title} meeting not yet done, you can't send a post
+                    meeting memo for a meeting that haven't been done yet.
+                  </Text>
+                </SectionMessage>
+              )}
+              <Form
+                onSubmit={onSubmit}
+                submitButtonText="Send Memo"
+                submitButtonAppearance="primary"
+              >
+                <TextArea
+                  name="memo"
+                  label="Enter your meeting memo"
+                  placeholder="Now that you're done with the meeting, send your team the meeting memo, for reference purpose."
+                  isRequired
+                />
+              </Form>
+            </Fragment>
+          ) : (
+            <SectionMessage title="Memo status" appearance="info">
               <Text>
-                {data.title} meeting not yet done, you can't send a post meeting
-                memo for a meeting that haven't been done yet.
+                You've already sent your team, this meeting memo earlier
               </Text>
             </SectionMessage>
           )}
-          <Form
-            onSubmit={onSubmit}
-            submitButtonText="Send Memo"
-            submitButtonAppearance="primary"
-          >
-            <TextArea
-              name="memo"
-              label="Enter your meeting memo"
-              placeholder="Now that you're done with the meeting, send your team the meeting memo, for reference purpose."
-              isRequired
-            />
-          </Form>
         </Fragment>
       ) : (
-        <SectionMessage title="Memo status" appearance="info">
-          <Text>You've already sent your team, this meeting memo earlier</Text>
+        <SectionMessage title="Meeting Memo" appearance="info">
+          <Text>
+            You can only send a meeting memo, when the meeting has been done.
+            (after {` `}
+            <DateLozenge value={new Date(data.meetingDate).getTime()} />)
+          </Text>
         </SectionMessage>
       )}
     </Fragment>

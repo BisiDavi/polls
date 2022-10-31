@@ -174,7 +174,7 @@ export default function PollTable({ modal }) {
       ) : (
         <SectionMessage title="Meeting & Polls" appearance="error">
           <Text>
-            No meeting/poll yet, click on the "Create New Meeting/Poll" to get
+            No meeting/poll for this page yet, click on the "Create New Meeting/Poll" to get
             started
           </Text>
         </SectionMessage>
