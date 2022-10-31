@@ -17,9 +17,6 @@ const App = () => {
 
   return (
     <Fragment>
-      <Text>
-        <Strong>Welcome to Workspace Meeting & Poll</Strong>
-      </Text>
       <Button
         text="Create New Meeting/Poll"
         icon="add"
@@ -27,16 +24,13 @@ const App = () => {
         appearance="primary"
         onClick={() => setModal(true)}
       />
-      {modal && <Modal setModal={setModal} setSavedPolls={null} />}
+      {modal && <Modal setModal={setModal}  />}
       <Tabs>
         <Tab label="View Meeting & Poll in this Page">
           <PollTable type="Page-Polls" modal={modal} />
         </Tab>
         <Tab label="View Meeting & Poll in this Space">
           <PollTable type="Space-Polls" modal={modal} />
-        </Tab>
-        <Tab label="View All Meeting & Poll">
-          <PollTable type="Polls" modal={modal} />
         </Tab>
       </Tabs>
     </Fragment>

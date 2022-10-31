@@ -7,7 +7,7 @@ import { formatDate } from "../lib/isDateValid";
 import { formatPollAgenda } from "../lib/getAgendaName";
 import formatPollData from "../lib/formatPollData";
 
-export default function usePollResultView(setSavedPolls, setModal, data) {
+export default function usePollResultView(setModal, data) {
   const context = useProductContext();
   const { savePollData, getSavedPolls } = usePublish();
   const [meetingLink, setMeetingLink] = useState(null);
@@ -86,7 +86,6 @@ export default function usePollResultView(setSavedPolls, setModal, data) {
         };
         polls.push(pollData);
       });
-      // setSavedPolls(polls);
       setModal(false);
     });
   }

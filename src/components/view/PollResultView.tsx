@@ -15,7 +15,7 @@ import usePollResultView from "../../hooks/usePollResultView";
 import MeetingLinkForm from "../form/MeetingLinkForm";
 import MeetingLinkView from "./MeetingLinkView";
 
-export default function PollResultView({ data, setModal, setSavedPolls }) {
+export default function PollResultView({ data, setModal }) {
   const context = useProductContext();
   const {
     meetingDate,
@@ -26,7 +26,7 @@ export default function PollResultView({ data, setModal, setSavedPolls }) {
     setMeetingLink,
     setFormState,
     meetingLinkResult,
-  } = usePollResultView(setSavedPolls, setModal, data);
+  } = usePollResultView(setModal, data);
 
   const durationText =
     typeof data?.duration === "number"
