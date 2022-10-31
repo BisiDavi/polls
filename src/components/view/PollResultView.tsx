@@ -33,7 +33,12 @@ export default function PollResultView({
     meetingLinkResult,
   } = usePollResultView(setAppPoll, setSavedPolls, setModal, data);
 
-  const durationText = data?.duration > 1 ? "hrs" : "hr";
+  const durationText =
+    typeof data?.duration === "number"
+      ? data?.duration > 1
+        ? "hrs"
+        : "hr"
+      : "";
 
   return (
     <Fragment>

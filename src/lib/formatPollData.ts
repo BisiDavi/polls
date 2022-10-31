@@ -12,10 +12,11 @@ export default function formatPollData(data, suggestedAgenda) {
 
   const suggestedAgendaString = `Suggested Agendas (From Team):\n${suggestedAgendas}`;
 
-  const messageLink =
-    typeof data.link === "string"
+  const messageLink = data?.link
+    ? typeof data.link === "string"
       ? `Meeting link:${data.link}`
-      : `Start Url (Host):${data.link.start_url}\nJoin Url(Invite):${data.link.join_url}\nMeeting Password:${data.link.password}`;
+      : `Start Url (Host):${data?.link?.start_url}\nJoin Url(Invite):${data?.link?.join_url}\nMeeting Password:${data?.link?.password}`
+    : "";
 
   let agendaString = "";
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";

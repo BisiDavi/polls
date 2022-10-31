@@ -76,6 +76,8 @@ export default function usePollResultView(
     setAppPoll(stringifyPollData);
     setModal(false);
 
+    await notifyTeamHandler();
+
     await getSavedPolls().then((response) => {
       let pollData = {};
       response.results.map((item: any) => {
