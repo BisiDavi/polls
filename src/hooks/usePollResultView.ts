@@ -45,7 +45,7 @@ export default function usePollResultView(setModal, data) {
   const topics = data ? formatPollAgenda(data, formatPollType) : null;
 
   async function notifyTeamHandler() {
-    const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data?.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data?.meetingDate}\n\nAgendas to be discussed:\n${agendaString}\nWe look forward to seeing you suggesting agenda for this meeting on confluence`;
+    const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data?.time}\nDuration:${duration}\nMeeting Date:${data?.meetingDate}\n${messageLink}\n\nAgendas to be discussed:\n${agendaString}\nWe look forward to seeing you suggesting agenda for this meeting on confluence`;
     const pollData = `Title:${data.title}\nDescription:${data.description}\nDuration:${duration}\n${messageLink}\nPoll Options:\n${agendaString}\nWe look forward to seeing you participate on this poll from confluence`;
     const message = data.type === "meetingPoll" ? meetingData : pollData;
 
