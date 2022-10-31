@@ -8,6 +8,7 @@ import ForgeUI, {
   useState,
 } from "@forge/ui";
 import { useContentProperty } from "@forge/ui-confluence";
+import isDateValid from "../../lib/isDateValid";
 
 import toSlug from "../../lib/toSlug";
 
@@ -18,13 +19,19 @@ export default function MemoTab({ data }) {
     undefined
   );
   const [formState, setFormState] = useState(null);
+  const [meetingStatus, setMeetingStatus] = useState(null);
+  const isMeetingValid = isDateValid(data.meetingDate);
 
   async function onSubmit(formData) {
-    formData: {
-      memo: "";
+    if (!isMeetingValid) {
+      formData: {
+        memo: "";
+      }
+      setFormState(formData?.memo);
+      await setMeetingMemo(formData?.memo);
+    } else {
+      setMeetingStatus("meeting-not-yet-done");
     }
-    setFormState(formData?.memo);
-    await setMeetingMemo(formData?.memo);
   }
 
   return (
@@ -40,6 +47,14 @@ export default function MemoTab({ data }) {
           {formState !== null && (
             <SectionMessage title="Memo status" appearance="confirmation">
               <Text>{data.title} meeting memo sent</Text>
+            </SectionMessage>
+          )}
+          {meetingStatus === "meeting-not-yet-done" && (
+            <SectionMessage title="Memo status" appearance="confirmation">
+              <Text>
+                {data.title} meeting not yet done, you can't send a post meeting
+                memo for a meeting that haven't been done yet.
+              </Text>
             </SectionMessage>
           )}
           <Form

@@ -51,7 +51,7 @@ export default function PollModal({ setPollModal, data }) {
         )}
         {data.type === "meetingPoll" && (
           <Tab label="Send Memo to Team">
-            <MemoTab data={data} saveAgendastatus={saveAgendaStatus} />
+            <MemoTab data={data}  />
           </Tab>
         )}
       </Tabs>
