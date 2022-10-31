@@ -86,7 +86,7 @@ export default function usePollResultView(setSavedPolls, setModal, data) {
         };
         polls.push(pollData);
       });
-      setSavedPolls(polls);
+      // setSavedPolls(polls);
       setModal(false);
     });
   }

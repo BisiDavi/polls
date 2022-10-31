@@ -22,13 +22,10 @@ import formatPollTable from "../../lib/formatPollTable";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 
-export default function PollTable({
-  setModal,
-  savedPolls,
-  setSavedPolls,
-  type,
-}) {
+export default function PollTable({ modal, type }) {
   const [selectedPoll, setSelectedPoll] = useState(null);
+  const [savedPolls, setSavedPolls] = useState(null);
+
   const [showPollModal, setShowPollModal] = useState(false);
   const { deletePoll } = usePublish();
   const { deleteStorage, getDataFromStorage } = useStorage();
@@ -59,7 +56,7 @@ export default function PollTable({
         setSavedPolls(polls);
       });
     }
-  }, [savedPolls]);
+  }, [modal]);
 
   const pollsData = savedPolls ? formatPollTable(savedPolls) : [];
 
@@ -91,13 +88,13 @@ export default function PollTable({
       <Text>
         <Strong>Welcome to Workspace Meeting & Poll</Strong>
       </Text>
-      <Button
+      {/* <Button
         text="Create New Meeting/Poll"
         icon="add"
         iconPosition="before"
         appearance="primary"
         onClick={() => setModal(true)}
-      />
+      /> */}
       {sortedPolls.length > 0 ? (
         <Fragment>
           {showPollModal && selectedPoll && (
