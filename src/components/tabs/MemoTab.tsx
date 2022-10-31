@@ -32,7 +32,7 @@ export default function MemoTab({ data }) {
         method: "POST",
         body: JSON.stringify({
           title: `${data.title} Memo`,
-          receipent: data.team,
+          receipent: `${data.team},${data.authorEmail}`,
           message: formData?.memo,
           type: "meeting",
         }),
