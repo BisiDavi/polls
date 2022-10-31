@@ -67,12 +67,22 @@ export default function RegularPoll({ pollOptions, data }) {
       vote: poll,
     };
     const existingData = pollData.length > 0 ? pollData[0].value : "";
-    const data = [...existingData, dataObj];
-    await saveData(dataKey, data)
+    await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
+      method: "POST",
+      body: JSON.stringify({
+        title: titleText,
+        receipent: data.authorEmail,
+        message: `Hello, a team member just made a vote on your Poll-${data.title}`,
+        type: "poll",
+      }),
+    });
+    const dataArray = [...existingData, dataObj];
+    await saveData(dataKey, dataArray)
       .then(async () => {
         await getDataFromStorage(dataKey).then((response) => {
           setPollData(response.results);
         });
+
         return setSubmitPollStatus(true);
       })
       .catch(() => {
