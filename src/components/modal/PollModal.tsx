@@ -5,6 +5,7 @@ import PollModalDetailsView from "../view/PollModalDetailsView";
 import MeetingTab from "../tabs/MeetingTab";
 import MeetingPoll from "../poll/MeetingPoll";
 import { formatPollAgenda } from "../../lib/getAgendaName";
+import MemoTab from "../tabs/MemoTab";
 
 export default function PollModal({ setPollModal, data }) {
   const [suggestedAgenda, setSuggestedAgenda] = useState(["Suggest Agenda 1"]);
@@ -46,6 +47,11 @@ export default function PollModal({ setPollModal, data }) {
         {data.type === "meetingPoll" && (
           <Tab label="Suggested Agenda">
             <MeetingTab data={data} saveAgendastatus={saveAgendaStatus} />
+          </Tab>
+        )}
+        {data.type === "meetingPoll" && (
+          <Tab label="Send Memo to Team">
+            <MemoTab data={data} saveAgendastatus={saveAgendaStatus} />
           </Tab>
         )}
       </Tabs>
