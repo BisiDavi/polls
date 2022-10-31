@@ -13,6 +13,7 @@ import ForgeUI, {
   SectionMessage,
   User,
   Em,
+  Strong,
 } from "@forge/ui";
 
 import PollModal from "../modal/PollModal";
@@ -87,6 +88,9 @@ export default function PollTable({
 
   return (
     <Fragment>
+      <Text>
+        <Strong>Welcome to Workspace Meeting & Poll</Strong>
+      </Text>
       <Button
         text="Create New Meeting/Poll"
         icon="add"
@@ -176,9 +180,10 @@ export default function PollTable({
           </Text>
         </Fragment>
       ) : (
-        <SectionMessage title="Polls" appearance="error">
+        <SectionMessage title="Meeting & Polls" appearance="error">
           <Text>
-            No poll yet, click on the "Create New Poll" to create Poll
+            No meeting/poll yet, click on the "Create New Meeting/Poll" to get
+            started
           </Text>
         </SectionMessage>
       )}

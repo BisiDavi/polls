@@ -1,30 +1,20 @@
-import ForgeUI, {
-  render,
-  Fragment,
-  Macro,
-  useState,
-  useProductContext,
-} from "@forge/ui";
+import ForgeUI, { Macro, render, Tab, Tabs } from "@forge/ui";
 
-import Modal from "./components/modal";
-import PollTableTabs from "./components/tabs/PollTableTabs";
+import PollTabView from "./components/view/PollTabView";
 
 const App = () => {
-  const [savedPolls, setSavedPolls] = useState(null);
-  const [modal, setModal] = useState(false);
-  const context = useProductContext();
-
-  console.log("context", context);
-
   return (
-    <Fragment>
-      {modal && <Modal setModal={setModal} setSavedPolls={setSavedPolls} />}
-      <PollTableTabs
-        savedPolls={savedPolls}
-        setModal={setModal}
-        setSavedPolls={setSavedPolls}
-      />
-    </Fragment>
+    <Tabs>
+      <Tab label="View Meeting & Poll in this Page">
+        <PollTabView type="Page-Polls" />
+      </Tab>
+      <Tab label="View Meeting & Poll in this Space">
+        <PollTabView type="Space-Polls" />
+      </Tab>
+      <Tab label="View All Meeting & Poll">
+        <PollTabView type="Polls" />
+      </Tab>
+    </Tabs>
   );
 };
 

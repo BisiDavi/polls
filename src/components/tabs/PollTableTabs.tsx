@@ -1,25 +1,18 @@
 import ForgeUI, { Tab, Tabs } from "@forge/ui";
 
-import PollTable from "../table/PollTable";
+import PollTabView from "../view/PollTabView";
 
-export default function PollTableTabs({ savedPolls, setModal, setSavedPolls }) {
+export default function PollTableTabs() {
   return (
     <Tabs>
-      <Tab label="View Data in Page">
-        <PollTable
-          type="Page-Polls"
-          setModal={setModal}
-          savedPolls={savedPolls}
-          setSavedPolls={setSavedPolls}
-        />
+      <Tab label="View Meeting & Poll in this Page">
+        <PollTabView type="Page-Polls" />
       </Tab>
-      <Tab label="View Data in Space">
-        <PollTable
-          type="Space-Polls"
-          setModal={setModal}
-          savedPolls={savedPolls}
-          setSavedPolls={setSavedPolls}
-        />
+      <Tab label="View Meeting & Poll in this Space">
+        <PollTabView type="Space-Polls" />
+      </Tab>
+      <Tab label="View All Meeting & Poll">
+        <PollTabView type="Polls" />
       </Tab>
     </Tabs>
   );
