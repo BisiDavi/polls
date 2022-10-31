@@ -3,7 +3,8 @@ modules:
     - key: confluence-plugins-workspace-polls-for-confluence
       function: main
       title: Workspace Meeting & Polls for Confluence
-      description: Team Meeting Management - Allow team members to vote agendas to be
+      description:
+        Team Meeting Management - Allow team members to vote agendas to be
         discussed ahead of a meetings, conduct regular poll with grahpical
         representation
   function:

@@ -1,4 +1,10 @@
-import ForgeUI, { render, Fragment, Macro, useState } from "@forge/ui";
+import ForgeUI, {
+  render,
+  Fragment,
+  Macro,
+  useState,
+  useProductContext,
+} from "@forge/ui";
 
 import Modal from "./components/modal";
 import PollTable from "./components/table/PollTable";
@@ -6,6 +12,9 @@ import PollTable from "./components/table/PollTable";
 const App = () => {
   const [savedPolls, setSavedPolls] = useState(null);
   const [modal, setModal] = useState(false);
+  const context = useProductContext();
+
+  console.log("context", context);
 
   return (
     <Fragment>
