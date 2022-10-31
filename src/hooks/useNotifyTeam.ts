@@ -1,41 +1,20 @@
 import { useEffect, useState } from "@forge/ui";
 import { fetch } from "@forge/api";
 
-import { formatPollAgenda } from "../lib/getAgendaName";
+import formatPollData from "../lib/formatPollData";
 
 export default function useNotifyTeam(data, suggestedAgenda) {
   const [notify, setNotify] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formState, setFormState] = useState(undefined);
 
-  const pollType = data.type === "meetingPoll" ? "Meeting" : "Poll";
-
-  let suggestedAgendas = "";
-  suggestedAgenda &&
-    suggestedAgenda.map((item) => {
-      const formatAgenda = formatPollAgenda(item, "suggest");
-      suggestedAgendas += `-${formatAgenda[0]}\n`;
-    });
-
-  const suggestedAgendaString = `Suggested Agendas (From Team):\n${suggestedAgendas}`;
-
-  const messageLink =
-    typeof data.link === "string"
-      ? `Meeting link:${data.link}`
-      : `Start Url (Host):${data.link.start_url}\nJoin Url(Invite):${data.link.join_url}\nMeeting Password:${data.link.password}`;
-
-  let agendaString = "";
-  const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
-  const agendasArray = data ? formatPollAgenda(data, formatPollType) : null;
-  agendasArray &&
-    agendasArray.map((item) => {
-      agendaString += `-${item}\n`;
-    });
-
-  const durationText = data.duration > 1 ? " hrs" : " hr";
-
-  const duration =
-    typeof data.duration === "number" ? durationText : data.duration;
+  const {
+    duration,
+    suggestedAgendaString,
+    messageLink,
+    pollType,
+    agendaString,
+  } = formatPollData(data, suggestedAgenda);
 
   useEffect(async () => {
     if (formState !== undefined && !submitted) {
@@ -47,6 +26,7 @@ export default function useNotifyTeam(data, suggestedAgenda) {
           title: data.title,
           receipent: formState.teamEmail,
           message: meetingData,
+          type: "meeting",
         }),
       }).then(() => {
         setSubmitted(true);

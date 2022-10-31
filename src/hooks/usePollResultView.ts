@@ -1,9 +1,11 @@
 import { useProductContext, useState } from "@forge/ui";
 import { v4 as uuidv4 } from "uuid";
+import { fetch } from "@forge/api";
 
 import usePublish from "../hooks/usePublish";
 import { formatDate } from "../lib/isDateValid";
 import { formatPollAgenda } from "../lib/getAgendaName";
+import formatPollData from "../lib/formatPollData";
 
 export default function usePollResultView(
   setAppPoll,
@@ -15,8 +17,11 @@ export default function usePollResultView(
   const { savePollData, getSavedPolls } = usePublish();
   const [meetingLink, setMeetingLink] = useState(null);
   const [formState, setFormState] = useState(null);
+  const [notifyTeam, setNotifyTeam] = useState(false);
 
   const polls = [];
+
+  const { duration, messageLink, agendaString } = formatPollData(data, null);
 
   const meetingLinkResult = meetingLink
     ? meetingLink
@@ -42,6 +47,21 @@ export default function usePollResultView(
     data.type === "meetingPoll" ? "Agendas to be discussed" : "Poll Options";
 
   const topics = data ? formatPollAgenda(data, formatPollType) : null;
+
+  async function notifyTeamHandler() {
+    const meetingType = data.type === "meetingPoll" ? "meeting" : "poll";
+    const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\nAgendas to be discussed:\n${agendaString}`;
+
+    await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
+      method: "POST",
+      body: JSON.stringify({
+        title: data.title,
+        receipent: data.team,
+        message: meetingData,
+        type: meetingType,
+      }),
+    }).then(() => setNotifyTeam(true));
+  }
 
   async function publishDataHandler() {
     const pollData = {
@@ -70,6 +90,7 @@ export default function usePollResultView(
   const meetingDate = data?.meetingDate ? formatDate(data?.meetingDate) : null;
 
   return {
+    notifyTeam,
     meetingDate,
     publishDataHandler,
     topics,
@@ -78,6 +99,6 @@ export default function usePollResultView(
     setMeetingLink,
     setFormState,
     meetingLinkResult,
+    notifyTeamHandler,
   };
-
 }

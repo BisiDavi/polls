@@ -4,15 +4,16 @@
     "2. Team member can add (suggest) new meeting agenda.",
     "3. Prioritize meeting agenda based on your team member opinion.",
     "4. Estimate meeting duration.",
-    "5. Generate zoom meeting link",
-    "6. Send meeting memo to team via email."
+    "5. Generate zoom meeting link.",
+    "6. Send meeting memo to team via email.",
+    "7. Get notified about meeting agenda suggestion activities"
   ],
   "regular": [
     "1. Create poll options.",
     "2. Polls can be anonynmous.",
     "3. Polls are time based.",
     "4. View graphical representation of the Poll, via Bar Chart, Pie Chart and Polar Area Chart.",
-    "5. View poll result in real time.",
-    "6. Notify team about the poll via email"
+    "5. View poll result in real time and get notified about poll activities.",
+    "6. Notify team about the poll via email."
   ]
 }
