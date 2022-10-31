@@ -7,7 +7,7 @@ import ForgeUI, {
 } from "@forge/ui";
 
 import Modal from "./components/modal";
-import PollTable from "./components/table/PollTable";
+import PollTableTabs from "./components/tabs/PollTableTabs";
 
 const App = () => {
   const [savedPolls, setSavedPolls] = useState(null);
@@ -19,9 +19,9 @@ const App = () => {
   return (
     <Fragment>
       {modal && <Modal setModal={setModal} setSavedPolls={setSavedPolls} />}
-      <PollTable
-        setModal={setModal}
+      <PollTableTabs
         savedPolls={savedPolls}
+        setModal={setModal}
         setSavedPolls={setSavedPolls}
       />
     </Fragment>

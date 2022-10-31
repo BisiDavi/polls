@@ -21,11 +21,16 @@ import formatPollTable from "../../lib/formatPollTable";
 import useStorage from "../../hooks/useStorage";
 import toSlug from "../../lib/toSlug";
 
-export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
+export default function PollTable({
+  setModal,
+  savedPolls,
+  setSavedPolls,
+  type,
+}) {
   const [selectedPoll, setSelectedPoll] = useState(null);
   const [showPollModal, setShowPollModal] = useState(false);
-  const { getSavedPolls, deletePoll } = usePublish();
-  const { deleteStorage } = useStorage();
+  const { deletePoll } = usePublish();
+  const { deleteStorage, getDataFromStorage } = useStorage();
 
   const polls = [];
 
@@ -41,7 +46,7 @@ export default function PollTable({ setModal, savedPolls, setSavedPolls }) {
 
   useEffect(async () => {
     if (savedPolls === null) {
-      await getSavedPolls().then((response) => {
+      await getDataFromStorage(type).then((response) => {
         let pollData = {};
         response.results.map((item: any) => {
           pollData = {
