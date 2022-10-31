@@ -1,6 +1,7 @@
 import ForgeUI, {
   Fragment,
   Image,
+  SectionMessage,
   Strong,
   Text,
   useProductContext,
@@ -23,7 +24,7 @@ export default function MeetingTab({ data, saveAgendastatus }) {
   return (
     <Fragment>
       <Text>
-        <Strong>List of Agenda for the Meeting</Strong>
+        <Strong>List of Agenda for the Meeting (By the Meeting host)</Strong>
       </Text>
       <PollList pollData={agendas} />
       {suggestedAgenda.length > 0 && (
@@ -37,20 +38,27 @@ export default function MeetingTab({ data, saveAgendastatus }) {
           </Text>
         </Fragment>
       )}
-      {suggestedAgenda.length > 0 &&
-        suggestedAgenda.map((item) => {
-          const date = formatAgendaDate(item.date);
-          const formatAgenda = formatPollAgenda(item, "suggest");
-          return (
-            <Text key={item.date}>
-              <Strong>-</Strong>
-              {formatAgenda[0]}
-              {`         `}
-              <User accountId={item.author} />
-              {`         `}({date})
-            </Text>
-          );
-        })}
+      {suggestedAgenda.length > 0
+        ? suggestedAgenda.map((item) => {
+            const date = formatAgendaDate(item.date);
+            const formatAgenda = formatPollAgenda(item, "suggest");
+            return (
+              <Text key={item.date}>
+                <Strong>-</Strong>
+                {formatAgenda[0]}
+                {`         `}
+                <User accountId={item.author} />
+                {`         `}({date})
+              </Text>
+            );
+          })
+        : suggestedAgenda.length === 0 && (
+            <SectionMessage title="Suggested Agenda" appearance="info">
+              <Text>
+                <Strong>No suggested Agenda from the team</Strong>
+              </Text>
+            </SectionMessage>
+          )}
       {suggestedAgenda.length > 0 && context.accountId === data.accountId && (
         <NotifyTeam data={data} suggestedAgenda={suggestedAgenda} />
       )}

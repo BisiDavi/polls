@@ -117,7 +117,7 @@ export default function MeetingPoll({
             alt="meeting date expired"
           />
           <Text>
-            Meeting date has expired, you can't suggest any agenda for this
+            Meeting date has passed, you can't suggest any agenda for this
             meeting.
           </Text>
         </Fragment>
