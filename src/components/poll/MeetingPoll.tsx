@@ -12,6 +12,7 @@ import ForgeUI, {
   Button,
 } from "@forge/ui";
 import { v4 as uuidv4 } from "uuid";
+import { fetch } from "@forge/api";
 
 import PollsFieldSet from "../form/PollsFieldSet";
 import { formatFormPoll } from "../../lib/getAgendaName";
@@ -54,6 +55,16 @@ export default function MeetingPoll({
     const dataArray = [...previousData, formstateData];
     await saveData(dataKey, dataArray).then(() => {
       setSaveAgendaStatus(true);
+    });
+    await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
+      method: "POST",
+      body: JSON.stringify({
+        title: `A newly suggested agenda for ${data.title}`,
+        receipent: data.authorEmail,
+        message:
+          "Hello, a team member just made a suggestion, do check your confluence for more details",
+        type: "meeting",
+      }),
     });
   }
 
