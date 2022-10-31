@@ -1,6 +1,6 @@
 modules:
   macro:
-    - key: polls-meetings-simplified
+    - key: confluence-plugins-workspace-polls-for-confluence
       function: main
       title: Workspace Meeting & Polls for Confluence
       description: Team Meeting Management - Allow team-mates to vote topics to be discussed in meetings/regular poll
