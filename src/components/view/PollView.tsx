@@ -7,7 +7,6 @@ import usePollView from "../../hooks/usePollView";
 
 export default function PollView({
   type,
-  setAppPoll,
   setPollType,
   setModal,
   setSavedPolls,
@@ -26,7 +25,6 @@ export default function PollView({
       {type.includes("View") ? (
         <PollResultView
           data={data}
-          setAppPoll={setAppPoll}
           setModal={setModal}
           setSavedPolls={setSavedPolls}
         />

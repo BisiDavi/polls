@@ -7,12 +7,7 @@ import { formatDate } from "../lib/isDateValid";
 import { formatPollAgenda } from "../lib/getAgendaName";
 import formatPollData from "../lib/formatPollData";
 
-export default function usePollResultView(
-  setAppPoll,
-  setSavedPolls,
-  setModal,
-  data
-) {
+export default function usePollResultView(setSavedPolls, setModal, data) {
   const context = useProductContext();
   const { savePollData, getSavedPolls } = usePublish();
   const [meetingLink, setMeetingLink] = useState(null);
@@ -73,11 +68,8 @@ export default function usePollResultView(
     };
     const stringifyPollData = JSON.stringify(pollData);
     savePollData(`Polls--${uuidv4()}`, stringifyPollData);
-    setAppPoll(stringifyPollData);
-    setModal(false);
 
     await notifyTeamHandler();
-
     await getSavedPolls().then((response) => {
       let pollData = {};
       response.results.map((item: any) => {
@@ -88,6 +80,7 @@ export default function usePollResultView(
         polls.push(pollData);
       });
       setSavedPolls(polls);
+      setModal(false);
     });
   }
 

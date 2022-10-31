@@ -3,7 +3,7 @@ import ForgeUI, { useState, useEffect, Button, ModalDialog } from "@forge/ui";
 import PollView from "../view/PollView";
 import TabView from "../tabs/PollTabs";
 
-export default function Modal({ setAppPoll, setModal, setSavedPolls }) {
+export default function Modal({ setModal, setSavedPolls }) {
   const [pollType, setPollType] = useState("");
   const [backState, setBackState] = useState("");
 
@@ -39,7 +39,6 @@ export default function Modal({ setAppPoll, setModal, setSavedPolls }) {
         <PollView
           type={pollType}
           setPollType={setPollType}
-          setAppPoll={setAppPoll}
           setModal={setModal}
           setSavedPolls={setSavedPolls}
         />

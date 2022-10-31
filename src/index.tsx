@@ -4,20 +4,12 @@ import Modal from "./components/modal";
 import PollTable from "./components/table/PollTable";
 
 const App = () => {
-  const [appPoll, setAppPoll] = useState(null);
   const [savedPolls, setSavedPolls] = useState(null);
   const [modal, setModal] = useState(false);
 
   return (
     <Fragment>
-      {modal && (
-        <Modal
-          setAppPoll={setAppPoll}
-          setModal={setModal}
-          setSavedPolls={setSavedPolls}
-          
-        />
-      )}
+      {modal && <Modal setModal={setModal} setSavedPolls={setSavedPolls} />}
       <PollTable
         setModal={setModal}
         savedPolls={savedPolls}

@@ -30,7 +30,7 @@ export function addHours(numOfHours, date) {
 export function isTimeValid(dateString: string) {
   const timeString = new Date(dateString);
   const currentTime = new Date();
-
-  const isTimeValid = timeString > currentTime;
+  currentTime.setHours(0, 0, 0, 0);
+  const isTimeValid = timeString >= currentTime;
   return isTimeValid;
 }
