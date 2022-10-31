@@ -24,7 +24,7 @@ export default function PollModal({ setPollModal, data }) {
 
   return (
     <ModalDialog
-      header="Welcome to Polls, plan your meeting succintly."
+      header="Welcome to Workspace Meeting & Polls, plan your meeting effectively and conduct polls."
       onClose={modalHandler}
     >
       <Tabs>
