@@ -18,7 +18,7 @@ export default function MemoTab({ data }) {
     `meeting-${meetingTitleSlug}`,
     ""
   );
-  const [formState, setFormState] = useState(null);
+  const [memoStatus, setMemoStatus] = useState(null);
   const [meetingStatus, setMeetingStatus] = useState(null);
   const isMeetingValid = isDateValid(data.meetingDate);
 
@@ -27,8 +27,18 @@ export default function MemoTab({ data }) {
       formData: {
         memo: "";
       }
-      setFormState(formData?.memo);
       await setMeetingMemo(formData?.memo);
+      await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
+        method: "POST",
+        body: JSON.stringify({
+          title: `${data.title} Memo`,
+          receipent: data.team,
+          message: formData?.memo,
+          type: "meeting",
+        }),
+      }).then(() => {
+        setMemoStatus(true);
+      });
     } else {
       setMeetingStatus("meeting-not-yet-done");
     }
@@ -44,7 +54,7 @@ export default function MemoTab({ data }) {
       </Text>
       {!meetingMemo ? (
         <Fragment>
-          {formState !== null && (
+          {memoStatus !== null && (
             <SectionMessage title="Memo status" appearance="confirmation">
               <Text>{data.title} meeting memo sent</Text>
             </SectionMessage>
