@@ -18,7 +18,8 @@ export default function useNotifyTeam(data, suggestedAgenda) {
 
   useEffect(async () => {
     if (formState !== undefined && !submitted) {
-      const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\nAgendas to be discussed:\n${agendaString}${suggestedAgendaString}`;
+      const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data?.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data?.meetingDate}\n\nAgendas to be discussed:\n${agendaString}${suggestedAgendaString}`;
+      const pollData = `Title:${data.title}\nDescription:${data.description}\nDuration:${duration}\n${messageLink}\n\nPolls Options:\n${agendaString}${suggestedAgendaString}`;
 
       await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
         method: "POST",

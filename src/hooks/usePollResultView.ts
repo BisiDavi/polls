@@ -45,19 +45,21 @@ export default function usePollResultView(
   const formatPollType = data.type === "meetingPoll" ? "agenda" : "poll";
   const optionText =
     data.type === "meetingPoll" ? "Agendas to be discussed" : "Poll Options";
+  const meetingType = data.type === "meetingPoll" ? "meeting" : "poll";
 
   const topics = data ? formatPollAgenda(data, formatPollType) : null;
 
   async function notifyTeamHandler() {
-    const meetingType = data.type === "meetingPoll" ? "meeting" : "poll";
-    const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data.meetingDate}\n\nAgendas to be discussed:\n${agendaString}`;
+    const meetingData = `Title:${data.title}\nDescription:${data.description}\nTime:${data?.time}\nDuration:${duration}\n${messageLink}\nMeeting Date:${data?.meetingDate}\n\nAgendas to be discussed:\n${agendaString}`;
+    const pollData = `Title:${data.title}\nDescription:${data.description}\nDuration:${duration}\n${messageLink}\n\nPoll Options:\n${agendaString}`;
+    const message = data.type === "meetingPoll" ? meetingData : pollData;
 
     await fetch("https://confluence-api.vercel.app/api/gmail/mail/send", {
       method: "POST",
       body: JSON.stringify({
         title: data.title,
         receipent: data.team,
-        message: meetingData,
+        message,
         type: meetingType,
       }),
     }).then(() => setNotifyTeam(true));
